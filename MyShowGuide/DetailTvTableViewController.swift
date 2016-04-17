@@ -50,8 +50,6 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
     getJSON(newURL)
     let videoURL = "https://api-public.guidebox.com/v1.43/US/\(self.apiKey)/show/\(self.showToDetailSite)/clips/all/0/25/all/all/true"
     self.getVideoJSON(videoURL)
-    print("XXXXXXXXXXXX\(videoURL)")
-  
   }
   
   //MARK: JSON
