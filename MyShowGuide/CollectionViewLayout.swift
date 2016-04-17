@@ -11,16 +11,20 @@ import UIKit
 
 
 extension ChannelViewController: UICollectionViewDelegateFlowLayout {
-
+  
   
   
   func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-   
+    
     let width =  UIScreen.mainScreen().bounds.width/2
     
-    
-    let size = CGSize(width: width, height: 100)
-    return size
+    if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+      let size = CGSize(width: width, height: 200)
+      return size
+    } else {
+      let size = CGSize(width: width, height: 100)
+      return size
+    }
   }
   
   func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {

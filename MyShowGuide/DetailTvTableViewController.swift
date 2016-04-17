@@ -6,6 +6,7 @@
 //  Copyright © 2015 Justin Doo. All rights reserved.
 //
 
+
 import UIKit
 
 
@@ -15,11 +16,14 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
   
   var postersShown = [Bool](count: 8, repeatedValue: false)
   var task : NSURLSessionTask?
+  
   var newURL : String?
   var detailToWebsite: String?
   var spinnerActive = false
   var showToDetailSite: NSNumber = 0
   let apiKey = "rKk09BXyG0kXF1lnde9GOltFq6FfvNQd"
+  var totalResultsArray: [AnyObject] = []
+  
   @IBOutlet var DetailTvTableView: UITableView!
   
   //MARK: Arrays - different array for each cell so the numberOfRowsInSection.count is correct
@@ -32,6 +36,8 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
   var exploreArray: [ExploreInfo] = []
   var castLocalArray: [CastInfo] = []
   var genre: String?
+  var videoURL: [String] = []
+  var videoCell: VideoOnDetailCell!
   
   //MARK: ViewDidLoad
   
@@ -39,24 +45,24 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
     super.viewDidLoad()
     SwiftSpinner.show("Retrieving your show info...")
     spinnerActive = true
-    delay(5, closure: {
-      if self.spinnerActive == true {
-        SwiftSpinner.hide()
-        self.showNetworkError()
-      }
-    })
     self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
     let newURL = "http://api-public.guidebox.com/v1.43/us/\(apiKey)/show/\(showToDetailSite)"
     getJSON(newURL)
-     }
+    let videoURL = "https://api-public.guidebox.com/v1.43/US/\(self.apiKey)/show/\(self.showToDetailSite)/clips/all/0/25/all/all/true"
+    self.getVideoJSON(videoURL)
+    print("XXXXXXXXXXXX\(videoURL)")
   
+  }
   
   //MARK: JSON
   
   func getJSON (urlString: String) {
     
     let url = NSURL(string: urlString)!
-    let session = NSURLSession.sharedSession()
+    let urlConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
+    urlConfig.timeoutIntervalForRequest = 10
+    urlConfig.timeoutIntervalForResource = 10
+    let session = NSURLSession(configuration: urlConfig)
     task = session.dataTaskWithURL(url) {(data, response, error) in
       dispatch_async(dispatch_get_main_queue()) {
         if (error == nil) {
@@ -71,12 +77,13 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
     task!.resume()
   }
   
+  
   func updateDetailShowInfo (data: NSData!) {
     do {
       let jsonResult = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
       
       let banner = jsonResult["banner"] as? String ?? ""
-      let overview = jsonResult["overview"] as? String ?? "N/A"
+      let overview = jsonResult["overview"] as! String ?? "N/A"
       let firstAired = jsonResult["first_aired"] as? String ?? "N/A"
       let network = jsonResult["network"] as? String ?? "N/A"
       let rating = jsonResult["rating"] as? String ?? "N/A"
@@ -85,7 +92,10 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
       detailsArray.append(showInfo)
       bannerArray.append(banner)
       overViewArray.append(overview)
-      
+      totalResultsArray.append(detailsArray)
+      totalResultsArray.append(bannerArray)
+      totalResultsArray.append(overViewArray)
+    
       if let castArray = jsonResult["cast"] as? [NSDictionary] {
         for castItem in castArray {
           let name = castItem["name"] as? String ?? "N/A"
@@ -94,6 +104,7 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
           castLocalArray.append(castInfo)
         }
       }
+      totalResultsArray.append(castLocalArray)
       
       let poster = jsonResult["poster"] as? String ?? "N/A"
       let artwork = jsonResult["artwork_608x342"] as? String ?? "N/A"
@@ -102,6 +113,7 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
       photosArray.append(poster)
       photosArray.append(fanart)
       photosArray.append(artwork)
+      totalResultsArray.append(photosArray)
       
       if let channels = jsonResult["channels"] as? [[String:AnyObject]] where !channels.isEmpty {
         let channel = channels[0] // now the compiler knows it's [String:AnyObject]
@@ -113,11 +125,8 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
         
         let socialInfo = SocialInfo(facebook: facebook, twitter: twitter)
         socialArray.append(socialInfo)
-
+        totalResultsArray.append(socialArray)
       }
-     // let channels = jsonResult["channels"]?[0] as? [String: AnyObject]
-
-
       
       let metacritic = nullToNil(jsonResult["metacritic"]) as? String
       let imdbID = nullToNil(jsonResult["imdb_id"]) as? String
@@ -126,34 +135,79 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
       
       let exploreInfo = ExploreInfo(metacritic: metacritic, imdbID: imdbID, wiki: wiki, id: id)
       exploreArray.append(exploreInfo)
-      
+      totalResultsArray.append(exploreArray)
     }
     catch {
       showNetworkError()
     }
-     self.DetailTvTableView.reloadData()
   }
+  
+  
+  func getVideoJSON (urlString: String) {
+    let url = NSURL(string: urlString)!
+    let urlConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
+    urlConfig.timeoutIntervalForRequest = 10
+    urlConfig.timeoutIntervalForResource = 10
+    let session = NSURLSession(configuration: urlConfig)
+    task = session.dataTaskWithURL(url) {(data, response, error) in
+      dispatch_async(dispatch_get_main_queue()) {
+        if (error == nil) {
+          self.updateVideo(data!)
+        } else {
+          SwiftSpinner.hide()
+          self.spinnerActive = false
+          self.showNetworkError()
+        }
+      }
+    }
+    task!.resume()
+  }
+  
+  
+  func updateVideo (data: NSData!) {
+    do {
+      let jsonResult = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
+      
+      if let results = jsonResult["results"] as? [[String:AnyObject]] where !results.isEmpty {
+        let result = results[0]
+        if let freeIOSServices = result["free_ios_sources"] as? [[String:AnyObject]] where !results.isEmpty {
+          if !freeIOSServices.isEmpty {let free = freeIOSServices[0]
+            let videoView = free["embed"] as? String
+            videoURL.append(videoView!)
+            totalResultsArray.append(videoURL)
+          }
+        }
+      }
+    }
+    catch {
+      showNetworkError()
+    }
+    self.DetailTvTableView.reloadData()
+  }
+  
   
   //MARK: TableView
   
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    return 7
+    return totalResultsArray.count
   }
   
   override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-    return 20.0
+    return 10.0
   }
   
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
     switch section {
     case 0: return bannerArray.count
-    case 1: return overViewArray.count
-    case 2: return min(1, castLocalArray.count)
-    case 3: return detailsArray.count
-    case 4: return exploreArray.count
+    case 1: return videoURL.count
+    case 2: return overViewArray.count
+    case 3: return min(1, castLocalArray.count)
+    case 4: return detailsArray.count
     case 5: return socialArray.count
-    case 6: return min(1, photosArray.count)
+    case 6: return exploreArray.count
+    case 7: return min(1, photosArray.count)
+      
     default: fatalError("Unknown Selection")
     }
   }
@@ -170,14 +224,30 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
       
       if bannerArray[indexPath.row] != "" {
         cell.bannerImage.sd_setImageWithURL(NSURL(string: bannerArray[indexPath.row]))
-      } else {
-        cell.bannerImage.sd_setImageWithURL(NSURL(string: "placeholder_tableView"))
       }
+      
       self.DetailTvTableView.rowHeight = 100
       DetailTvTableView.allowsSelection = false
       return cell
       
     case 1:
+      let cell = tableView.dequeueReusableCellWithIdentifier("videoDetail", forIndexPath: indexPath) as!
+      VideoOnDetailCell
+      print("\(videoURL)")
+      cell.videoDetailWebView.delegate = cell
+      cell.videoDetailWebView.allowsInlineMediaPlayback = true
+      if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+        self.DetailTvTableView.rowHeight = 400
+        cell.videoDetailWebView.loadHTMLString("<iframe width=\"\(cell.videoDetailWebView.frame.width)\" height=\"\(400)\" src=\"\(videoURL[indexPath.row])/?&playsinline=1\" frameborder=\"0\" allowfullscreen></iframe>", baseURL: nil)
+      } else {
+        self.DetailTvTableView.rowHeight = 200
+        cell.videoDetailWebView.loadHTMLString("<iframe width=\"\(cell.videoDetailWebView.frame.width)\" height=\"\(200)\" src=\"\(videoURL[indexPath.row])/?&playsinline=1\" frameborder=\"0\" allowfullscreen></iframe>", baseURL: nil)
+      }
+      
+      
+      return cell
+      
+    case 2:
       let cell = tableView.dequeueReusableCellWithIdentifier("overviewCell", forIndexPath: indexPath) as! OverviewCell
       let overViewText = overViewArray[indexPath.row]
       if overViewText != "" {
@@ -188,14 +258,15 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
       self.DetailTvTableView.rowHeight = 200
       return cell
       
-    case 2:
+    case 3:
       let cell = tableView.dequeueReusableCellWithIdentifier("castCell", forIndexPath: indexPath) as! CastCell
       cell.castArray = self.castLocalArray
       cell.collectionView.reloadData()
       self.DetailTvTableView.rowHeight = 111
       return cell
       
-    case 3:
+      
+    case 4:
       let cell = tableView.dequeueReusableCellWithIdentifier("detailsCell") as! DetailsCell
       let details = detailsArray[indexPath.row]
       if details.firstAired != "" {
@@ -218,12 +289,6 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
       DetailTvTableView.allowsSelection = false
       return cell
       
-    case 4:
-      let cell = tableView.dequeueReusableCellWithIdentifier("exploreCell", forIndexPath: indexPath) as! ExploreCell
-      self.DetailTvTableView.rowHeight = 70
-      DetailTvTableView.allowsSelection = false
-      return cell
-
     case 5:
       let cell = tableView.dequeueReusableCellWithIdentifier("socialCell", forIndexPath: indexPath) as! SocialCell
       let socialData = socialArray[indexPath.row]
@@ -239,14 +304,21 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
       }
       self.DetailTvTableView.rowHeight = 150
       return cell
-
+      
     case 6:
+      let cell = tableView.dequeueReusableCellWithIdentifier("exploreCell", forIndexPath: indexPath) as! ExploreCell
+      self.DetailTvTableView.rowHeight = 70
+      DetailTvTableView.allowsSelection = false
+      return cell
+      
+      
+    case 7:
       let cell = tableView.dequeueReusableCellWithIdentifier("photosCell", forIndexPath: indexPath) as! PhotosCell
       cell.photosArray = self.photosArray
       cell.collectionView.reloadData()
       self.DetailTvTableView.rowHeight = 331
       return cell
-
+      
     default: ""
     }
     return cell
@@ -259,7 +331,7 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
       return indexPath
     }
   }
-
+  
   
   
   //MARK: IBActions
@@ -288,6 +360,9 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
     if segue .identifier == "DetailToWebsiteSegue" {
       let websiteViewController = segue.destinationViewController as! WebsiteViewController
       websiteViewController.website = detailToWebsite
+    } else if segue.identifier == "DetailToVideoSegue" {
+      let videoViewController = segue.destinationViewController as! VideoViewController
+      videoViewController.showToVideo = showToDetailSite
     }
   }
   
@@ -300,7 +375,6 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
     presentViewController(alert, animated: true, completion: nil)
     
   }
-
 }
 
 

@@ -21,14 +21,6 @@ class WebsiteViewController: UIViewController, UIWebViewDelegate {
     startRequest()
       SwiftSpinner.show("Connecting to website...")
     spinnerActive = true
-    delay(8, closure: {
-      if self.spinnerActive == true {
-        SwiftSpinner.hide()
-        self.showNetworkError()
-      }
-    })
-
-    
     self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
   }
   
@@ -46,14 +38,16 @@ class WebsiteViewController: UIViewController, UIWebViewDelegate {
     })
   }
   
-  
   //MARK: Request - Error
   
   func startRequest() {
     let myWeb = webView
     let url = NSURL(string: website!)!
+    let urlConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
+    urlConfig.timeoutIntervalForRequest = 10
+    urlConfig.timeoutIntervalForResource = 10
     let myReq = NSURLRequest(URL: url)
-    let session = NSURLSession.sharedSession()
+    let session = NSURLSession(configuration: urlConfig)
     let task = session.dataTaskWithURL(url) {(data, response, error) in
       dispatch_async(dispatch_get_main_queue()) {
         if (error == nil) {

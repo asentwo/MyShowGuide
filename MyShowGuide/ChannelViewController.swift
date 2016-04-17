@@ -34,13 +34,6 @@ class ChannelViewController: UIViewController, UISearchBarDelegate, UICollection
     channelSearchBar.delegate = self
     SwiftSpinner.show("Retrieving your channels..")
     spinnerActive = true
-    
-    delay(5, closure: {
-      if self.spinnerActive == true {
-        SwiftSpinner.hide()
-        self.showNetworkError()
-      }
-    })
     self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
   }
   
@@ -105,7 +98,10 @@ class ChannelViewController: UIViewController, UISearchBarDelegate, UICollection
   func getJSON (urlString: String) {
     
     let url = NSURL(string: urlString)!
-    let session = NSURLSession.sharedSession()
+    let urlConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
+    urlConfig.timeoutIntervalForRequest = 7
+    urlConfig.timeoutIntervalForResource = 7
+    let session = NSURLSession(configuration: urlConfig)
     task = session.dataTaskWithURL(url) {(data, response, error) in
       dispatch_async(dispatch_get_main_queue()) {
         if (error == nil) {
@@ -133,7 +129,6 @@ class ChannelViewController: UIViewController, UISearchBarDelegate, UICollection
           let logo = data["artwork_608x342"] as? String
           let channelName = data["name"] as? String
           let id = data["id"] as? NSNumber
-          
           let info = ChannelInfo(logo: logo!, channelName: channelName!, id: id!)
           channelArray.append(info)
           self.logosShown = [Bool](count: channelArray.count, repeatedValue: false)
@@ -143,7 +138,6 @@ class ChannelViewController: UIViewController, UISearchBarDelegate, UICollection
       showNetworkError()
     }
     channelCollectionView.reloadData()
-    
   }
   
   // MARK: Animation
@@ -220,7 +214,7 @@ class ChannelViewController: UIViewController, UISearchBarDelegate, UICollection
     if segue.identifier == "channelToShowSegue"{
       let showVC = segue.destinationViewController as! ShowViewController
       showVC.showType = channelForShow.lowercaseString
-         }
+    }
   }
   
   //MARK: Network Error Indicator

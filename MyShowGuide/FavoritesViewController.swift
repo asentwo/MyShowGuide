@@ -28,12 +28,6 @@ class FavoritesViewController: UITableViewController {
     SwiftSpinner.show("Retrieving your show info...")
     spinnerActive = true
     retrieveSavedShows()
-    delay(5, closure: {
-      if self.spinnerActive == true {
-        SwiftSpinner.hide()
-        self.showNetworkError()
-      }
-    })
     tableViewAttributes()
     self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
   }
@@ -60,7 +54,8 @@ class FavoritesViewController: UITableViewController {
   
   func tableViewAttributes () {
     favoritesTableView.allowsSelection = true
-    favoritesTableView.rowHeight = 220
+    favoritesTableView.rowHeight = UITableViewAutomaticDimension
+    favoritesTableView.estimatedRowHeight = 220.0
     favoritesTableView.separatorStyle = UITableViewCellSeparatorStyle.None
     favoritesTableView.reloadData()
   }
@@ -68,9 +63,7 @@ class FavoritesViewController: UITableViewController {
   
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    
     showForDetail = favoriteShowsArray[indexPath.row].id
-    
     performSegueWithIdentifier("favoriteToDetailSegue", sender: self)
   }
   
@@ -111,7 +104,6 @@ class FavoritesViewController: UITableViewController {
   
   func showNetworkError () {
     let alert = UIAlertController(title: "Whoops?", message: "There was a connection error. Please try again.", preferredStyle: .Alert)
-    
     //goes back to previous view controller
     let action = UIAlertAction(title: "OK", style: .Default, handler: {_ in self.navigationController?.popViewControllerAnimated(true)})
     alert.addAction(action)
@@ -121,7 +113,6 @@ class FavoritesViewController: UITableViewController {
   
   func noSavedShowsAlert () {
     let alert = UIAlertController(title: "Sorry", message: "There are no saved shows.", preferredStyle: .Alert)
-    
     //goes back to previous view controller
     let action = UIAlertAction(title: "OK", style: .Default, handler: {_ in self.navigationController?.popViewControllerAnimated(true)})
     alert.addAction(action)
@@ -136,11 +127,8 @@ class FavoritesViewController: UITableViewController {
   func retrieveSavedShows() {
     
     let searchTermsData = myDefaults.objectForKey(SAVED_SHOWS_KEY) as? NSData
-    
     if searchTermsData != nil {
-      
       let searchTermsArray = NSKeyedUnarchiver.unarchiveObjectWithData(searchTermsData!) as? [TvShowInfo]
-
       if searchTermsArray!.count != 0 {
         self.favoriteShowsArray = searchTermsArray!
       } else {
@@ -152,26 +140,26 @@ class FavoritesViewController: UITableViewController {
   
   
     @IBAction func removeSavedObject(sender: AnyObject) {
-      
     let searchTermsData = myDefaults.objectForKey(SAVED_SHOWS_KEY) as? NSData
     let searchTermsArray = NSKeyedUnarchiver.unarchiveObjectWithData(searchTermsData!) as? [TvShowInfo]
      favoriteShowsArray = searchTermsArray!
-  
       let location: CGPoint = sender.convertPoint(CGPointZero, toView: self.favoritesTableView)
       let indexPath: NSIndexPath = self.favoritesTableView.indexPathForRowAtPoint(location)!
-
       showToRemove = favoriteShowsArray[indexPath.row]
+      
+      //save UIButtonState here
+      let save = SaveButton()
+      save.selected = false
+      myDefaults.setObject(save, forKey: "isBtnChecked")
+
       
       //filter item based on id and remove item from array
       let removedShowArray = favoriteShowsArray.filter({$0.id == showToRemove!.id})
-      
       if removedShowArray.isEmpty {
         print("Show doesn't exist")
       } else {
         favoriteShowsArray = favoriteShowsArray.filter({$0.id != showToRemove!.id})
-      
       }
-      
       let savedData = NSKeyedArchiver.archivedDataWithRootObject(favoriteShowsArray)
       myDefaults.setObject(savedData, forKey: SAVED_SHOWS_KEY)
       myDefaults.synchronize()

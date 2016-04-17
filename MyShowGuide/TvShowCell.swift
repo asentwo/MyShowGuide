@@ -55,16 +55,16 @@ class TvShowInfo: NSObject, NSCoding {
 }
 
 
-
-
-
-
 class TvShowCell: UITableViewCell {
   
   @IBOutlet var MainPosterImage: UIImageView!
   @IBOutlet var MainTitleLabel: UILabel!
   @IBOutlet var imageWrapper: UIView!
   @IBOutlet weak var saveButton: UIButton!
-  
+
+  @IBAction func saveButtonPressed(sender: AnyObject) {
+      sender.setImage(UIImage(named: "save_icon_greenCheck"), forState: UIControlState.Normal)
+   }
   }
+
 
