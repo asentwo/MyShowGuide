@@ -147,12 +147,6 @@ class FavoritesViewController: UITableViewController {
       let indexPath: NSIndexPath = self.favoritesTableView.indexPathForRowAtPoint(location)!
       showToRemove = favoriteShowsArray[indexPath.row]
       
-      //save UIButtonState here
-      let save = SaveButton()
-      save.selected = false
-      myDefaults.setObject(save, forKey: "isBtnChecked")
-
-      
       //filter item based on id and remove item from array
       let removedShowArray = favoriteShowsArray.filter({$0.id == showToRemove!.id})
       if removedShowArray.isEmpty {
