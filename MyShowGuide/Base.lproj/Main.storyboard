@@ -495,7 +495,7 @@
                                 </variation>
                                 <connections>
                                     <outlet property="activityIndicator" destination="C4h-72-S6D" id="S1v-2Y-G8F"/>
-                                    <outlet property="videoDetail" destination="kVe-9x-Tx7" id="JJR-cA-fJe"/>
+                                    <outlet property="videoDetailWebView" destination="kVe-9x-Tx7" id="Iob-xg-ELA"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="overviewCell" rowHeight="216" id="gjN-Ht-Ji3" customClass="OverviewCell" customModule="My_Show_Guide" customModuleProvider="target">

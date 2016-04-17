@@ -135,6 +135,9 @@ class FavoritesViewController: UITableViewController {
         SwiftSpinner.hide()
         self.noSavedShowsAlert()
       }
+    } else {
+      SwiftSpinner.hide()
+      self.noSavedShowsAlert()
     }
   }
   
