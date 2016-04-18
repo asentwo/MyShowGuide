@@ -142,6 +142,18 @@ class FavoritesViewController: UITableViewController {
   }
   
   
+  //MARK: PrepareForSegue
+  
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if segue.identifier == "favoriteToDetailSegue"
+    {
+      let detailViewController = segue.destinationViewController as! DetailTvTableViewController
+      detailViewController.showToDetailSite = self.showForDetail!
+    }
+    
+  }
+  
+  //MARK: IBActions
     @IBAction func removeSavedObject(sender: AnyObject) {
     let searchTermsData = myDefaults.objectForKey(SAVED_SHOWS_KEY) as? NSData
     let searchTermsArray = NSKeyedUnarchiver.unarchiveObjectWithData(searchTermsData!) as? [TvShowInfo]
