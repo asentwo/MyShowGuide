@@ -48,6 +48,11 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
     spinnerActive = true
     }
   
+  //reloads so checkmarks dissapear when removed from favorites
+  override func viewWillAppear(animated: Bool) {
+    self.tvShowTableView.reloadData()
+  }
+  
   
   //MARK: TableView
   
@@ -64,10 +69,7 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
       cell.MainPosterImage.sd_setImageWithURL(NSURL(string: showArray[indexPath.row].poster))
       savedFavorite = showArray[indexPath.row]
     }
-    
-//    if self.savedFavoriteArray.count > 0 {
-//    savedFavorite = savedFavoriteArray[indexPath.row]
-//    }
+
   
     if(self.checkToSeeIfFavorite(savedFavorite.id)) {
       
