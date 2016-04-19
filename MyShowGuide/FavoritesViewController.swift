@@ -21,6 +21,7 @@ class FavoritesViewController: UITableViewController {
   var task: NSURLSessionTask?
   var spinnerActive = false
   var showToRemove: TvShowInfo?
+  let tvViewController = ShowViewController()
   
   @IBOutlet var favoritesTableView: UITableView!
   
@@ -150,7 +151,10 @@ class FavoritesViewController: UITableViewController {
       let detailViewController = segue.destinationViewController as! DetailTvTableViewController
       detailViewController.showToDetailSite = self.showForDetail!
     }
-    
+//    } else  if segue.identifier == "showToFavoritesSegue" {
+//      self.tvViewController.tvShowTableView.reloadData()
+//    }
+//    
   }
   
   //MARK: IBActions
