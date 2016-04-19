@@ -54,14 +54,30 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("TvShowCell", forIndexPath: indexPath) as! TvShowCell
     cell.MainTitleLabel.adjustsFontSizeToFitWidth = true
-
+   
     if self.searchBarActive {
       cell.MainTitleLabel.text = filteredShowSearchResults[indexPath.row].title
       cell.MainPosterImage.sd_setImageWithURL(NSURL(string: filteredShowSearchResults[indexPath.row].poster))
+      savedFavorite = filteredShowSearchResults[indexPath.row]
     }else {
       cell.MainTitleLabel.text = showArray[indexPath.row].title
       cell.MainPosterImage.sd_setImageWithURL(NSURL(string: showArray[indexPath.row].poster))
+      savedFavorite = showArray[indexPath.row]
     }
+    
+//    if self.savedFavoriteArray.count > 0 {
+//    savedFavorite = savedFavoriteArray[indexPath.row]
+//    }
+  
+    if(self.checkToSeeIfFavorite(savedFavorite.id)) {
+      
+      cell.saveButton.setImage(UIImage(named: "save_icon_greenCheck"), forState: UIControlState.Normal)
+      
+    } else {
+      cell.saveButton.setImage(UIImage(named: "save_icon_white"), forState: UIControlState.Normal)
+    }
+    
+    
     SwiftSpinner.hide()
     spinnerActive = false
     return cell
@@ -250,6 +266,29 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
     presentViewController(alert, animated: true, completion: nil)
     
   }
+  
+  //MARK: Check If Favorite
+  
+  func checkToSeeIfFavorite (id: NSNumber) -> Bool {
+    
+    let searchTermsData = myDefaults.objectForKey(SAVED_SHOWS_KEY) as? NSData
+    //accessing previously saved info so as not to overwrite it
+    if searchTermsData?.length > 0 {
+      
+      let searchTermsArray = NSKeyedUnarchiver.unarchiveObjectWithData(searchTermsData!) as? [TvShowInfo]
+      self.savedFavoriteArray = searchTermsArray!
+
+      if savedFavoriteArray.contains({ show in show.id == id }) {
+        return true // Found it!
+      } else {
+        return false
+      }
+      
+    } else {
+      return false
+     }
+  }
+
   
   @IBAction func FavoritesButton(sender: AnyObject) {
     performSegueWithIdentifier("showToFavoritesSegue", sender: self)
