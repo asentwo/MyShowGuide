@@ -314,15 +314,23 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
       //This closure is the predicate -> it means that all the items in the "savedFavoriteArray" will be called "show" and the attribute of the custom class "id" is checked against the "savedFavorite" variable to see if there are any duplicates
       if savedFavoriteArray.contains({ show in show.id == savedFavorite.id }) {
         print("id exists in the array")
+        sender.setImage(UIImage(named: "save_icon_white"), forState: UIControlState.Normal)
       } else {
         savedFavoriteArray.append(TvShowInfo(poster: savedFavorite.poster, title: savedFavorite.title, id: savedFavorite.id))
+        sender.setImage(UIImage(named: "save_icon_greenCheck"), forState: UIControlState.Normal)
       }
     } else {
       savedFavorite = showArray[indexPath.row]
       if savedFavoriteArray.contains({ show in show.id == savedFavorite.id }) {
         print("id exists in the array")
+        sender.setImage(UIImage(named: "save_icon_white"), forState: UIControlState.Normal)
+        
+        
+        
+        
       } else {
         savedFavoriteArray.append(TvShowInfo(poster: savedFavorite.poster, title: savedFavorite.title, id: savedFavorite.id))
+        sender.setImage(UIImage(named: "save_icon_greenCheck"), forState: UIControlState.Normal)
       }
     }
     let savedData = NSKeyedArchiver.archivedDataWithRootObject(savedFavoriteArray)
