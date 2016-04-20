@@ -11,9 +11,6 @@ import UIKit
 
 class FavoritesViewController: UITableViewController {
   
-  
-  let myDefaults = NSUserDefaults.standardUserDefaults()
-  let SAVED_SHOWS_KEY = "SAVED_SHOWS_KEY"
   var postersShown = [Bool](count: 50, repeatedValue: false)
   var favoriteShowsArray: [TvShowInfo] = []
   var showForDetail: NSNumber?
@@ -125,22 +122,18 @@ class FavoritesViewController: UITableViewController {
   
   //MARK: NSUserDefaults
   
-  func retrieveSavedShows() {
-    
-    let searchTermsData = myDefaults.objectForKey(SAVED_SHOWS_KEY) as? NSData
-    if searchTermsData != nil {
-      let searchTermsArray = NSKeyedUnarchiver.unarchiveObjectWithData(searchTermsData!) as? [TvShowInfo]
-      if searchTermsArray!.count != 0 {
-        self.favoriteShowsArray = searchTermsArray!
-      } else {
-        SwiftSpinner.hide()
-        self.noSavedShowsAlert()
-      }
-    } else {
-      SwiftSpinner.hide()
-      self.noSavedShowsAlert()
+// KRH
+    func retrieveSavedShows() {
+
+        let savedShowsArray = UserDefaults.sharedInstance.getSavedShows()
+
+        if savedShowsArray.count != 0 {
+            self.favoriteShowsArray = savedShowsArray
+        } else {
+            SwiftSpinner.hide()
+            self.noSavedShowsAlert()
+        }
     }
-  }
   
   
   //MARK: PrepareForSegue
@@ -158,26 +151,21 @@ class FavoritesViewController: UITableViewController {
   }
   
   //MARK: IBActions
+    
+// KRH
     @IBAction func removeSavedObject(sender: AnyObject) {
-    let searchTermsData = myDefaults.objectForKey(SAVED_SHOWS_KEY) as? NSData
-    let searchTermsArray = NSKeyedUnarchiver.unarchiveObjectWithData(searchTermsData!) as? [TvShowInfo]
-     favoriteShowsArray = searchTermsArray!
-      let location: CGPoint = sender.convertPoint(CGPointZero, toView: self.favoritesTableView)
-      let indexPath: NSIndexPath = self.favoritesTableView.indexPathForRowAtPoint(location)!
-      showToRemove = favoriteShowsArray[indexPath.row]
-      
-      //filter item based on id and remove item from array
-      let removedShowArray = favoriteShowsArray.filter({$0.id == showToRemove!.id})
-      if removedShowArray.isEmpty {
-        print("Show doesn't exist")
-      } else {
-        favoriteShowsArray = favoriteShowsArray.filter({$0.id != showToRemove!.id})
-      }
-      let savedData = NSKeyedArchiver.archivedDataWithRootObject(favoriteShowsArray)
-      myDefaults.setObject(savedData, forKey: SAVED_SHOWS_KEY)
-      myDefaults.synchronize()
-      favoritesTableView.reloadData()
+
+        let location: CGPoint = sender.convertPoint(CGPointZero, toView: self.favoritesTableView)
+        let indexPath: NSIndexPath = self.favoritesTableView.indexPathForRowAtPoint(location)!
+
+        favoriteShowsArray = UserDefaults.sharedInstance.getSavedShows()
+        showToRemove = favoriteShowsArray[indexPath.row]
+
+        UserDefaults.sharedInstance.removeFavorite(showToRemove!)
+
+        favoriteShowsArray = UserDefaults.sharedInstance.getSavedShows()
+
+        favoritesTableView.reloadData()
     }
-  
 }
 

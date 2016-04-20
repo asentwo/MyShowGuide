@@ -24,7 +24,7 @@ class SaveButton: UIButton {
       }else{
         self.setImage(buttonUnChecked, forState: UIControlState.Normal)
       }
-      NSUserDefaults.standardUserDefaults().setObject(selected, forKey: "isBtnChecked")
+      //NSUserDefaults.standardUserDefaults().setObject(selected, forKey: "isBtnChecked")
      // NSUserDefaults.standardUserDefaults().synchronize()
     }
   }

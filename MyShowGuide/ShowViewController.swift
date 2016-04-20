@@ -23,8 +23,6 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
   var filteredShowSearchResults: [TvShowInfo] = []
   var searchBarActive: Bool = false
   var spinnerActive = false
-  let myDefaults = NSUserDefaults.standardUserDefaults()
-  let SAVED_SHOWS_KEY = "SAVED_SHOWS_KEY"
   var savedFavorite: TvShowInfo!
   var savedFavoriteArray:[TvShowInfo] = []
   
@@ -70,15 +68,12 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
       savedFavorite = showArray[indexPath.row]
     }
 
-  
-    if(self.checkToSeeIfFavorite(savedFavorite.id)) {
-      
+// KRH
+    if UserDefaults.sharedInstance.isFavorite(savedFavorite.id) {
       cell.saveButton.setImage(UIImage(named: "save_icon_greenCheck"), forState: UIControlState.Normal)
-      
     } else {
       cell.saveButton.setImage(UIImage(named: "save_icon_white"), forState: UIControlState.Normal)
     }
-    
     
     SwiftSpinner.hide()
     spinnerActive = false
@@ -269,74 +264,44 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
   }
   
-  //MARK: Check If Favorite
-  
-  func checkToSeeIfFavorite (id: NSNumber) -> Bool {
-    
-    let searchTermsData = myDefaults.objectForKey(SAVED_SHOWS_KEY) as? NSData
-    //accessing previously saved info so as not to overwrite it
-    if searchTermsData?.length > 0 {
-      
-      let searchTermsArray = NSKeyedUnarchiver.unarchiveObjectWithData(searchTermsData!) as? [TvShowInfo]
-      self.savedFavoriteArray = searchTermsArray!
-
-      if savedFavoriteArray.contains({ show in show.id == id }) {
-        return true // Found it!
-      } else {
-        return false
-      }
-      
-    } else {
-      return false
-     }
-  }
-
-  
   @IBAction func FavoritesButton(sender: AnyObject) {
     performSegueWithIdentifier("showToFavoritesSegue", sender: self)
   }
   
-  
-  @IBAction func saveShow(sender: UIButton) {
+// KRH
+    @IBAction func saveShow(sender: UIButton) {
     
-    //accessing current point of tableView Cell
-    let location: CGPoint = sender.convertPoint(CGPointZero, toView: self.tvShowTableView)
-    let indexPath: NSIndexPath = self.tvShowTableView.indexPathForRowAtPoint(location)!
-    let searchTermsData = myDefaults.objectForKey(SAVED_SHOWS_KEY) as? NSData
-    //accessing previously saved info so as not to overwrite it
-    if searchTermsData?.length > 0 {
-      let searchTermsArray = NSKeyedUnarchiver.unarchiveObjectWithData(searchTermsData!) as? [TvShowInfo]
-      self.savedFavoriteArray = searchTermsArray!
+        //accessing current point of tableView Cell
+        let location: CGPoint = sender.convertPoint(CGPointZero, toView: self.tvShowTableView)
+        let indexPath: NSIndexPath = self.tvShowTableView.indexPathForRowAtPoint(location)!
+
+        if searchBarActive {
+            
+            savedFavorite = filteredShowSearchResults[indexPath.row]
+            
+            if UserDefaults.sharedInstance.isFavorite(savedFavorite.id) {
+                sender.setImage(UIImage(named: "save_icon_white"), forState: UIControlState.Normal)
+            } else {
+                UserDefaults.sharedInstance.addFavorite(TvShowInfo(poster: savedFavorite.poster, title: savedFavorite.title, id: savedFavorite.id))
+                sender.setImage(UIImage(named: "save_icon_greenCheck"), forState: UIControlState.Normal)
+            }
+            
+        } else {
+            
+            savedFavorite = showArray[indexPath.row]
+
+            if UserDefaults.sharedInstance.isFavorite(savedFavorite.id) {
+
+                UserDefaults.sharedInstance.removeFavorite(savedFavorite)
+                sender.setImage(UIImage(named: "save_icon_white"), forState: UIControlState.Normal)
+
+            } else {
+
+                UserDefaults.sharedInstance.addFavorite(TvShowInfo(poster: savedFavorite.poster, title: savedFavorite.title, id: savedFavorite.id))
+                sender.setImage(UIImage(named: "save_icon_greenCheck"), forState: UIControlState.Normal)
+            }
+        }
     }
-    if searchBarActive {
-      //checks to make sure there are no duplicates
-      savedFavorite = filteredShowSearchResults[indexPath.row]
-      //This closure is the predicate -> it means that all the items in the "savedFavoriteArray" will be called "show" and the attribute of the custom class "id" is checked against the "savedFavorite" variable to see if there are any duplicates
-      if savedFavoriteArray.contains({ show in show.id == savedFavorite.id }) {
-        print("id exists in the array")
-        sender.setImage(UIImage(named: "save_icon_white"), forState: UIControlState.Normal)
-      } else {
-        savedFavoriteArray.append(TvShowInfo(poster: savedFavorite.poster, title: savedFavorite.title, id: savedFavorite.id))
-        sender.setImage(UIImage(named: "save_icon_greenCheck"), forState: UIControlState.Normal)
-      }
-    } else {
-      savedFavorite = showArray[indexPath.row]
-      if savedFavoriteArray.contains({ show in show.id == savedFavorite.id }) {
-        print("id exists in the array")
-        sender.setImage(UIImage(named: "save_icon_white"), forState: UIControlState.Normal)
-        
-        
-        
-        
-      } else {
-        savedFavoriteArray.append(TvShowInfo(poster: savedFavorite.poster, title: savedFavorite.title, id: savedFavorite.id))
-        sender.setImage(UIImage(named: "save_icon_greenCheck"), forState: UIControlState.Normal)
-      }
-    }
-    let savedData = NSKeyedArchiver.archivedDataWithRootObject(savedFavoriteArray)
-    myDefaults.setObject(savedData, forKey: SAVED_SHOWS_KEY)
-    myDefaults.synchronize()
-  }
 }
 
 
