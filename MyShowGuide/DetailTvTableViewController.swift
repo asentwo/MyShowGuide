@@ -159,7 +159,6 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
             self.spinnerActive = false
             self.showNetworkError()
           }
-          
         }
     }
     task!.resume()
