@@ -69,17 +69,6 @@ class VideoViewController: UIViewController, UITableViewDelegate, UITableViewDat
             print("\(videoArray!.count)")
           }
         }
-        
-//        let result = results[0]
-        
-        
-//        if let freeIOSServices = result["free_ios_sources"] as? [[String:AnyObject]] where !results.isEmpty {
-//          let free = freeIOSServices[0]
-//          let videoView = free["embed"] as? String
-//          print("\(videoView!)")
-//          videoArray?.append(videoView!)
-// 
-//    }
     }
       
     } catch {

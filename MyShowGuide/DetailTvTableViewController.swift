@@ -43,7 +43,7 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    SwiftSpinner.show("Retrieving your show info...")
+    SwiftSpinner.show(NSLocalizedString("Retrieving your show info...", comment: ""))
     spinnerActive = true
     self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
     let newURL = "http://api-public.guidebox.com/v1.43/us/\(apiKey)/show/\(showToDetailSite)"

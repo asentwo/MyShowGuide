@@ -10,6 +10,7 @@
 		3EB432ABD89D4CA7402AB60C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D573812DA0EC45C815122B6C /* Pods.framework */; };
 		3FBE22991CC7CCC3008FC1A9 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBE22981CC7CCC3008FC1A9 /* UserDefaults.swift */; };
 		6E025C511CC82CF1000943EE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6E025C531CC82CF1000943EE /* InfoPlist.strings */; };
+		6E025C561CC835A6000943EE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6E025C581CC835A6000943EE /* Localizable.strings */; };
 		6E17913E1CBD88040003EB4A /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E17913D1CBD88040003EB4A /* VideoViewController.swift */; };
 		6E1791401CBD8D010003EB4A /* VideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E17913F1CBD8D010003EB4A /* VideoCell.swift */; };
 		6E2840081C90CD8C00EEF77F /* ShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2840071C90CD8C00EEF77F /* ShowViewController.swift */; };
@@ -68,6 +69,7 @@
 		6E025C4D1CC817D7000943EE /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		6E025C4E1CC817D7000943EE /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		6E025C521CC82CF1000943EE /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6E025C571CC835A6000943EE /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6E17913D1CBD88040003EB4A /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		6E17913F1CBD8D010003EB4A /* VideoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCell.swift; sourceTree = "<group>"; };
 		6E2840071C90CD8C00EEF77F /* ShowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowViewController.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 		6E3871B51BCF2D8300559559 /* Helper Files */ = {
 			isa = PBXGroup;
 			children = (
+				6E025C581CC835A6000943EE /* Localizable.strings */,
 				6E025C531CC82CF1000943EE /* InfoPlist.strings */,
 				6E468E701C750EB100EE36BD /* SwiftSpinner.swift */,
 				6EB47BFE1C8A6AB300110FBB /* colorbar.jpg */,
@@ -366,6 +369,7 @@
 				6EB47BFF1C8A6AB300110FBB /* colorbar.jpg in Resources */,
 				6E025C511CC82CF1000943EE /* InfoPlist.strings in Resources */,
 				6E38718E1BCF290C00559559 /* LaunchScreen.storyboard in Resources */,
+				6E025C561CC835A6000943EE /* Localizable.strings in Resources */,
 				6E38718B1BCF290C00559559 /* Assets.xcassets in Resources */,
 				6E5C19511C0CE97B00C889B5 /* SDWebImage-master in Resources */,
 				6E3871891BCF290C00559559 /* Main.storyboard in Resources */,
@@ -509,6 +513,14 @@
 				6E025C521CC82CF1000943EE /* es */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		6E025C581CC835A6000943EE /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6E025C571CC835A6000943EE /* es */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 		6E3871871BCF290C00559559 /* Main.storyboard */ = {
