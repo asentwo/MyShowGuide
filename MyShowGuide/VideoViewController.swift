@@ -6,8 +6,6 @@
 //  Copyright © 2016 Justin Doo. All rights reserved.
 //
 
-// KRH2
-
 import UIKit
 
 class VideoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
