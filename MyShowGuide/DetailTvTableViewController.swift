@@ -144,19 +144,23 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
   func getVideoJSON (urlString: String) {
     let url = NSURL(string: urlString)!
     let urlConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
-    urlConfig.timeoutIntervalForRequest = 10
-    urlConfig.timeoutIntervalForResource = 10
+    urlConfig.timeoutIntervalForRequest = 6
+    urlConfig.timeoutIntervalForResource = 6
     let session = NSURLSession(configuration: urlConfig)
     task = session.dataTaskWithURL(url) {(data, response, error) in
-      dispatch_async(dispatch_get_main_queue()) {
+      
+    //Updates data on worker thread instead of main, makes the tableView load faster
         if (error == nil) {
           self.updateVideo(data!)
         } else {
-          SwiftSpinner.hide()
-          self.spinnerActive = false
-          self.showNetworkError()
+    //Only uses main thread for ui
+          dispatch_async(dispatch_get_main_queue()) {
+            SwiftSpinner.hide()
+            self.spinnerActive = false
+            self.showNetworkError()
+          }
+          
         }
-      }
     }
     task!.resume()
   }
@@ -178,9 +182,15 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
       }
     }
     catch {
-      showNetworkError()
+  //Since the updateVideo is on worker thread, have to get back to main thread to show error or reload tableView
+      dispatch_async(dispatch_get_main_queue()) {
+        self.showNetworkError()
+      }
     }
-    self.DetailTvTableView.reloadData()
+    
+    dispatch_async(dispatch_get_main_queue()) {
+      self.DetailTvTableView.reloadData()
+    }
   }
   
   

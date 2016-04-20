@@ -32,7 +32,7 @@ class ChannelViewController: UIViewController, UISearchBarDelegate, UICollection
     let baseURL = "http://api-public.guidebox.com/v1.43/us/\(apiKey)/channels/all/0/50"
     getJSON(baseURL)
     channelSearchBar.delegate = self
-    SwiftSpinner.show("Retrieving your channels..")
+    SwiftSpinner.show(NSLocalizedString("Retrieving your channels..", comment: ""))
     spinnerActive = true
     self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
   }
@@ -220,7 +220,7 @@ class ChannelViewController: UIViewController, UISearchBarDelegate, UICollection
   //MARK: Network Error Indicator
   
   func showNetworkError () {
-    let alertController = UIAlertController(title: "Whoops?", message: "There was a connection error. Please restart app.", preferredStyle: .Alert)
+    let alertController = UIAlertController(title: NSLocalizedString("Whoops?", comment: ""), message: NSLocalizedString("There was a connection error. Please restart app.", comment: ""), preferredStyle: .Alert)
     
     //causes app to exit and return to the home screen
     let action = UIAlertAction(title: "OK", style: .Default, handler: {_ in exit(0)})

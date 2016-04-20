@@ -42,7 +42,7 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
     tableViewAttributes()
     self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
     showSearchBar.delegate = self
-    SwiftSpinner.show("Retrieving your shows...")
+    SwiftSpinner.show(NSLocalizedString("Retrieving your shows...", comment: "Loading Message"))
     spinnerActive = true
     }
   
@@ -255,7 +255,7 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
   //MARK: Network Error Indicator
   
   func showNetworkError () {
-    let alert = UIAlertController(title: "Whoops?", message: "There was a connection error. Please try again.", preferredStyle: .Alert)
+    let alert = UIAlertController(title: NSLocalizedString("Whoops?", comment: ""), message: NSLocalizedString( "There was a connection error. Please try again.", comment: ""), preferredStyle: .Alert)
     
     //goes back to previous view controller
     let action = UIAlertAction(title: "OK", style: .Default, handler: {_ in self.navigationController?.popViewControllerAnimated(true)})

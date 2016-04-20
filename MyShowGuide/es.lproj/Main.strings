@@ -1,0 +1,96 @@
+/* Class = "UILabel"; text = "Details"; ObjectID = "6KK-OX-oA6"; */
+"6KK-OX-oA6.text" = "Detalles";
+
+/* Class = "UILabel"; text = "Photos"; ObjectID = "9I4-Pb-WxJ"; */
+"9I4-Pb-WxJ.text" = "Fotos";
+
+/* Class = "UINavigationItem"; title = "Favorites"; ObjectID = "Ahe-id-4dm"; */
+"Ahe-id-4dm.title" = "Favoritos";
+
+/* Class = "UITextView"; text = "TwitterData"; ObjectID = "C1d-Vt-dkN"; */
+"C1d-Vt-dkN.text" = "TwitterData";
+
+/* Class = "UILabel"; text = "Cast"; ObjectID = "G4y-1a-FH4"; */
+"G4y-1a-FH4.text" = "Reparto de Televisión";
+
+/* Class = "UITextView"; text = "FaceBookData"; ObjectID = "GbT-Am-FWD"; */
+"GbT-Am-FWD.text" = "FaceBookData";
+
+/* Class = "UIButton"; normalTitle = "Wikepedia"; ObjectID = "KLi-jm-tgQ"; */
+"KLi-jm-tgQ.normalTitle" = "Wikepedia";
+
+/* Class = "UILabel"; text = "Synopsis"; ObjectID = "Kck-i6-mX2"; */
+"Kck-i6-mX2.text" = "Sinopsis";
+
+/* Class = "UISearchBar"; placeholder = "Search shows here..."; ObjectID = "Mmq-sP-bmq"; */
+"Mmq-sP-bmq.placeholder" = "Búsqueda muestra aquí...";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "OsG-VI-dvW"; */
+"OsG-VI-dvW.text" = "Label";
+
+/* Class = "UILabel"; text = "Facebook:"; ObjectID = "PUb-mU-h9F"; */
+"PUb-mU-h9F.text" = "Facebook:";
+
+/* Class = "UILabel"; text = "CharcterNameData"; ObjectID = "S7B-Ki-wNV"; */
+"S7B-Ki-wNV.text" = "CharcterNameData";
+
+/* Class = "UILabel"; text = "FirstAiredData"; ObjectID = "STS-37-dE0"; */
+"STS-37-dE0.text" = "FirstAiredData";
+
+/* Class = "UILabel"; text = "Explore"; ObjectID = "SsO-WN-meo"; */
+"SsO-WN-meo.text" = "Explorar";
+
+/* Class = "UIBarButtonItem"; title = "Favorites"; ObjectID = "TCg-Lj-LdO"; */
+"TCg-Lj-LdO.title" = "Favoritos";
+
+/* Class = "UILabel"; text = "OverView"; ObjectID = "UdG-bN-9XR"; */
+"UdG-bN-9XR.text" = "OverView";
+
+/* Class = "UILabel"; text = "Network:"; ObjectID = "WAg-iV-U8u"; */
+"WAg-iV-U8u.text" = "Canal:";
+
+/* Class = "UISearchBar"; placeholder = "Search channels here..."; ObjectID = "WPg-lx-uTX"; */
+"WPg-lx-uTX.placeholder" = "Buscar canales de aquí...";
+
+/* Class = "UILabel"; text = "    Show Title"; ObjectID = "aHL-zO-zVK"; */
+"aHL-zO-zVK.text" = "    Show Title";
+
+/* Class = "UILabel"; text = "NameData"; ObjectID = "ass-Iw-4sk"; */
+"ass-Iw-4sk.text" = "NameData";
+
+/* Class = "UILabel"; text = "    Show Title"; ObjectID = "cZb-EO-47T"; */
+"cZb-EO-47T.text" = "    Show Title";
+
+/* Class = "UIButton"; normalTitle = "IMDB"; ObjectID = "dbY-4q-0J0"; */
+"dbY-4q-0J0.normalTitle" = "IMDB";
+
+/* Class = "UILabel"; text = "First Aired:"; ObjectID = "gg2-pt-iNv"; */
+"gg2-pt-iNv.text" = "Fecha de Inicio:";
+
+/* Class = "UILabel"; text = "Social"; ObjectID = "idY-sP-YkN"; */
+"idY-sP-YkN.text" = "Social";
+
+/* Class = "UILabel"; text = "Character:"; ObjectID = "nRd-8x-Jpz"; */
+"nRd-8x-Jpz.text" = "Personaje:";
+
+/* Class = "UILabel"; text = "NetworkData"; ObjectID = "rqb-S0-l1p"; */
+"rqb-S0-l1p.text" = "NetworkData";
+
+/* Class = "UILabel"; text = "Twitter:"; ObjectID = "sSb-qU-lcj"; */
+"sSb-qU-lcj.text" = "Twitter:";
+
+/* Class = "UILabel"; text = "Rating:"; ObjectID = "tpd-fm-evO"; */
+"tpd-fm-evO.text" = "Clasificación:";
+
+/* Class = "UILabel"; text = "Name: "; ObjectID = "uJz-SE-Qon"; */
+"uJz-SE-Qon.text" = "Nombre: ";
+
+/* Class = "UIButton"; normalTitle = "Metacritic"; ObjectID = "uP7-nY-JFc"; */
+"uP7-nY-JFc.normalTitle" = "Metacritic";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "uhJ-iV-eUC"; */
+"uhJ-iV-eUC.title" = "Espalda";
+
+/* Class = "UILabel"; text = "RatingData"; ObjectID = "uhh-4o-TuV"; */
+"uhh-4o-TuV.text" = "RatingData";
+

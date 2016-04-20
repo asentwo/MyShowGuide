@@ -19,7 +19,7 @@ class WebsiteViewController: UIViewController, UIWebViewDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     startRequest()
-      SwiftSpinner.show("Connecting to website...")
+      SwiftSpinner.show(NSLocalizedString("Connecting to website...", comment: ""))
     spinnerActive = true
     self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
   }
@@ -67,7 +67,7 @@ class WebsiteViewController: UIViewController, UIWebViewDelegate {
   //MARK: Network Error Indicator
   
   func showNetworkError () {
-    let alert = UIAlertController(title: "Whoops?", message: "There was a connection error. Please try again.", preferredStyle: .Alert)
+    let alert = UIAlertController(title: NSLocalizedString("Whoops?", comment: ""), message: NSLocalizedString("There was a connection error. Please try again.", comment: ""), preferredStyle: .Alert)
     let action = UIAlertAction(title: "OK", style: .Default, handler: {_ in self.navigationController?.popViewControllerAnimated(true)})
     alert.addAction(action)
     presentViewController(alert, animated: true, completion: nil)

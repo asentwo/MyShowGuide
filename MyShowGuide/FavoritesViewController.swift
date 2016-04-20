@@ -23,7 +23,7 @@ class FavoritesViewController: UITableViewController {
   @IBOutlet var favoritesTableView: UITableView!
   
   override func viewDidLoad() {
-    SwiftSpinner.show("Retrieving your show info...")
+    SwiftSpinner.show(NSLocalizedString("Retrieving your show info...", comment: ""))
     spinnerActive = true
     retrieveSavedShows()
     tableViewAttributes()
@@ -101,7 +101,7 @@ class FavoritesViewController: UITableViewController {
   //MARK: Network Error Indicator
   
   func showNetworkError () {
-    let alert = UIAlertController(title: "Whoops?", message: "There was a connection error. Please try again.", preferredStyle: .Alert)
+    let alert = UIAlertController(title: NSLocalizedString("Whoops?", comment: ""), message: NSLocalizedString("There was a connection error. Please try again.", comment: ""), preferredStyle: .Alert)
     //goes back to previous view controller
     let action = UIAlertAction(title: "OK", style: .Default, handler: {_ in self.navigationController?.popViewControllerAnimated(true)})
     alert.addAction(action)
@@ -110,7 +110,7 @@ class FavoritesViewController: UITableViewController {
   }
   
   func noSavedShowsAlert () {
-    let alert = UIAlertController(title: "Sorry", message: "There are no saved shows.", preferredStyle: .Alert)
+    let alert = UIAlertController(title: NSLocalizedString("Sorry", comment: ""), message: NSLocalizedString("There are no saved shows.", comment: ""), preferredStyle: .Alert)
     //goes back to previous view controller
     let action = UIAlertAction(title: "OK", style: .Default, handler: {_ in self.navigationController?.popViewControllerAnimated(true)})
     alert.addAction(action)
