@@ -42,6 +42,7 @@ class UserDefaults {
         standardUserDefaults.synchronize()
         
         return emptySavedShowsArray
+      //If nothing has ever been saved to the key, I go ahead and create  an empty array and just return that. That way people calling the function never have to worry about dealing with the possibility of a nil array. I also save this empty array so the key at least has something there.
     }
     
     
@@ -92,7 +93,8 @@ class UserDefaults {
             if showsThatMatchIdArray.isEmpty {
                 print("removeFavorite couldn't find \(showToRemove.title) with id \(showToRemove.id)!")
             } else {
-                
+              
+              //filtering out show to be removed from array
                 savedShowsArray = savedShowsArray.filter({$0.id != showToRemove.id})
                 
                 let savedShows = NSKeyedArchiver.archivedDataWithRootObject(savedShowsArray)

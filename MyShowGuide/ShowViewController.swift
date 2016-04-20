@@ -68,7 +68,7 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
       savedFavorite = showArray[indexPath.row]
     }
 
-// KRH
+// KRH - checking to see if show is favorite in UserDefaults
     if UserDefaults.sharedInstance.isFavorite(savedFavorite.id) {
       cell.saveButton.setImage(UIImage(named: "save_icon_greenCheck"), forState: UIControlState.Normal)
     } else {
