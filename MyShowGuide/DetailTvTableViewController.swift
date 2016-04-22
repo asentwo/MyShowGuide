@@ -58,8 +58,8 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
     
     let url = NSURL(string: urlString)!
     let urlConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
-    urlConfig.timeoutIntervalForRequest = 10
-    urlConfig.timeoutIntervalForResource = 10
+    urlConfig.timeoutIntervalForRequest = 8
+    urlConfig.timeoutIntervalForResource = 8
     let session = NSURLSession(configuration: urlConfig)
     task = session.dataTaskWithURL(url) {(data, response, error) in
       dispatch_async(dispatch_get_main_queue()) {
@@ -144,8 +144,8 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
   func getVideoJSON (urlString: String) {
     let url = NSURL(string: urlString)!
     let urlConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
-    urlConfig.timeoutIntervalForRequest = 6
-    urlConfig.timeoutIntervalForResource = 6
+    urlConfig.timeoutIntervalForRequest = 10
+    urlConfig.timeoutIntervalForResource = 10
     let session = NSURLSession(configuration: urlConfig)
     task = session.dataTaskWithURL(url) {(data, response, error) in
       
