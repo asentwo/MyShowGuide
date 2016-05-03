@@ -4,6 +4,16 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>EXTView-EXTView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>EXTView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,12 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>A31841C2D22ED2DD2A9282B4F1F9C951</key>
+		<key>3FE1B7BEF09FB7EE5B4CBCAEA654D5C2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E8EB5C592163D4094AA1837D00A36AEB</key>
+		<key>7C488DD3FB9B99D9F88E2DE3FC5E150B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>912BEE5269643D37AF34109E41EBFAAE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EA0551D34854DF0368D34455D1D13DC5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
