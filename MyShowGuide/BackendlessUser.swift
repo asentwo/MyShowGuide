@@ -64,7 +64,7 @@ class BackendlessUserFunctions {
     }
   
     //user login
-    func backendlessUserLogin(userName:String, password:String) {
+    func backendlessUserLogin(userName:String, password:String, rep: ((user : BackendlessUser!) -> Void), err: (( fault : Fault!) -> Void)) {
     
         // First, check if the user is already logged in. If they are, we don't need to
         // ask them to login again.
@@ -76,16 +76,10 @@ class BackendlessUserFunctions {
         // If we were unable to find a valid user token, the user is not logged and they'll
         // need to login. In a real app, this where we would send the user to a login screen to
         // collect their user name and password for the login attempt.
-        backendless.userService.login( userName, password:password,
-                                 
-            response: { ( user : BackendlessUser!) -> () in
-                print("User logged in: \(user.objectId)")
-            },
-                                     
-            error: { ( fault : Fault!) -> () in
-                print("User failed to login: \(fault)")
-            }
-        )
+      // print("User logged in: \(user.objectId)")
+      // print("User failed to login: \(fault)")
+
+        backendless.userService.login( userName, password:password, response: rep, error: err)
     }
 
 //  //example custom class

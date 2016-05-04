@@ -655,6 +655,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jdoo.GuideBoxGuideNew1-0";
 				PRODUCT_NAME = "My Show Guide";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "${PODS_ROOT}/Headers/Public/Backendless-ios-SDK/Backendless-With-Media-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				"TEST_HOST[sdk=*]" = "";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)";
@@ -675,6 +676,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jdoo.GuideBoxGuideNew1-0";
 				PRODUCT_NAME = "My Show Guide";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "${PODS_ROOT}/Headers/Public/Backendless-ios-SDK/Backendless-With-Media-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				"TEST_HOST[sdk=*]" = "";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)";

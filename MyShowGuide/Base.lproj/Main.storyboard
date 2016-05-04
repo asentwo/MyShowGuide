@@ -1158,7 +1158,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Username" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yVb-ex-VNy">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yVb-ex-VNy">
                                 <rect key="frame" x="175" y="170" width="250" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="29" id="AVh-VC-Z9S"/>
@@ -1175,11 +1175,11 @@
                                 <textInputTraits key="textInputTraits"/>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="I0R-cb-JrJ"/>
-                                        <exclude reference="vnQ-Tf-iAU"/>
-                                        <exclude reference="iAZ-uP-Da2"/>
-                                        <exclude reference="byn-Q8-GJI"/>
                                         <exclude reference="AVh-VC-Z9S"/>
+                                        <exclude reference="I0R-cb-JrJ"/>
+                                        <exclude reference="byn-Q8-GJI"/>
+                                        <exclude reference="iAZ-uP-Da2"/>
+                                        <exclude reference="vnQ-Tf-iAU"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
@@ -1189,7 +1189,7 @@
                                     <action selector="userNameSignedIn:" destination="uNy-HQ-PCU" eventType="editingDidEnd" id="1N2-iO-Xvu"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Password" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ugf-Ev-CMf">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ugf-Ev-CMf">
                                 <rect key="frame" x="175" y="235" width="250" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="ugf-Ev-CMf" secondAttribute="height" multiplier="181:30" id="9n6-7D-ddU"/>
@@ -1221,7 +1221,7 @@
                                     <action selector="passwordSignedIn:" destination="uNy-HQ-PCU" eventType="editingDidEnd" id="ZFZ-BB-NKb"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Password" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eWm-PM-mb5">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eWm-PM-mb5">
                                 <rect key="frame" x="175" y="305" width="250" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="eWm-PM-mb5" secondAttribute="height" multiplier="175:29" id="8kp-4T-dEc"/>
@@ -1236,11 +1236,11 @@
                                 <textInputTraits key="textInputTraits"/>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="8kp-4T-dEc"/>
+                                        <exclude reference="c6m-ZM-cnn"/>
+                                        <exclude reference="iEm-kG-AZf"/>
                                         <exclude reference="st4-ee-A1P"/>
                                         <exclude reference="vWo-SH-Qz6"/>
-                                        <exclude reference="iEm-kG-AZf"/>
-                                        <exclude reference="c6m-ZM-cnn"/>
-                                        <exclude reference="8kp-4T-dEc"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
@@ -1253,7 +1253,7 @@
                                     <action selector="passwordSignedIn:" destination="uNy-HQ-PCU" eventType="editingDidEnd" id="068-ad-lG3"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Email Address" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RhW-JS-X9X">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RhW-JS-X9X">
                                 <rect key="frame" x="175" y="377" width="250" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="29" id="dhD-GV-Ota"/>
@@ -1268,11 +1268,11 @@
                                 <textInputTraits key="textInputTraits"/>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="mYu-0B-XZx"/>
                                         <exclude reference="dhD-GV-Ota"/>
-                                        <exclude reference="xwI-Du-Emj"/>
-                                        <exclude reference="vTQ-Mo-krP"/>
+                                        <exclude reference="mYu-0B-XZx"/>
                                         <exclude reference="vOR-KR-IgS"/>
+                                        <exclude reference="vTQ-Mo-krP"/>
+                                        <exclude reference="xwI-Du-Emj"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
@@ -1646,7 +1646,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Username" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bx6-dL-z4X">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bx6-dL-z4X">
                                 <rect key="frame" x="175" y="218" width="250" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="29" id="9it-mQ-ayT"/>
@@ -1677,7 +1677,7 @@
                                     <action selector="userNameSignedIn:" destination="uNy-HQ-PCU" eventType="editingDidEnd" id="aLe-vb-bgV"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Password" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Jd-D1-WNI">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Jd-D1-WNI">
                                 <rect key="frame" x="175" y="290" width="250" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="1WS-2h-K4N"/>
@@ -1694,11 +1694,11 @@
                                 <textInputTraits key="textInputTraits"/>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="kpm-9a-Jpt"/>
-                                        <exclude reference="fJS-2W-Tww"/>
                                         <exclude reference="G97-N2-Lq0"/>
-                                        <exclude reference="qn1-9V-pTx"/>
                                         <exclude reference="Sus-MS-wqN"/>
+                                        <exclude reference="fJS-2W-Tww"/>
+                                        <exclude reference="kpm-9a-Jpt"/>
+                                        <exclude reference="qn1-9V-pTx"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
