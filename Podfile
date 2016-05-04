@@ -4,7 +4,7 @@ use_frameworks!
 
 
 target 'MyShowGuide' do
-pod 'SDWebImage', '~>3.7'
+pod 'SDWebImage', '~>3.7.5'
 pod "EXTView"
 pod 'Backendless-ios-SDK'
 end
