@@ -1,15 +1,18 @@
 PODS:
+  - Backendless-ios-SDK (3.0.18)
   - EXTView (0.1.0)
-  - SDWebImage (3.7.3):
-    - SDWebImage/Core (= 3.7.3)
-  - SDWebImage/Core (3.7.3)
+  - SDWebImage (3.7.5):
+    - SDWebImage/Core (= 3.7.5)
+  - SDWebImage/Core (3.7.5)
 
 DEPENDENCIES:
+  - Backendless-ios-SDK
   - EXTView
   - SDWebImage (~> 3.7)
 
 SPEC CHECKSUMS:
+  Backendless-ios-SDK: 7a699affe9e7e519b9056c7f15771b339180c42a
   EXTView: db5ded8520d2023cadb1b9225fb1ad9406064f04
-  SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
+  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
 
 COCOAPODS: 0.39.0

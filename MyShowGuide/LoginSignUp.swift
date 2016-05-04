@@ -27,6 +27,8 @@ class LoginSignUp: UIViewController {
 
   @IBOutlet weak var loginButton: UIButton!
   @IBOutlet weak var signUpButton: UIButton!
+  @IBOutlet weak var cancelButton: UIButton!
+
   
   @IBOutlet weak var tvLogo: UIImageView!
   
@@ -50,6 +52,7 @@ class LoginSignUp: UIViewController {
     orLabel.adjustsFontSizeToFitWidth = true
     loginButton.titleLabel?.adjustsFontSizeToFitWidth = true
     signUpButton.titleLabel?.adjustsFontSizeToFitWidth = true
+    cancelButton.titleLabel?.adjustsFontSizeToFitWidth = true
     
     
     
@@ -67,6 +70,10 @@ class LoginSignUp: UIViewController {
   @IBAction func loginInButtonPressed(sender: AnyObject) {
   }
   @IBAction func signUpButtonPressed(sender: AnyObject) {
+    performSegueWithIdentifier("loginToSignUpSegue", sender: self)
+  }
+  @IBAction func cancelButtonPressed(sender: AnyObject) {
+    performSegueWithIdentifier("loginToChannelSegue", sender: self)
   }
 
 }
