@@ -8,7 +8,7 @@ PODS:
 DEPENDENCIES:
   - Backendless-ios-SDK
   - EXTView
-  - SDWebImage (~> 3.7)
+  - SDWebImage (~> 3.7.5)
 
 SPEC CHECKSUMS:
   Backendless-ios-SDK: 7a699affe9e7e519b9056c7f15771b339180c42a

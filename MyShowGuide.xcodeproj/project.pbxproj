@@ -110,7 +110,6 @@
 		6E9949931BD5996B00D50655 /* CastInfo_Photos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CastInfo_Photos.swift; sourceTree = "<group>"; };
 		6EA9BE411C765DB8001591D9 /* GlobalFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
 		6EB47BFE1C8A6AB300110FBB /* colorbar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = colorbar.jpg; path = Assets.xcassets/colorbar.jpg; sourceTree = "<group>"; };
-		6ED04E961C0CE6CC0027620D /* MyShowGuide-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "MyShowGuide-Bridging-Header.h"; path = "MyShowGuide/MyShowGuide-Bridging-Header.h"; sourceTree = "<group>"; };
 		6EDB91441BDAE39F00FA1D33 /* CastCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CastCell.swift; sourceTree = "<group>"; };
 		6EDB91461BDAE45A00FA1D33 /* PhotosCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosCell.swift; sourceTree = "<group>"; };
 		6EDB91481BDAE59000FA1D33 /* photosCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = photosCollectionCell.swift; sourceTree = "<group>"; };
@@ -174,7 +173,6 @@
 		6E3871771BCF290C00559559 = {
 			isa = PBXGroup;
 			children = (
-				6ED04E961C0CE6CC0027620D /* MyShowGuide-Bridging-Header.h */,
 				6E3871821BCF290C00559559 /* MyShowGuide */,
 				5B331B8C9B59A90439A64FD7 /* Frameworks */,
 				1C14FC9DA61BEF57A88CD749 /* Pods */,
@@ -657,7 +655,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jdoo.GuideBoxGuideNew1-0";
 				PRODUCT_NAME = "My Show Guide";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "MyShowGuide/MyShowGuide-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				"TEST_HOST[sdk=*]" = "";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)";
@@ -678,7 +675,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jdoo.GuideBoxGuideNew1-0";
 				PRODUCT_NAME = "My Show Guide";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "MyShowGuide/MyShowGuide-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				"TEST_HOST[sdk=*]" = "";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)";
