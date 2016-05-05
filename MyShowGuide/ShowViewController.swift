@@ -36,6 +36,32 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
   override func viewDidLoad() {
     super.viewDidLoad()
     
+//   BackendlessUserFunctions.sharedInstance.saveFavoriteToBackendless(TvShowInfo(poster: "asdsa", title: "dsadsa", id: 123))
+    
+//    BackendlessUserFunctions.sharedInstance.retrieveFavoriteFromBackendless(TvShowInfo(poster: "asdsa", title: "dsadsa", id: 123))
+    
+    
+    BackendlessUserFunctions.sharedInstance.retrieveFavoriteFromBackendless({ ( favoriteShows : BackendlessCollection!) -> () in
+      
+      print("FavoritesShowInfo have been fetched:")
+      
+      for favoriteShow in favoriteShows.data {
+       
+        let currentShow = favoriteShow as! BackendlessUserFunctions.FavoritesShowInfo
+        
+        print("title = \(currentShow.title)")
+      }
+
+      }
+      , err: { ( fault : Fault!) -> () in
+        print("FavoritesShowInfo were not fetched: \(fault)")
+      }
+    )
+    
+    
+    
+    
+    
     let showNoSpaces = showType.stringByReplacingOccurrencesOfString(" ", withString: "_")
     let baseURL = "http://api-public.guidebox.com/v1.43/us/\(apiKey)/shows/\(showNoSpaces)/0/25/all/all"
     getJSON(baseURL)
@@ -279,25 +305,28 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             savedFavorite = filteredShowSearchResults[indexPath.row]
             
-            if UserDefaults.sharedInstance.isFavorite(savedFavorite.id) {
+//            if UserDefaults.sharedInstance.isFavorite(savedFavorite.id) {
+          if BackendlessUserFunctions.sharedInstance.isShowAlreadyFavorite(savedFavorite.id) {
                 sender.setImage(UIImage(named: "save_icon_white"), forState: UIControlState.Normal)
             } else {
-                UserDefaults.sharedInstance.addFavorite(TvShowInfo(poster: savedFavorite.poster, title: savedFavorite.title, id: savedFavorite.id))
+//                UserDefaults.sharedInstance.addFavorite(TvShowInfo(poster: savedFavorite.poster, title: savedFavorite.title, id: savedFavorite.id))
+            BackendlessUserFunctions.sharedInstance.saveFavoriteToBackendless(TvShowInfo(poster: savedFavorite.poster, title: savedFavorite.title, id: savedFavorite.id))
                 sender.setImage(UIImage(named: "save_icon_greenCheck"), forState: UIControlState.Normal)
             }
-            
+          
         } else {
             
             savedFavorite = showArray[indexPath.row]
 
-            if UserDefaults.sharedInstance.isFavorite(savedFavorite.id) {
-
-                UserDefaults.sharedInstance.removeFavorite(savedFavorite)
+           // if UserDefaults.sharedInstance.isFavorite(savedFavorite.id) {
+           if BackendlessUserFunctions.sharedInstance.isShowAlreadyFavorite(savedFavorite.id) {
+               // UserDefaults.sharedInstance.removeFavorite(savedFavorite)
                 sender.setImage(UIImage(named: "save_icon_white"), forState: UIControlState.Normal)
 
             } else {
 
-                UserDefaults.sharedInstance.addFavorite(TvShowInfo(poster: savedFavorite.poster, title: savedFavorite.title, id: savedFavorite.id))
+//                UserDefaults.sharedInstance.addFavorite(TvShowInfo(poster: savedFavorite.poster, title: savedFavorite.title, id: savedFavorite.id))
+              BackendlessUserFunctions.sharedInstance.saveFavoriteToBackendless(TvShowInfo(poster: savedFavorite.poster, title: savedFavorite.title, id: savedFavorite.id))
                 sender.setImage(UIImage(named: "save_icon_greenCheck"), forState: UIControlState.Normal)
             }
         }
