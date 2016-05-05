@@ -64,13 +64,27 @@ class LoginSignUp: UIViewController {
     
   }
 
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if segue is CustomSegue {
+      (segue as! CustomSegue).animationType = .GrowScale
+    }
+  }
+
+  override func segueForUnwindingToViewController(toViewController: UIViewController, fromViewController: UIViewController, identifier: String?) -> UIStoryboardSegue {
+    let segue = CustomUnwindSegue(identifier: identifier, source: fromViewController, destination: toViewController)
+    segue.animationType = .GrowScale
+    return segue
+  }
   
+
   //MARK: IBActions
   
   @IBAction func loginInButtonPressed(sender: AnyObject) {
                                                           //userNameSignIn = user's email
     BackendlessUserFunctions.sharedInstance.backendlessUserLogin(userNameSignIn.text!, password: passwordSignIn.text!, rep: { ( user : BackendlessUser!) -> () in
       
+      //SwiftSpinner.show(NSLocalizedString("Retrieving your channels..", comment: ""))
+  
       self.performSegueWithIdentifier("loginToChannelSegue", sender: self)
       print("User logged in: \(user.objectId)")
       
@@ -107,7 +121,7 @@ class LoginSignUp: UIViewController {
     performSegueWithIdentifier("loginToSignUpSegue", sender: self)
   }
   @IBAction func cancelButtonPressed(sender: AnyObject) {
-    performSegueWithIdentifier("loginToChannelSegue", sender: self)
+    performSegueWithIdentifier("loginToChannelSegue", sender: nil)
   }
   
 }

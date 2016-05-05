@@ -29,11 +29,12 @@
 		6E415B5D1CDA913C00C69A20 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E415B5C1CDA913C00C69A20 /* SignUpViewController.swift */; };
 		6E468E711C750EB100EE36BD /* SwiftSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E468E701C750EB100EE36BD /* SwiftSpinner.swift */; };
 		6E47A5531CBDAE9400503764 /* VideoOnDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E47A5521CBDAE9400503764 /* VideoOnDetailCell.swift */; };
+		6E4BE2C41CDBC90C0093E12C /* CustomSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4BE2C31CDBC90C0093E12C /* CustomSegue.swift */; };
+		6E4BE2C51CDBC90C0093E12C /* CustomSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4BE2C31CDBC90C0093E12C /* CustomSegue.swift */; };
 		6E57DC641CD7FABD005F3BD4 /* LoginSignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E57DC631CD7FABD005F3BD4 /* LoginSignUp.swift */; };
 		6E5C19511C0CE97B00C889B5 /* SDWebImage-master in Resources */ = {isa = PBXBuildFile; fileRef = 6E5C19501C0CE97B00C889B5 /* SDWebImage-master */; };
 		6E5D651D1C6A81AE005F539B /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5D651C1C6A81AE005F539B /* ChannelCell.swift */; };
 		6E7829241CAD70D80094E798 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7829231CAD70D80094E798 /* FavoritesViewController.swift */; };
-		6E89BDEB1CC405F300D3097E /* SaveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E89BDEA1CC405F300D3097E /* SaveButton.swift */; };
 		6E9949841BD5752200D50655 /* BannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9949831BD5752200D50655 /* BannerCell.swift */; };
 		6E9949861BD5753D00D50655 /* OverviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9949851BD5753D00D50655 /* OverviewCell.swift */; };
 		6E99498A1BD5755A00D50655 /* DetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9949891BD5755A00D50655 /* DetailsCell.swift */; };
@@ -99,11 +100,11 @@
 		6E45002B1C72437B003947AA /* MyShowGuide.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyShowGuide.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E468E701C750EB100EE36BD /* SwiftSpinner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftSpinner.swift; sourceTree = "<group>"; };
 		6E47A5521CBDAE9400503764 /* VideoOnDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoOnDetailCell.swift; sourceTree = "<group>"; };
+		6E4BE2C31CDBC90C0093E12C /* CustomSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomSegue.swift; path = "CustomSegues-master/CustomSegues/CustomSegue.swift"; sourceTree = "<group>"; };
 		6E57DC631CD7FABD005F3BD4 /* LoginSignUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginSignUp.swift; sourceTree = "<group>"; };
 		6E5C19501C0CE97B00C889B5 /* SDWebImage-master */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "SDWebImage-master"; sourceTree = "<group>"; };
 		6E5D651C1C6A81AE005F539B /* ChannelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
 		6E7829231CAD70D80094E798 /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
-		6E89BDEA1CC405F300D3097E /* SaveButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveButton.swift; sourceTree = "<group>"; };
 		6E9949831BD5752200D50655 /* BannerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerCell.swift; sourceTree = "<group>"; };
 		6E9949851BD5753D00D50655 /* OverviewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverviewCell.swift; sourceTree = "<group>"; };
 		6E9949891BD5755A00D50655 /* DetailsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsCell.swift; sourceTree = "<group>"; };
@@ -234,6 +235,7 @@
 		6E3871B51BCF2D8300559559 /* Helper Files */ = {
 			isa = PBXGroup;
 			children = (
+				6E4BE2C31CDBC90C0093E12C /* CustomSegue.swift */,
 				6E0075621CDA4D8300627267 /* BackendlessUser.swift */,
 				6E025C581CC835A6000943EE /* Localizable.strings */,
 				6E025C531CC82CF1000943EE /* InfoPlist.strings */,
@@ -247,7 +249,6 @@
 				6E3871B61BD03F8F00559559 /* DetailShowInfo.swift */,
 				6E9949931BD5996B00D50655 /* CastInfo_Photos.swift */,
 				6EA9BE411C765DB8001591D9 /* GlobalFunctions.swift */,
-				6E89BDEA1CC405F300D3097E /* SaveButton.swift */,
 				3FBE22981CC7CCC3008FC1A9 /* UserDefaults.swift */,
 			);
 			name = "Helper Files";
@@ -339,6 +340,7 @@
 				KnownAssetTags = (
 					cast,
 				);
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Justin Doo";
 				TargetAttributes = {
@@ -473,6 +475,7 @@
 				6E415B5D1CDA913C00C69A20 /* SignUpViewController.swift in Sources */,
 				6E99498E1BD5757400D50655 /* SocialCell.swift in Sources */,
 				6E9949861BD5753D00D50655 /* OverviewCell.swift in Sources */,
+				6E4BE2C41CDBC90C0093E12C /* CustomSegue.swift in Sources */,
 				6E7829241CAD70D80094E798 /* FavoritesViewController.swift in Sources */,
 				6EDB914F1BDAE94900FA1D33 /* TestTableCell.swift in Sources */,
 				6E47A5531CBDAE9400503764 /* VideoOnDetailCell.swift in Sources */,
@@ -485,7 +488,6 @@
 				6E468E711C750EB100EE36BD /* SwiftSpinner.swift in Sources */,
 				6EDB91451BDAE39F00FA1D33 /* CastCell.swift in Sources */,
 				6E17913E1CBD88040003EB4A /* VideoViewController.swift in Sources */,
-				6E89BDEB1CC405F300D3097E /* SaveButton.swift in Sources */,
 				6EDB914B1BDAE5A500FA1D33 /* castCollectionCell.swift in Sources */,
 				6E9949921BD5759000D50655 /* ExploreCell.swift in Sources */,
 				6E0075631CDA4D8300627267 /* BackendlessUser.swift in Sources */,
@@ -499,6 +501,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E4BE2C51CDBC90C0093E12C /* CustomSegue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -691,10 +694,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = MyShowGuideTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jdoo.GuideBoxGuideNew1-0Tests";
 				PRODUCT_NAME = MyShowGuide;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyShowGuide.app/MyShowGuide";
 			};
 			name = Debug;
@@ -703,6 +708,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = MyShowGuideTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jdoo.GuideBoxGuideNew1-0Tests";

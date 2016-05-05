@@ -95,7 +95,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jhw-bN-VBp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6143" y="300"/>
+            <point key="canvasLocation" x="6955" y="300"/>
         </scene>
         <!--Show View Controller-->
         <scene sceneID="cyk-hh-fZ7">
@@ -232,7 +232,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dCG-ww-Iow" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6857" y="300"/>
+            <point key="canvasLocation" x="7669" y="300"/>
         </scene>
         <!--Favorites-->
         <scene sceneID="DXy-35-jbr">
@@ -324,7 +324,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eF2-nU-AqY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6857" y="1055.9999999999998"/>
+            <point key="canvasLocation" x="7669" y="1088"/>
         </scene>
         <!--Detail Tv Table View Controller-->
         <scene sceneID="iyZ-wf-fr3">
@@ -994,7 +994,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CsS-0a-LTS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7639" y="568"/>
+            <point key="canvasLocation" x="8451" y="568"/>
         </scene>
         <!--Website View Controller-->
         <scene sceneID="4cu-vo-RBk">
@@ -1033,7 +1033,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HFV-f5-ugS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8691" y="216.74999999999997"/>
+            <point key="canvasLocation" x="9503" y="216"/>
         </scene>
         <!--Video View Controller-->
         <scene sceneID="KSR-n0-Hye">
@@ -1107,7 +1107,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mAL-Te-gdG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8691" y="925"/>
+            <point key="canvasLocation" x="9503" y="925"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="jp0-Z2-GAQ">
@@ -1441,12 +1441,11 @@
                         <outlet property="confirmPasswordTextField" destination="eWm-PM-mb5" id="WLJ-hz-8Dm"/>
                         <outlet property="emailTextField" destination="yVb-ex-VNy" id="l7v-ZK-o5r"/>
                         <outlet property="passwordTextField" destination="ugf-Ev-CMf" id="tYx-rk-Jqd"/>
-                        <segue destination="OdL-FM-u8s" kind="show" identifier="registerToChannel" id="x9t-Uz-Kei"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1d0-CB-uDf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5427" y="1030"/>
+            <point key="canvasLocation" x="6188" y="1060"/>
         </scene>
         <!--Login Sign Up-->
         <scene sceneID="xJl-KN-gkg">
@@ -1851,12 +1850,12 @@
                         <outlet property="userNameLabel" destination="Iwa-xX-YCy" id="g6d-00-XE4"/>
                         <outlet property="userNameSignIn" destination="bx6-dL-z4X" id="CLz-Eq-U6M"/>
                         <outlet property="welcomeLabel" destination="cSO-DX-M5u" id="lfH-Eg-lUK"/>
-                        <segue destination="OdL-FM-u8s" kind="show" identifier="loginToChannelSegue" id="t4f-LI-izl"/>
+                        <segue destination="OdL-FM-u8s" kind="show" identifier="loginToChannelSegue" id="R9n-ka-f4Z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ddQ-k6-yTC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5427" y="300"/>
+            <point key="canvasLocation" x="6188" y="300"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rDr-TE-kt1">
@@ -1875,7 +1874,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wc1-36-Glx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4706" y="300"/>
+            <point key="canvasLocation" x="5442" y="300"/>
         </scene>
     </scenes>
     <resources>
@@ -1888,6 +1887,5 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="IgW-5C-kCz"/>
-        <segue reference="t4f-LI-izl"/>
     </inferredMetricsTieBreakers>
 </document>
