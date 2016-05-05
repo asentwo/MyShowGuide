@@ -34,7 +34,7 @@ class SaveButton: UIButton {
     self.layer.masksToBounds = true
     self.setImage(buttonUnChecked, forState: UIControlState.Normal)
     
-    self.addTarget(self, action: "buttonClicked:", forControlEvents: UIControlEvents.TouchUpInside)
+    self.addTarget(self, action: #selector(SaveButton.buttonClicked(_:)), forControlEvents: UIControlEvents.TouchUpInside)
   }
   
   required init(coder aDecoder: NSCoder) {

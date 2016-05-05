@@ -81,7 +81,7 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
       let jsonResult = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
       
       let banner = jsonResult["banner"] as? String ?? ""
-      let overview = jsonResult["overview"] as! String ?? "N/A"
+      let overview = jsonResult["overview"] as? String ?? "N/A"
       let firstAired = jsonResult["first_aired"] as? String ?? "N/A"
       let network = jsonResult["network"] as? String ?? "N/A"
       let rating = jsonResult["rating"] as? String ?? "N/A"

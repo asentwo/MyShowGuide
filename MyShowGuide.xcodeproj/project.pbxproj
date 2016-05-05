@@ -26,6 +26,7 @@
 		6E3871B71BD03F8F00559559 /* DetailShowInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3871B61BD03F8F00559559 /* DetailShowInfo.swift */; };
 		6E3871C21BD18E2600559559 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E3871C11BD18E2600559559 /* AVKit.framework */; };
 		6E3C01C31BE15FDA00F19E4C /* WebsiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3C01C21BE15FDA00F19E4C /* WebsiteViewController.swift */; };
+		6E415B5D1CDA913C00C69A20 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E415B5C1CDA913C00C69A20 /* SignUpViewController.swift */; };
 		6E468E711C750EB100EE36BD /* SwiftSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E468E701C750EB100EE36BD /* SwiftSpinner.swift */; };
 		6E47A5531CBDAE9400503764 /* VideoOnDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E47A5521CBDAE9400503764 /* VideoOnDetailCell.swift */; };
 		6E57DC641CD7FABD005F3BD4 /* LoginSignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E57DC631CD7FABD005F3BD4 /* LoginSignUp.swift */; };
@@ -92,6 +93,7 @@
 		6E3871B61BD03F8F00559559 /* DetailShowInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailShowInfo.swift; sourceTree = "<group>"; };
 		6E3871C11BD18E2600559559 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		6E3C01C21BE15FDA00F19E4C /* WebsiteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebsiteViewController.swift; sourceTree = "<group>"; };
+		6E415B5C1CDA913C00C69A20 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		6E4500291C72437B003947AA /* My Show Guide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My Show Guide.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E45002A1C72437B003947AA /* MyShowGuide.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyShowGuide.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E45002B1C72437B003947AA /* MyShowGuide.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyShowGuide.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -224,6 +226,7 @@
 				6E7829231CAD70D80094E798 /* FavoritesViewController.swift */,
 				6E17913D1CBD88040003EB4A /* VideoViewController.swift */,
 				6E57DC631CD7FABD005F3BD4 /* LoginSignUp.swift */,
+				6E415B5C1CDA913C00C69A20 /* SignUpViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -467,6 +470,7 @@
 				6E9949841BD5752200D50655 /* BannerCell.swift in Sources */,
 				6E1791401CBD8D010003EB4A /* VideoCell.swift in Sources */,
 				6E3871B21BCF2D5900559559 /* TvShowCell.swift in Sources */,
+				6E415B5D1CDA913C00C69A20 /* SignUpViewController.swift in Sources */,
 				6E99498E1BD5757400D50655 /* SocialCell.swift in Sources */,
 				6E9949861BD5753D00D50655 /* OverviewCell.swift in Sources */,
 				6E7829241CAD70D80094E798 /* FavoritesViewController.swift in Sources */,

@@ -18,6 +18,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    
+    BackendlessUserFunctions.sharedInstance.backendless
+    
+    if BackendlessUserFunctions.sharedInstance.isValidUser() {
+      
+      let storyboard = UIStoryboard(name: "Main", bundle: nil)
+      
+      let navigationController = storyboard.instantiateInitialViewController() as! UINavigationController
+      
+      let rootViewController = storyboard.instantiateViewControllerWithIdentifier("channel") as UIViewController
+      
+      navigationController.viewControllers = [rootViewController]
+      
+      self.window?.rootViewController = navigationController
+    }
+
+    
     // Override point for customization after application launch.
     return true
   }
