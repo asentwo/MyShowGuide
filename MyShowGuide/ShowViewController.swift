@@ -271,8 +271,20 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
     let action = UIAlertAction(title: "OK", style: .Default, handler: {_ in self.navigationController?.popViewControllerAnimated(true)})
     alert.addAction(action)
     presentViewController(alert, animated: true, completion: nil)
-    
+  
   }
+  
+  func showMaxShowsSavedAlert () {
+  
+    //displays alert view
+    let alert = UIAlertController(title: NSLocalizedString("Whoops?", comment: ""), message: NSLocalizedString( "You've reached the maximum amount of shows that can be saved.", comment: ""), preferredStyle: .Alert)
+    
+    //dismisses alert view
+    let action = UIAlertAction(title: "OK", style: .Default, handler:nil)
+    alert.addAction(action)
+    presentViewController(alert, animated: true, completion: nil)
+  }
+  
   
   @IBAction func FavoritesButton(sender: AnyObject) {
     performSegueWithIdentifier("showToFavoritesSegue", sender: self)
@@ -296,6 +308,7 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
   
   
   @IBAction func saveShow(sender: UIButton) {
+    print("\(savedFavoriteArray.count)")
     sender.enabled = false
     favoritesToolBarButton.enabled = false
     
@@ -321,11 +334,11 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
         sender.enabled = true
         favoritesToolBarButton.enabled = true
         
-        print("Show was deleted, show title: \(savedFavorite.title), show ID: \(savedFavorite.id)")
+        print("Show was deleted, show title: \(savedFavorite.title), show ID: \(savedFavorite.id), savedShowArray total: \(savedFavoriteArray.count)")
         
       } else {
         
-        
+        if savedFavoriteArray.count <= 10 {
         
         //save to backendless
         BackendlessUserFunctions.sharedInstance.saveFavoriteToBackendless(TvShowInfo(poster: savedFavorite.poster, title: savedFavorite.title, id: savedFavorite.id), rep: {( entity : AnyObject!) -> () in
@@ -336,15 +349,20 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
           savedFavoriteArray.append(self.savedFavorite)
           sender.enabled = true
           self.favoritesToolBarButton.enabled = true
+         
           //set the ui - checked
           sender.setImage(UIImage(named: "save_icon_greenCheck"), forState: UIControlState.Normal)
           
-          print("Show was saved: \(favShow.objectId!), show title: \(favShow.title), show ID: \(favShow.showID!)")
+          print("Show was saved: \(favShow.objectId!), show title: \(favShow.title), show ID: \(favShow.showID!), savedShowArray total: \(savedFavoriteArray.count)")
           
           }, err: { ( fault : Fault!) -> () in
             print("Comment failed to save: \(fault)")
           }
         )
+        } else {
+         sender.enabled = false
+        showMaxShowsSavedAlert()
+        }
       }
       
     } else {
@@ -366,10 +384,11 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
         sender.enabled = true
         favoritesToolBarButton.enabled = true
         
-         print("Show was deleted, show title: \(savedFavorite.title), show ID: \(savedFavorite.id)")
+         print("Show was deleted, show title: \(savedFavorite.title), show ID: \(savedFavorite.id), savedShowArray total: \(savedFavoriteArray.count)")
         
       } else {
         
+        if savedFavoriteArray.count <= 10 {
         //save to backendless
         BackendlessUserFunctions.sharedInstance.saveFavoriteToBackendless(TvShowInfo(poster: savedFavorite.poster, title: savedFavorite.title, id: savedFavorite.id), rep: {( entity : AnyObject!) -> () in
           
@@ -382,12 +401,16 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
           //set the ui - checked
           sender.setImage(UIImage(named: "save_icon_greenCheck"), forState: UIControlState.Normal)
           
-          print("Show was saved: \(favShow.objectId!), show title: \(favShow.title), show ID: \(favShow.showID!)")
+          print("Show was saved: \(favShow.objectId!), show title: \(favShow.title), show ID: \(favShow.showID!), savedShowArray total: \(savedFavoriteArray.count)")
           
           }, err: { ( fault : Fault!) -> () in
             print("Comment failed to save: \(fault)")
           }
         )
+        } else {
+          sender.enabled = false
+          showMaxShowsSavedAlert()
+        }
       }
     }
   }
