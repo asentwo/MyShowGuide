@@ -261,7 +261,7 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
   }
   
-  //MARK: Network Error Indicator
+  //MARK: AlertViews
   
   func showNetworkError () {
     let alert = UIAlertController(title: NSLocalizedString("Whoops?", comment: ""), message: NSLocalizedString( "There was a connection error. Please try again.", comment: ""), preferredStyle: .Alert)
@@ -285,7 +285,7 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
   
   
   func showMustSignUpForAccountAlert () {
-    let alert = UIAlertController(title: NSLocalizedString("Whoop?", comment: ""), message: NSLocalizedString( "Must sign up for an account to save favorite shows.", comment: ""), preferredStyle: .Alert)
+    let alert = UIAlertController(title: NSLocalizedString("Whoops?", comment: ""), message: NSLocalizedString( "Must sign up for an account to save favorite shows.", comment: ""), preferredStyle: .Alert)
     
     //goes to a specific view controller through a segue
     let action = UIAlertAction(title: "OK", style: .Default, handler:  {(action:UIAlertAction!)-> Void in
@@ -301,7 +301,7 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
   
   @IBAction func FavoritesButton(sender: AnyObject) {
     
-    if userLoggedIn == true {
+    if BackendlessUserFunctions.sharedInstance.isValidUser() {
       performSegueWithIdentifier("showToFavoritesSegue", sender: self)
     } else {
       showMustSignUpForAccountAlert()
@@ -328,7 +328,7 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
   
   @IBAction func saveShow(sender: UIButton) {
     
-    if userLoggedIn == true {
+    if BackendlessUserFunctions.sharedInstance.isValidUser() {
       
       print("\(savedFavoriteArray.count)")
       sender.enabled = false
@@ -384,6 +384,7 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
           } else {
             sender.setImage(UIImage(named: "save_icon_white"), forState: UIControlState.Normal)
             showMaxShowsSavedAlert()
+            favoritesToolBarButton.enabled = true
           }
         }
         
@@ -433,6 +434,7 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
           } else {
             sender.setImage(UIImage(named: "save_icon_white"), forState: UIControlState.Normal)
             showMaxShowsSavedAlert()
+            favoritesToolBarButton.enabled = true
           }
         }
       }

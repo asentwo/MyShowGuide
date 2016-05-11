@@ -32,11 +32,13 @@ class ChannelViewController: UIViewController, UISearchBarDelegate, UICollection
     let baseURL = "http://api-public.guidebox.com/v1.43/us/\(apiKey)/channels/all/0/50"
     getJSON(baseURL)
     channelSearchBar.delegate = self
+    self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
     SwiftSpinner.show(NSLocalizedString("Retrieving your channels..", comment: ""))
     spinnerActive = true
-    self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
-
-    if userLoggedIn == true {
+    
+    
+    if BackendlessUserFunctions.sharedInstance.isValidUser() {
+    
     savedFavoriteArray = []
 
     //Retrieve already saved favorite shows from Backendless
@@ -61,7 +63,11 @@ class ChannelViewController: UIViewController, UISearchBarDelegate, UICollection
         print("FavoritesShowInfo were not fetched: \(fault)")
       }
     )
-  }
+    } else {
+      self.performSegueWithIdentifier("channelToLoginSegue", sender: self)
+      SwiftSpinner.hide()
+      spinnerActive = false
+    }
   }
   
   //MARK: CollectionView

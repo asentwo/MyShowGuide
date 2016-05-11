@@ -25,6 +25,7 @@ class LoginSignUp: UIViewController {
   
   @IBOutlet weak var orLabel: UILabel!
   
+
   @IBOutlet weak var loginButton: UIButton!
   @IBOutlet weak var signUpButton: UIButton!
   @IBOutlet weak var cancelButton: UIButton!
@@ -38,9 +39,6 @@ class LoginSignUp: UIViewController {
     
     adjustFontSize()
   }
-  
-  override func viewWillAppear(animated: Bool) {
-      }
   
   
   func adjustFontSize () {
@@ -80,14 +78,14 @@ class LoginSignUp: UIViewController {
   //MARK: IBActions
   
   @IBAction func loginInButtonPressed(sender: AnyObject) {
-                                                          //userNameSignIn = user's email
-    BackendlessUserFunctions.sharedInstance.backendlessUserLogin(userNameSignIn.text!, password: passwordSignIn.text!, rep: { ( user : BackendlessUser!) -> () in
-      
-      //SwiftSpinner.show(NSLocalizedString("Retrieving your channels..", comment: ""))
+    SwiftSpinner.show(NSLocalizedString("Logging you in..", comment: ""))
   
-      self.performSegueWithIdentifier("loginToChannelSegue", sender: self)
-      userLoggedIn = true
+    //userNameSignIn = user's email
+    BackendlessUserFunctions.sharedInstance.backendlessUserLogin(userNameSignIn.text!, password: passwordSignIn.text!, rep: { ( user : BackendlessUser!) -> () in
+    
+      self.performSegueWithIdentifier("loginToNavController", sender: self)
       print("User logged in: \(user.objectId)")
+      SwiftSpinner.hide()
       
       }, err: { ( fault : Fault!) -> () in
         var errorStatement: String!
@@ -109,7 +107,7 @@ class LoginSignUp: UIViewController {
         case "3104": errorStatement = "Unable to send email confirmation - user account with the email cannot be found"
         default: errorStatement = "Error, please email us at myshowguide@gmail.com"
         }
-      
+        SwiftSpinner.hide()
         self.showNetworkError(errorStatement)
         
         print("User failed to login: \(fault)")
@@ -117,12 +115,12 @@ class LoginSignUp: UIViewController {
   }
   
   
+  @IBAction func dismissLoginScreen(sender: AnyObject) {
+    self.dismissViewControllerAnimated(true, completion: {})
+  }
   
   @IBAction func signUpButtonPressed(sender: AnyObject) {
     performSegueWithIdentifier("loginToSignUpSegue", sender: self)
   }
-  @IBAction func cancelButtonPressed(sender: AnyObject) {
-    performSegueWithIdentifier("loginToChannelSegue", sender: nil)
-  }
-  
+   
 }

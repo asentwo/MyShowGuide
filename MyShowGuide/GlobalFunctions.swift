@@ -10,7 +10,7 @@ import Foundation
 
 //MARK: Constants
 
-var userLoggedIn = false
+//var userLoggedIn = false
 var savedFavoriteArray:[TvShowInfo] = []
 
 //MARK: Delay

@@ -27,6 +27,7 @@ class BackendlessUserFunctions {
     backendless.userService.setStayLoggedIn(true)
   }
   
+  //checks to see if user is logged in to Backendless
   func isValidUser() -> Bool {
     
     let isValidUser = backendless.userService.isValidUserToken()

@@ -24,7 +24,7 @@ class SignUpViewController: UIViewController {
     super.viewDidLoad()
   }
   
-  //MARK: Error
+  //MARK: Alert
   func showNetworkError (title: String, message: String) {
     let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
     let action = UIAlertAction(title: "OK", style: .Default, handler: {_ in self.navigationController?.popViewControllerAnimated(true)})
@@ -33,24 +33,41 @@ class SignUpViewController: UIViewController {
     
   }
   
+  func successfulLogin (title: String, message: String) {
+    let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+    let action = UIAlertAction(title: "OK", style: .Default, handler: {(action:UIAlertAction!)-> Void in
+      self.performSegueWithIdentifier("signUpToNavSegue", sender: self)
+    })
+    
+    alert.addAction(action)
+    presentViewController(alert, animated: true, completion: nil)
+    
+  }
+
+  
   
   //MARK: IBActions
   @IBAction func createAccountButtonPressed(sender: AnyObject) {
+    SwiftSpinner.show(NSLocalizedString("Creating account..", comment: ""))
     
     if passwordTextField.text != confirmPasswordTextField.text {
+      SwiftSpinner.hide()
       showNetworkError("Whoops!", message: "Passwords don't match!")
     }
     
     BackendlessUserFunctions.sharedInstance.backendlessUserRegister(emailTextField.text!,password: passwordTextField.text!,  rep: { ( user : BackendlessUser!) -> () in
-      print("User logged in: \(user.objectId)")
-      self.showNetworkError("Success!", message: "Account created!")
       
       BackendlessUserFunctions.sharedInstance.backendless.userService.login( self.emailTextField.text!, password:self.passwordTextField.text,
         
         response: { ( user : BackendlessUser!) -> () in
-          userLoggedIn = true
+          
+          if BackendlessUserFunctions.sharedInstance.isValidUser() {
           print("User logged in: \(user.objectId)")
-          self.performSegueWithIdentifier("registerToChannel", sender: self)
+            
+            SwiftSpinner.hide()
+            self.successfulLogin("Success!", message: "Account created!")
+          }
+          
         },
         
         error: { ( fault : Fault!) -> () in
