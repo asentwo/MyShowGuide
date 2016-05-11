@@ -225,6 +225,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="favoritesToolBarButton" destination="TCg-Lj-LdO" id="d2T-le-iRF"/>
                         <outlet property="showSearchBar" destination="Mmq-sP-bmq" id="SI6-6e-jR3"/>
                         <outlet property="tvShowTableView" destination="C7N-gO-b5q" id="zst-A6-sfM"/>
                         <segue destination="tcb-Kv-D9I" kind="show" identifier="showToDetailSegue" id="LC7-1x-ZGX"/>
@@ -1886,6 +1887,6 @@
         <image name="tv-on-512x512" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="IgW-5C-kCz"/>
+        <segue reference="LC7-1x-ZGX"/>
     </inferredMetricsTieBreakers>
 </document>

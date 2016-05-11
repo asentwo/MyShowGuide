@@ -1,6 +1,5 @@
 //
 //  BackendlessUser.swift
-//  Test
 //
 //  Created by Justin Doo on 4/21/16.
 //  Copyright © 2016 Justin Doo. All rights reserved.
@@ -22,6 +21,7 @@ class BackendlessUserFunctions {
     
     let backendless = Backendless.sharedInstance()
     backendless.initApp(APP_ID, secret:SECRET_KEY, version:VERSION_NUM)
+    
     // This asks that the user should stay logged in by storing or caching the user's login
     // information so future logins can be skipped next time the user launches the app.
     backendless.userService.setStayLoggedIn(true)
@@ -81,59 +81,76 @@ class BackendlessUserFunctions {
     var title: String?
   }
   
-  
-  func isShowAlreadyFavorite (favID: NSNumber)-> Bool {
-    
-    if backendless.data.findByObject(favID) != nil{
-      print("\(favID), has already been saved in system")
-      return true
-    } else {
-      return false
-    }
-  }
-  
-  
-  func saveFavoriteToBackendless(showToSave: TvShowInfo) {
-    
+  //save- works 
+  func saveFavoriteToBackendless(showToSave: TvShowInfo, rep: (entity : AnyObject!) -> (Void), err:((Fault!) -> Void)) {
+   
     let fav = FavoritesShowInfo()
-    fav.showID = showToSave.id
     fav.poster = showToSave.poster
+    fav.showID = showToSave.id
     fav.title = showToSave.title
-    backendless.data.save(fav,response: { ( entity : AnyObject!) -> () in
-      
-      let favShow = entity as! FavoritesShowInfo
-      
-      print("Show was saved: \(favShow.objectId!), show title: \(favShow.title), show ID: \(favShow.showID!)")
-      },
-                          
-      error: { ( fault : Fault!) -> () in
-        print("Comment failed to save: \(fault)")
-      }
-    )
-  }
   
-  
-  func removeFavoriteFromBackendless(showToRemove: TvShowInfo) {
-   
-    let fav = FavoritesShowInfo()
-    fav.showID = showToRemove.id
-    fav.poster = showToRemove.poster
-    fav.title = showToRemove.title
-   
-    backendless.data.remove(fav, response: { ( entity : AnyObject!) -> () in
-      
-      let fav = entity as! FavoritesShowInfo
-      
-      print("Show was removed: \(fav.objectId!), show title, \(fav.title), show ID: \(fav.showID!)")
-      },
-                            
-      error: { ( fault : Fault!) -> () in
-        print("Comment failed to save: \(fault)")
-      }
-    )
+    let dataStore = backendless.data.of(FavoritesShowInfo.ofClass())
     
+    dataStore.save(fav,response: rep, error:  err)
+
   }
   
+  //search backendless by specific column and delete
+  func removeByShowID (showToRemove: TvShowInfo) {
+    
+    
+    let dataStore = self.backendless.data.of(FavoritesShowInfo.ofClass())
+    
+    let dataQuery = BackendlessDataQuery()
+    dataQuery.whereClause = "showID = \(showToRemove.id)"
+    
+    dataStore.find( dataQuery,
+                    
+                    response: { ( favorites : BackendlessCollection!) -> () in
+                      
+                      for favorite in favorites.data {
+                        
+                        let favorite = favorite as! FavoritesShowInfo
+                        
+                        print("FavoritesShowInfo: \(favorite.objectId!)")
+                        
+                        var error: Fault?
+                        let result = dataStore.remove(favorite, fault: &error)
+                        if error == nil {
+                          print("One FavoritesShowInfo has been removed: \(result)")
+                        } else {
+                          print("Server reported an error on attempted removal: \(error)")
+                        }
+                      }
+      },
+                    
+                    error: { ( fault : Fault!) -> () in
+                      print("FavoritesShowInfo were not fetched: \(fault)")
+      }
+    )  }
+
+
+  //remove - works
+  func removeFavoriteFromBackendless(objectID: String) {
+    
+    let dataStore = self.backendless.data.of(FavoritesShowInfo.ofClass())
+    
+    dataStore.removeID(objectID, response: {(num : NSNumber!) -> () in
+      
+        print("Show was removed: \(objectID)")
+      
+      },
+      
+      error: { (fault : Fault!) -> () in
+        print("Show failed to be removed: \(fault)")
+      }
+    )
+  }
+
+
+
+
+  //retrieve - works
   func retrieveFavoriteFromBackendless(rep: ((BackendlessCollection!) -> Void), err: ((Fault!) -> Void) ) {
  
     let currentUser = backendless.userService.currentUser
@@ -149,29 +166,6 @@ class BackendlessUserFunctions {
     dataStore.find( dataQuery, response: rep, error: err)
     
   }
-  
-//  func retrieveFavoriteFromBackendless() -> [TVShowInfo] {
-//    
-//    let dataStore = self.backendless.persistenceService.of(FavoritesShowInfo.ofClass())
-//    
-//    dataStore.find(
-//      
-//      { ( favorites : BackendlessCollection!) -> () in
-//        print("Favorites have been fetched:")
-//        
-//        for favorite in favorites.data {
-//          
-//          let fav = favorite as! FavoritesShowInfo
-//          
-//          print("Favorite: \(fav.objectId!), show title, \(fav.title), show ID: \(fav.showID!)")
-//        }
-//      },
-//      
-//      error: { ( fault : Fault!) -> () in
-//        print("Comments were not fetched: \(fault)")
-//      }
-//    )
-//  }
 
   }
 

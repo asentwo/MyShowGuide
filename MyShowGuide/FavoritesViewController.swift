@@ -120,12 +120,13 @@ class FavoritesViewController: UITableViewController {
     
   }
   
-  //MARK: NSUserDefaults
+  //MARK: Retrieve Saved Shows
   
-// KRH
     func retrieveSavedShows() {
 
-        let savedShowsArray = UserDefaults.sharedInstance.getSavedShows()
+     //   let savedShowsArray = UserDefaults.sharedInstance.getSavedShows()
+      
+      let savedShowsArray = savedFavoriteArray
 
         if savedShowsArray.count != 0 {
             self.favoriteShowsArray = savedShowsArray
@@ -144,27 +145,34 @@ class FavoritesViewController: UITableViewController {
       let detailViewController = segue.destinationViewController as! DetailTvTableViewController
       detailViewController.showToDetailSite = self.showForDetail!
     }
-//    } else  if segue.identifier == "showToFavoritesSegue" {
-//      self.tvViewController.tvShowTableView.reloadData()
-//    }
-//    
   }
   
   //MARK: IBActions
     
-// KRH
     @IBAction func removeSavedObject(sender: AnyObject) {
 
+      //find object based on location of sender(button)
         let location: CGPoint = sender.convertPoint(CGPointZero, toView: self.favoritesTableView)
         let indexPath: NSIndexPath = self.favoritesTableView.indexPathForRowAtPoint(location)!
-
-        favoriteShowsArray = UserDefaults.sharedInstance.getSavedShows()
+      
+      //make local array = universal saved show array
+        favoriteShowsArray = savedFavoriteArray
+      
+      //determine which sho to remove
         showToRemove = favoriteShowsArray[indexPath.row]
+      
+      // remove show from backendless
+      BackendlessUserFunctions.sharedInstance.removeFavoriteFromBackendless((showToRemove?.objectID)!)
+      
+      //filter out show to remove from universal saved show array
+        savedFavoriteArray = savedFavoriteArray.filter({$0.id != showToRemove!.id})
+      
+       print("Show was removed, show title: \(showToRemove!.title), show ID: \(showToRemove!.id)")
+      
+      // UserDefaults.sharedInstance.removeFavorite(showToRemove!)
 
-        UserDefaults.sharedInstance.removeFavorite(showToRemove!)
-
-        favoriteShowsArray = UserDefaults.sharedInstance.getSavedShows()
-
+        favoriteShowsArray = savedFavoriteArray
+      
         favoritesTableView.reloadData()
     }
 }

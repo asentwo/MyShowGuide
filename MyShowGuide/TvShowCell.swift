@@ -11,45 +11,26 @@ import UIKit
 
 
 
-class TvShowInfo: NSObject, NSCoding {
+class TvShowInfo: NSObject {
 
   var poster: String
   var title: String
   var id: NSNumber
+  var objectID: String?
   
- init(poster: String, title: String, id: NSNumber) {
+  init(poster: String, title: String, id: NSNumber) {
 
     self.poster = poster
     self.title = title
     self.id = id
-
   }
   
-  // MARK: - comply wiht NSCoding protocol
-  
-  func encodeWithCoder(aCoder: NSCoder) {
-    aCoder.encodeObject(poster, forKey: "poster")
-    aCoder.encodeObject(title, forKey: "title")
-    aCoder.encodeObject(id, forKey: "id")
-  }
-  
-  required convenience init?(coder aDecoder: NSCoder) {
+  init(poster: String, title: String, id: NSNumber, objectID: String) {
     
-    // decoding could fail, for example when no Blog was saved before calling decode
-    guard let unarchivedPoster = aDecoder.decodeObjectForKey("poster") as? String,
-          let unarchivedTitle =  aDecoder.decodeObjectForKey("title") as? String,
-          let unarchivedId = aDecoder.decodeObjectForKey("id") as? NSNumber
-     
-    else {
-        // option 1 : return an default Blog
-      self.init(poster: "unkown", title:"unkown", id: 0)
-      return
-        
-        // option 2 : return nil, and handle the error at higher level
-    }
-  
-    // convenience init must call the designated init
-    self.init(poster: unarchivedPoster, title: unarchivedTitle, id: unarchivedId)
+    self.poster = poster
+    self.title = title
+    self.id = id
+    self.objectID = objectID
   }
   
 }

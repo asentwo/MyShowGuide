@@ -35,6 +35,31 @@ class ChannelViewController: UIViewController, UISearchBarDelegate, UICollection
     SwiftSpinner.show(NSLocalizedString("Retrieving your channels..", comment: ""))
     spinnerActive = true
     self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
+  
+    savedFavoriteArray = []
+
+    //Retrieve already saved favorite shows from Backendless
+    BackendlessUserFunctions.sharedInstance.retrieveFavoriteFromBackendless({ ( favoriteShows : BackendlessCollection!) -> () in
+      
+      print("FavoritesShowInfo have been fetched:")
+      
+      for favoriteShow in favoriteShows.data {
+        
+        let currentShow = favoriteShow as! BackendlessUserFunctions.FavoritesShowInfo
+        
+        print("title = \(currentShow.title), objectID = \(currentShow.objectId!)")
+        
+        //saves data retrieved from backendless to local array
+        savedFavoriteArray.append(TvShowInfo(poster: currentShow.poster!, title: currentShow.title!, id: currentShow.showID!, objectID: currentShow.objectId!))
+        
+        print("Amount of shows in array = \(savedFavoriteArray.count)")
+      }
+      
+      }
+      , err: { ( fault : Fault!) -> () in
+        print("FavoritesShowInfo were not fetched: \(fault)")
+      }
+    )
   }
   
   

@@ -8,6 +8,8 @@
 
 import Foundation
 
+  var savedFavoriteArray:[TvShowInfo] = []
+
 //MARK: Delay
 
 func delay(delay:Double, closure:()->()) {

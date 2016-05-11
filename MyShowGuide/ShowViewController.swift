@@ -24,43 +24,17 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
   var searchBarActive: Bool = false
   var spinnerActive = false
   var savedFavorite: TvShowInfo!
-  var savedFavoriteArray:[TvShowInfo] = []
+
   
   @IBOutlet var tvShowTableView: UITableView!
   @IBOutlet weak var showSearchBar: UISearchBar!
-
+  @IBOutlet weak var favoritesToolBarButton: UIBarButtonItem!
   
   
   //MARK: ViewDidLoad
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-//   BackendlessUserFunctions.sharedInstance.saveFavoriteToBackendless(TvShowInfo(poster: "asdsa", title: "dsadsa", id: 123))
-    
-//    BackendlessUserFunctions.sharedInstance.retrieveFavoriteFromBackendless(TvShowInfo(poster: "asdsa", title: "dsadsa", id: 123))
-    
-    
-    BackendlessUserFunctions.sharedInstance.retrieveFavoriteFromBackendless({ ( favoriteShows : BackendlessCollection!) -> () in
-      
-      print("FavoritesShowInfo have been fetched:")
-      
-      for favoriteShow in favoriteShows.data {
-       
-        let currentShow = favoriteShow as! BackendlessUserFunctions.FavoritesShowInfo
-        
-        print("title = \(currentShow.title)")
-      }
-
-      }
-      , err: { ( fault : Fault!) -> () in
-        print("FavoritesShowInfo were not fetched: \(fault)")
-      }
-    )
-    
-    
-    
-    
     
     let showNoSpaces = showType.stringByReplacingOccurrencesOfString(" ", withString: "_")
     let baseURL = "http://api-public.guidebox.com/v1.43/us/\(apiKey)/shows/\(showNoSpaces)/0/25/all/all"
@@ -70,12 +44,19 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
     showSearchBar.delegate = self
     SwiftSpinner.show(NSLocalizedString("Retrieving your shows...", comment: "Loading Message"))
     spinnerActive = true
-    }
-  
-  //reloads so checkmarks dissapear when removed from favorites
-  override func viewWillAppear(animated: Bool) {
-    self.tvShowTableView.reloadData()
+
   }
+  
+
+  override func viewWillAppear(animated: Bool) {
+    
+    //reloads so checkmarks dissapear when removed from favorites
+    self.tvShowTableView.reloadData()
+//    SwiftSpinner.hide()
+//    spinnerActive = false
+  }
+  
+
   
   
   //MARK: TableView
@@ -83,7 +64,7 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("TvShowCell", forIndexPath: indexPath) as! TvShowCell
     cell.MainTitleLabel.adjustsFontSizeToFitWidth = true
-   
+    
     if self.searchBarActive {
       cell.MainTitleLabel.text = filteredShowSearchResults[indexPath.row].title
       cell.MainPosterImage.sd_setImageWithURL(NSURL(string: filteredShowSearchResults[indexPath.row].poster))
@@ -93,16 +74,19 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
       cell.MainPosterImage.sd_setImageWithURL(NSURL(string: showArray[indexPath.row].poster))
       savedFavorite = showArray[indexPath.row]
     }
-
-// KRH - checking to see if show is favorite in UserDefaults
-    if UserDefaults.sharedInstance.isFavorite(savedFavorite.id) {
+    
+    //checking to see if show is favorite in local savedFavorites array
+    if isShowAlreadyFavorite(savedFavorite) == true {
       cell.saveButton.setImage(UIImage(named: "save_icon_greenCheck"), forState: UIControlState.Normal)
+      SwiftSpinner.hide()
+      spinnerActive = false
     } else {
       cell.saveButton.setImage(UIImage(named: "save_icon_white"), forState: UIControlState.Normal)
+      SwiftSpinner.hide()
+      spinnerActive = false
     }
     
-    SwiftSpinner.hide()
-    spinnerActive = false
+
     return cell
   }
   
@@ -294,47 +278,119 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
     performSegueWithIdentifier("showToFavoritesSegue", sender: self)
   }
   
-// KRH
-    @IBAction func saveShow(sender: UIButton) {
+  //MARK: Show Favorite Check
+  
+  func isShowAlreadyFavorite(favShow: TvShowInfo) -> Bool {
     
-        //accessing current point of tableView Cell
-        let location: CGPoint = sender.convertPoint(CGPointZero, toView: self.tvShowTableView)
-        let indexPath: NSIndexPath = self.tvShowTableView.indexPathForRowAtPoint(location)!
+    //find the show by id.
+    let showsThatMatchIdArray = savedFavoriteArray.filter({$0.id == favShow.id})
+    
+    //'filter' doesn't return a bool so must use 'isEmpty' to return a bool
+    if showsThatMatchIdArray.isEmpty {
 
-        if searchBarActive {
-            
-            savedFavorite = filteredShowSearchResults[indexPath.row]
-            
-//            if UserDefaults.sharedInstance.isFavorite(savedFavorite.id) {
-          if BackendlessUserFunctions.sharedInstance.isShowAlreadyFavorite(savedFavorite.id) {
-                sender.setImage(UIImage(named: "save_icon_white"), forState: UIControlState.Normal)
-            } else {
-//                UserDefaults.sharedInstance.addFavorite(TvShowInfo(poster: savedFavorite.poster, title: savedFavorite.title, id: savedFavorite.id))
-            BackendlessUserFunctions.sharedInstance.saveFavoriteToBackendless(TvShowInfo(poster: savedFavorite.poster, title: savedFavorite.title, id: savedFavorite.id))
-                sender.setImage(UIImage(named: "save_icon_greenCheck"), forState: UIControlState.Normal)
-            }
-          
-        } else {
-            
-            savedFavorite = showArray[indexPath.row]
-
-           // if UserDefaults.sharedInstance.isFavorite(savedFavorite.id) {
-           if BackendlessUserFunctions.sharedInstance.isShowAlreadyFavorite(savedFavorite.id) {
-               // UserDefaults.sharedInstance.removeFavorite(savedFavorite)
-                sender.setImage(UIImage(named: "save_icon_white"), forState: UIControlState.Normal)
-
-            } else {
-
-//                UserDefaults.sharedInstance.addFavorite(TvShowInfo(poster: savedFavorite.poster, title: savedFavorite.title, id: savedFavorite.id))
-              BackendlessUserFunctions.sharedInstance.saveFavoriteToBackendless(TvShowInfo(poster: savedFavorite.poster, title: savedFavorite.title, id: savedFavorite.id))
-                sender.setImage(UIImage(named: "save_icon_greenCheck"), forState: UIControlState.Normal)
-            }
-        }
+      return false
+    } else {
+      return true
     }
+  }
+  
+  
+  @IBAction func saveShow(sender: UIButton) {
+    sender.enabled = false
+    favoritesToolBarButton.enabled = false
+    
+    //accessing current point of tableView Cell
+    let location: CGPoint = sender.convertPoint(CGPointZero, toView: self.tvShowTableView)
+    let indexPath: NSIndexPath = self.tvShowTableView.indexPathForRowAtPoint(location)!
+    
+    if searchBarActive {
+      
+      savedFavorite = filteredShowSearchResults[indexPath.row]
+      
+      //user unchecks favorite circle
+      if isShowAlreadyFavorite(savedFavorite) == true {
+        
+        //remove from backendless
+        BackendlessUserFunctions.sharedInstance.removeFavoriteFromBackendless(savedFavorite.objectID!)
+        
+        //remove from local array (savedFavoriteArray)by syncronizing to itself after the object has been removed
+        savedFavoriteArray = savedFavoriteArray.filter({$0.id != savedFavorite.id})
+        
+        //set the ui- unchecked
+        sender.setImage(UIImage(named: "save_icon_white"), forState: UIControlState.Normal)
+        sender.enabled = true
+        favoritesToolBarButton.enabled = true
+        
+        print("Show was deleted, show title: \(savedFavorite.title), show ID: \(savedFavorite.id)")
+        
+      } else {
+        
+        
+        
+        //save to backendless
+        BackendlessUserFunctions.sharedInstance.saveFavoriteToBackendless(TvShowInfo(poster: savedFavorite.poster, title: savedFavorite.title, id: savedFavorite.id), rep: {( entity : AnyObject!) -> () in
+          
+          //info originally in original function's 'rep' closure, use it to get 'objectid' so can be used to save to local array
+          let favShow = entity as! BackendlessUserFunctions.FavoritesShowInfo
+          self.savedFavorite.objectID = favShow.objectId
+          savedFavoriteArray.append(self.savedFavorite)
+          sender.enabled = true
+          self.favoritesToolBarButton.enabled = true
+          //set the ui - checked
+          sender.setImage(UIImage(named: "save_icon_greenCheck"), forState: UIControlState.Normal)
+          
+          print("Show was saved: \(favShow.objectId!), show title: \(favShow.title), show ID: \(favShow.showID!)")
+          
+          }, err: { ( fault : Fault!) -> () in
+            print("Comment failed to save: \(fault)")
+          }
+        )
+      }
+      
+    } else {
+      
+      savedFavorite = showArray[indexPath.row]
+      
+      //user unchecks favorite circle
+      if isShowAlreadyFavorite(savedFavorite) == true  {
+        
+        
+        //remove from backendless
+        BackendlessUserFunctions.sharedInstance.removeByShowID(savedFavorite)
+        
+        //remove from local array (savedFavoriteArray)by syncronizing to itself after the object has been removed
+        savedFavoriteArray = savedFavoriteArray.filter({$0.id != savedFavorite.id})
+        
+        //set the ui- unchecked
+        sender.setImage(UIImage(named: "save_icon_white"), forState: UIControlState.Normal)
+        sender.enabled = true
+        favoritesToolBarButton.enabled = true
+        
+         print("Show was deleted, show title: \(savedFavorite.title), show ID: \(savedFavorite.id)")
+        
+      } else {
+        
+        //save to backendless
+        BackendlessUserFunctions.sharedInstance.saveFavoriteToBackendless(TvShowInfo(poster: savedFavorite.poster, title: savedFavorite.title, id: savedFavorite.id), rep: {( entity : AnyObject!) -> () in
+          
+          //info originally in original function's 'rep' closure, use it to get 'objectid' so can be used to save to local array
+          let favShow = entity as! BackendlessUserFunctions.FavoritesShowInfo
+          self.savedFavorite.objectID = favShow.objectId
+          savedFavoriteArray.append(self.savedFavorite)
+          sender.enabled = true
+          self.favoritesToolBarButton.enabled = true
+          //set the ui - checked
+          sender.setImage(UIImage(named: "save_icon_greenCheck"), forState: UIControlState.Normal)
+          
+          print("Show was saved: \(favShow.objectId!), show title: \(favShow.title), show ID: \(favShow.showID!)")
+          
+          }, err: { ( fault : Fault!) -> () in
+            print("Comment failed to save: \(fault)")
+          }
+        )
+      }
+    }
+  }
 }
-
-
-
-
 
 
