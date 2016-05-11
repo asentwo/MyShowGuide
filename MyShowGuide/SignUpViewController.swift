@@ -48,6 +48,7 @@ class SignUpViewController: UIViewController {
       BackendlessUserFunctions.sharedInstance.backendless.userService.login( self.emailTextField.text!, password:self.passwordTextField.text,
         
         response: { ( user : BackendlessUser!) -> () in
+          userLoggedIn = true
           print("User logged in: \(user.objectId)")
           self.performSegueWithIdentifier("registerToChannel", sender: self)
         },

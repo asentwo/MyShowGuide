@@ -35,7 +35,8 @@ class ChannelViewController: UIViewController, UISearchBarDelegate, UICollection
     SwiftSpinner.show(NSLocalizedString("Retrieving your channels..", comment: ""))
     spinnerActive = true
     self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
-  
+
+    if userLoggedIn == true {
     savedFavoriteArray = []
 
     //Retrieve already saved favorite shows from Backendless
@@ -61,7 +62,7 @@ class ChannelViewController: UIViewController, UISearchBarDelegate, UICollection
       }
     )
   }
-  
+  }
   
   //MARK: CollectionView
   

@@ -8,7 +8,10 @@
 
 import Foundation
 
-  var savedFavoriteArray:[TvShowInfo] = []
+//MARK: Constants
+
+var userLoggedIn = false
+var savedFavoriteArray:[TvShowInfo] = []
 
 //MARK: Delay
 
