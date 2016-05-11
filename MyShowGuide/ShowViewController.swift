@@ -24,7 +24,7 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
   var searchBarActive: Bool = false
   var spinnerActive = false
   var savedFavorite: TvShowInfo!
-
+  
   
   @IBOutlet var tvShowTableView: UITableView!
   @IBOutlet weak var showSearchBar: UISearchBar!
@@ -44,19 +44,19 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
     showSearchBar.delegate = self
     SwiftSpinner.show(NSLocalizedString("Retrieving your shows...", comment: "Loading Message"))
     spinnerActive = true
-
+    
   }
   
-
+  
   override func viewWillAppear(animated: Bool) {
     
     //reloads so checkmarks dissapear when removed from favorites
     self.tvShowTableView.reloadData()
-//    SwiftSpinner.hide()
-//    spinnerActive = false
+    //    SwiftSpinner.hide()
+    //    spinnerActive = false
   }
   
-
+  
   
   
   //MARK: TableView
@@ -86,7 +86,7 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
       spinnerActive = false
     }
     
-
+    
     return cell
   }
   
@@ -271,11 +271,11 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
     let action = UIAlertAction(title: "OK", style: .Default, handler: {_ in self.navigationController?.popViewControllerAnimated(true)})
     alert.addAction(action)
     presentViewController(alert, animated: true, completion: nil)
-  
+    
   }
   
   func showMaxShowsSavedAlert () {
-  
+    
     //displays alert view
     let alert = UIAlertController(title: NSLocalizedString("Whoops?", comment: ""), message: NSLocalizedString( "You've reached the maximum amount of shows that can be saved.", comment: ""), preferredStyle: .Alert)
     
@@ -299,7 +299,7 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     //'filter' doesn't return a bool so must use 'isEmpty' to return a bool
     if showsThatMatchIdArray.isEmpty {
-
+      
       return false
     } else {
       return true
@@ -338,30 +338,30 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
       } else {
         
-        if savedFavoriteArray.count <= 10 {
-        
-        //save to backendless
-        BackendlessUserFunctions.sharedInstance.saveFavoriteToBackendless(TvShowInfo(poster: savedFavorite.poster, title: savedFavorite.title, id: savedFavorite.id), rep: {( entity : AnyObject!) -> () in
+        if savedFavoriteArray.count < 10 {
           
-          //info originally in original function's 'rep' closure, use it to get 'objectid' so can be used to save to local array
-          let favShow = entity as! BackendlessUserFunctions.FavoritesShowInfo
-          self.savedFavorite.objectID = favShow.objectId
-          savedFavoriteArray.append(self.savedFavorite)
-          sender.enabled = true
-          self.favoritesToolBarButton.enabled = true
-         
-          //set the ui - checked
-          sender.setImage(UIImage(named: "save_icon_greenCheck"), forState: UIControlState.Normal)
-          
-          print("Show was saved: \(favShow.objectId!), show title: \(favShow.title), show ID: \(favShow.showID!), savedShowArray total: \(savedFavoriteArray.count)")
-          
-          }, err: { ( fault : Fault!) -> () in
-            print("Comment failed to save: \(fault)")
-          }
-        )
+          //save to backendless
+          BackendlessUserFunctions.sharedInstance.saveFavoriteToBackendless(TvShowInfo(poster: savedFavorite.poster, title: savedFavorite.title, id: savedFavorite.id), rep: {( entity : AnyObject!) -> () in
+            
+            //info originally in original function's 'rep' closure, use it to get 'objectid' so can be used to save to local array
+            let favShow = entity as! BackendlessUserFunctions.FavoritesShowInfo
+            self.savedFavorite.objectID = favShow.objectId
+            savedFavoriteArray.append(self.savedFavorite)
+            sender.enabled = true
+            self.favoritesToolBarButton.enabled = true
+            
+            //set the ui - checked
+            sender.setImage(UIImage(named: "save_icon_greenCheck"), forState: UIControlState.Normal)
+            
+            print("Show was saved: \(favShow.objectId!), show title: \(favShow.title), show ID: \(favShow.showID!), savedShowArray total: \(savedFavoriteArray.count)")
+            
+            }, err: { ( fault : Fault!) -> () in
+              print("Comment failed to save: \(fault)")
+            }
+          )
         } else {
-         sender.enabled = false
-        showMaxShowsSavedAlert()
+          sender.setImage(UIImage(named: "save_icon_white"), forState: UIControlState.Normal)
+          showMaxShowsSavedAlert()
         }
       }
       
@@ -384,31 +384,32 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
         sender.enabled = true
         favoritesToolBarButton.enabled = true
         
-         print("Show was deleted, show title: \(savedFavorite.title), show ID: \(savedFavorite.id), savedShowArray total: \(savedFavoriteArray.count)")
+        print("Show was deleted, show title: \(savedFavorite.title), show ID: \(savedFavorite.id), savedShowArray total: \(savedFavoriteArray.count)")
         
       } else {
         
-        if savedFavoriteArray.count <= 10 {
-        //save to backendless
-        BackendlessUserFunctions.sharedInstance.saveFavoriteToBackendless(TvShowInfo(poster: savedFavorite.poster, title: savedFavorite.title, id: savedFavorite.id), rep: {( entity : AnyObject!) -> () in
-          
-          //info originally in original function's 'rep' closure, use it to get 'objectid' so can be used to save to local array
-          let favShow = entity as! BackendlessUserFunctions.FavoritesShowInfo
-          self.savedFavorite.objectID = favShow.objectId
-          savedFavoriteArray.append(self.savedFavorite)
-          sender.enabled = true
-          self.favoritesToolBarButton.enabled = true
-          //set the ui - checked
-          sender.setImage(UIImage(named: "save_icon_greenCheck"), forState: UIControlState.Normal)
-          
-          print("Show was saved: \(favShow.objectId!), show title: \(favShow.title), show ID: \(favShow.showID!), savedShowArray total: \(savedFavoriteArray.count)")
-          
-          }, err: { ( fault : Fault!) -> () in
-            print("Comment failed to save: \(fault)")
-          }
-        )
+        if savedFavoriteArray.count < 10 {
+          //save to backendless
+          BackendlessUserFunctions.sharedInstance.saveFavoriteToBackendless(TvShowInfo(poster: savedFavorite.poster, title: savedFavorite.title, id: savedFavorite.id), rep: {( entity : AnyObject!) -> () in
+            
+            //info originally in original function's 'rep' closure, use it to get 'objectid' so can be used to save to local array
+            let favShow = entity as! BackendlessUserFunctions.FavoritesShowInfo
+            self.savedFavorite.objectID = favShow.objectId
+            savedFavoriteArray.append(self.savedFavorite)
+            
+            //set the ui - checked
+            sender.setImage(UIImage(named: "save_icon_greenCheck"), forState: UIControlState.Normal)
+            sender.enabled = true
+            self.favoritesToolBarButton.enabled = true
+            
+            print("Show was saved: \(favShow.objectId!), show title: \(favShow.title), show ID: \(favShow.showID!), savedShowArray total: \(savedFavoriteArray.count)")
+            
+            }, err: { ( fault : Fault!) -> () in
+              print("Comment failed to save: \(fault)")
+            }
+          )
         } else {
-          sender.enabled = false
+          sender.setImage(UIImage(named: "save_icon_white"), forState: UIControlState.Normal)
           showMaxShowsSavedAlert()
         }
       }
