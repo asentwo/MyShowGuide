@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="MyShowGuide/Base.lproj/LaunchScreen.storyboard" source-language="en" datatype="plaintext" target-language="es">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3.1" build-num="7D1014"/>
+    </header>
+    <body/>
+  </file>
+  <file original="MyShowGuide/Base.lproj/Main.storyboard" source-language="en" datatype="plaintext" target-language="es">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3.1" build-num="7D1014"/>
+    </header>
+    <body>
+      <trans-unit id="0Jd-D1-WNI.placeholder">
+        <source>password</source>
+        <target>contraseña</target>
+        <note>Class = "UITextField"; placeholder = "password"; ObjectID = "0Jd-D1-WNI";</note>
+      </trans-unit>
+      <trans-unit id="6KK-OX-oA6.text">
+        <source>Details</source>
+        <target>Detalles</target>
+        <note>Class = "UILabel"; text = "Details"; ObjectID = "6KK-OX-oA6";</note>
+      </trans-unit>
+      <trans-unit id="9I4-Pb-WxJ.text">
+        <source>Photos</source>
+        <target>Fotos</target>
+        <note>Class = "UILabel"; text = "Photos"; ObjectID = "9I4-Pb-WxJ";</note>
+      </trans-unit>
+      <trans-unit id="Ahe-id-4dm.title">
+        <source>Favorites</source>
+        <target>Favoritos</target>
+        <note>Class = "UINavigationItem"; title = "Favorites"; ObjectID = "Ahe-id-4dm";</note>
+      </trans-unit>
+      <trans-unit id="C1d-Vt-dkN.text">
+        <source>TwitterData</source>
+        <target>TwitterData</target>
+        <note>Class = "UITextView"; text = "TwitterData"; ObjectID = "C1d-Vt-dkN";</note>
+      </trans-unit>
+      <trans-unit id="EtT-wf-b0q.text">
+        <source>Sign In</source>
+        <target>Registrarse</target>
+        <note>Class = "UILabel"; text = "Sign In"; ObjectID = "EtT-wf-b0q";</note>
+      </trans-unit>
+      <trans-unit id="G4y-1a-FH4.text">
+        <source>Cast</source>
+        <target>Reparto de Televisión</target>
+        <note>Class = "UILabel"; text = "Cast"; ObjectID = "G4y-1a-FH4";</note>
+      </trans-unit>
+      <trans-unit id="GbT-Am-FWD.text">
+        <source>FaceBookData</source>
+        <target>FaceBookData</target>
+        <note>Class = "UITextView"; text = "FaceBookData"; ObjectID = "GbT-Am-FWD";</note>
+      </trans-unit>
+      <trans-unit id="Iwa-xX-YCy.text">
+        <source>Username:</source>
+        <target>Nombre de Usuario:</target>
+        <note>Class = "UILabel"; text = "Username:"; ObjectID = "Iwa-xX-YCy";</note>
+      </trans-unit>
+      <trans-unit id="JCQ-9Z-DaS.normalTitle">
+        <source>X</source>
+        <note>Class = "UIButton"; normalTitle = "X"; ObjectID = "JCQ-9Z-DaS";</note>
+      </trans-unit>
+      <trans-unit id="KLi-jm-tgQ.normalTitle">
+        <source>Wikepedia</source>
+        <target>Wikepedia</target>
+        <note>Class = "UIButton"; normalTitle = "Wikepedia"; ObjectID = "KLi-jm-tgQ";</note>
+      </trans-unit>
+      <trans-unit id="Kck-i6-mX2.text">
+        <source>Synopsis</source>
+        <target>Sinopsis</target>
+        <note>Class = "UILabel"; text = "Synopsis"; ObjectID = "Kck-i6-mX2";</note>
+      </trans-unit>
+      <trans-unit id="Mmq-sP-bmq.placeholder">
+        <source>Search shows here...</source>
+        <target>Búsqueda muestra aquí...</target>
+        <note>Class = "UISearchBar"; placeholder = "Search shows here..."; ObjectID = "Mmq-sP-bmq";</note>
+      </trans-unit>
+      <trans-unit id="OsG-VI-dvW.text">
+        <source>Label</source>
+        <target>Label</target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "OsG-VI-dvW";</note>
+      </trans-unit>
+      <trans-unit id="PUb-mU-h9F.text">
+        <source>Facebook:</source>
+        <target>Facebook:</target>
+        <note>Class = "UILabel"; text = "Facebook:"; ObjectID = "PUb-mU-h9F";</note>
+      </trans-unit>
+      <trans-unit id="QeK-I0-HT2.text">
+        <source>Confirm Password:</source>
+        <target>Confirmar Contraseña:</target>
+        <note>Class = "UILabel"; text = "Confirm Password:"; ObjectID = "QeK-I0-HT2";</note>
+      </trans-unit>
+      <trans-unit id="S7B-Ki-wNV.text">
+        <source>CharcterNameData</source>
+        <target>CharcterNameData</target>
+        <note>Class = "UILabel"; text = "CharcterNameData"; ObjectID = "S7B-Ki-wNV";</note>
+      </trans-unit>
+      <trans-unit id="STS-37-dE0.text">
+        <source>FirstAiredData</source>
+        <target>FirstAiredData</target>
+        <note>Class = "UILabel"; text = "FirstAiredData"; ObjectID = "STS-37-dE0";</note>
+      </trans-unit>
+      <trans-unit id="SsO-WN-meo.text">
+        <source>Explore</source>
+        <target>Explorar</target>
+        <note>Class = "UILabel"; text = "Explore"; ObjectID = "SsO-WN-meo";</note>
+      </trans-unit>
+      <trans-unit id="TCg-Lj-LdO.title">
+        <source>Favorites</source>
+        <target>Favoritos</target>
+        <note>Class = "UIBarButtonItem"; title = "Favorites"; ObjectID = "TCg-Lj-LdO";</note>
+      </trans-unit>
+      <trans-unit id="UdG-bN-9XR.text">
+        <source>OverView</source>
+        <target>OverView</target>
+        <note>Class = "UILabel"; text = "OverView"; ObjectID = "UdG-bN-9XR";</note>
+      </trans-unit>
+      <trans-unit id="WAg-iV-U8u.text">
+        <source>Network:</source>
+        <target>Canal:</target>
+        <note>Class = "UILabel"; text = "Network:"; ObjectID = "WAg-iV-U8u";</note>
+      </trans-unit>
+      <trans-unit id="WPg-lx-uTX.placeholder">
+        <source>Search channels here...</source>
+        <target>Buscar canales de aquí...</target>
+        <note>Class = "UISearchBar"; placeholder = "Search channels here..."; ObjectID = "WPg-lx-uTX";</note>
+      </trans-unit>
+      <trans-unit id="Ztv-dX-wCM.normalTitle">
+        <source>Create Account</source>
+        <target>Crear una Cuenta</target>
+        <note>Class = "UIButton"; normalTitle = "Create Account"; ObjectID = "Ztv-dX-wCM";</note>
+      </trans-unit>
+      <trans-unit id="aHL-zO-zVK.text">
+        <source>    Show Title</source>
+        <target>    Show Title</target>
+        <note>Class = "UILabel"; text = "    Show Title"; ObjectID = "aHL-zO-zVK";</note>
+      </trans-unit>
+      <trans-unit id="ass-Iw-4sk.text">
+        <source>NameData</source>
+        <target>NameData</target>
+        <note>Class = "UILabel"; text = "NameData"; ObjectID = "ass-Iw-4sk";</note>
+      </trans-unit>
+      <trans-unit id="bAv-n5-Hma.normalTitle">
+        <source>X</source>
+        <note>Class = "UIButton"; normalTitle = "X"; ObjectID = "bAv-n5-Hma";</note>
+      </trans-unit>
+      <trans-unit id="bx6-dL-z4X.placeholder">
+        <source>name@domain.com</source>
+        <target>nombre@dominio.com</target>
+        <note>Class = "UITextField"; placeholder = "name@domain.com"; ObjectID = "bx6-dL-z4X";</note>
+      </trans-unit>
+      <trans-unit id="cJi-Ks-uvq.text">
+        <source>Email Address:</source>
+        <target>Dirección de Correo Electrónico:</target>
+        <note>Class = "UILabel"; text = "Email Address:"; ObjectID = "cJi-Ks-uvq";</note>
+      </trans-unit>
+      <trans-unit id="cOj-BY-pKt.text">
+        <source>Password:</source>
+        <target>Contraseña:</target>
+        <note>Class = "UILabel"; text = "Password:"; ObjectID = "cOj-BY-pKt";</note>
+      </trans-unit>
+      <trans-unit id="cSO-DX-M5u.text">
+        <source>Welcome To My Show Guide!</source>
+        <target>Bienvenido a Mi Guía de los Shows !</target>
+        <note>Class = "UILabel"; text = "Welcome To My Show Guide!"; ObjectID = "cSO-DX-M5u";</note>
+      </trans-unit>
+      <trans-unit id="cZb-EO-47T.text">
+        <source>Show Title</source>
+        <target>Mostrar Título</target>
+        <note>Class = "UILabel"; text = "    Show Title"; ObjectID = "cZb-EO-47T";</note>
+      </trans-unit>
+      <trans-unit id="dbY-4q-0J0.normalTitle">
+        <source>IMDB</source>
+        <target>IMDB</target>
+        <note>Class = "UIButton"; normalTitle = "IMDB"; ObjectID = "dbY-4q-0J0";</note>
+      </trans-unit>
+      <trans-unit id="eHJ-nn-R7d.text">
+        <source>Password:</source>
+        <target>Contraseña:</target>
+        <note>Class = "UILabel"; text = "Password:"; ObjectID = "eHJ-nn-R7d";</note>
+      </trans-unit>
+      <trans-unit id="eWm-PM-mb5.placeholder">
+        <source>password</source>
+        <target>contraseña</target>
+        <note>Class = "UITextField"; placeholder = "password"; ObjectID = "eWm-PM-mb5";</note>
+      </trans-unit>
+      <trans-unit id="gg2-pt-iNv.text">
+        <source>First Aired:</source>
+        <target>Fecha de Inicio:</target>
+        <note>Class = "UILabel"; text = "First Aired:"; ObjectID = "gg2-pt-iNv";</note>
+      </trans-unit>
+      <trans-unit id="idY-sP-YkN.text">
+        <source>Social</source>
+        <target>Social</target>
+        <note>Class = "UILabel"; text = "Social"; ObjectID = "idY-sP-YkN";</note>
+      </trans-unit>
+      <trans-unit id="myo-z0-3ym.normalTitle">
+        <source>X</source>
+        <note>Class = "UIButton"; normalTitle = "X"; ObjectID = "myo-z0-3ym";</note>
+      </trans-unit>
+      <trans-unit id="nRd-8x-Jpz.text">
+        <source>Character:</source>
+        <target>Personaje:</target>
+        <note>Class = "UILabel"; text = "Character:"; ObjectID = "nRd-8x-Jpz";</note>
+      </trans-unit>
+      <trans-unit id="qxl-F7-nw5.normalTitle">
+        <source>Sign Up</source>
+        <target>Regístrate</target>
+        <note>Class = "UIButton"; normalTitle = "Sign Up"; ObjectID = "qxl-F7-nw5";</note>
+      </trans-unit>
+      <trans-unit id="rqb-S0-l1p.text">
+        <source>NetworkData</source>
+        <target>NetworkData</target>
+        <note>Class = "UILabel"; text = "NetworkData"; ObjectID = "rqb-S0-l1p";</note>
+      </trans-unit>
+      <trans-unit id="sSb-qU-lcj.text">
+        <source>Twitter:</source>
+        <target>Twitter:</target>
+        <note>Class = "UILabel"; text = "Twitter:"; ObjectID = "sSb-qU-lcj";</note>
+      </trans-unit>
+      <trans-unit id="tpd-fm-evO.text">
+        <source>Rating:</source>
+        <target>Clasificación:</target>
+        <note>Class = "UILabel"; text = "Rating:"; ObjectID = "tpd-fm-evO";</note>
+      </trans-unit>
+      <trans-unit id="uJz-SE-Qon.text">
+        <source>Name: </source>
+        <target>Nombre: </target>
+        <note>Class = "UILabel"; text = "Name: "; ObjectID = "uJz-SE-Qon";</note>
+      </trans-unit>
+      <trans-unit id="uP7-nY-JFc.normalTitle">
+        <source>Metacritic</source>
+        <target>Metacritic</target>
+        <note>Class = "UIButton"; normalTitle = "Metacritic"; ObjectID = "uP7-nY-JFc";</note>
+      </trans-unit>
+      <trans-unit id="ugf-Ev-CMf.placeholder">
+        <source>password</source>
+        <target>contraseña</target>
+        <note>Class = "UITextField"; placeholder = "password"; ObjectID = "ugf-Ev-CMf";</note>
+      </trans-unit>
+      <trans-unit id="uhJ-iV-eUC.title">
+        <source>Back</source>
+        <target>Espalda</target>
+        <note>Class = "UIBarButtonItem"; title = "Back"; ObjectID = "uhJ-iV-eUC";</note>
+      </trans-unit>
+      <trans-unit id="uhh-4o-TuV.text">
+        <source>RatingData</source>
+        <target>RatingData</target>
+        <note>Class = "UILabel"; text = "RatingData"; ObjectID = "uhh-4o-TuV";</note>
+      </trans-unit>
+      <trans-unit id="wPK-Eu-dg8.normalTitle">
+        <source>Login</source>
+        <target>Iniciar Sesión</target>
+        <note>Class = "UIButton"; normalTitle = "Login"; ObjectID = "wPK-Eu-dg8";</note>
+      </trans-unit>
+      <trans-unit id="yVb-ex-VNy.placeholder">
+        <source>name@domain.com</source>
+        <target>nombre@dominio.com</target>
+        <note>Class = "UITextField"; placeholder = "name@domain.com"; ObjectID = "yVb-ex-VNy";</note>
+      </trans-unit>
+      <trans-unit id="zMg-XD-9Cm.text">
+        <source>Or</source>
+        <target>O</target>
+        <note>Class = "UILabel"; text = "Or"; ObjectID = "zMg-XD-9Cm";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="MyShowGuide/Info.plist" source-language="en" datatype="plaintext" target-language="es">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3.1" build-num="7D1014"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName">
+        <source>$(PRODUCT_NAME)</source>
+      </trans-unit>
+      <trans-unit id="CFBundleShortVersionString">
+        <source>4.0</source>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="MyShowGuide/Localizable.strings" source-language="en" datatype="plaintext" target-language="es">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3.1" build-num="7D1014"/>
+    </header>
+    <body>
+      <trans-unit id="Account created!">
+        <source>Account created!</source>
+        <target>¡Cuenta creada!</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Account not found, please register">
+        <source>Account not found, please register</source>
+        <target>Cuenta no encontrada , por favor regístrese</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Connecting to website...">
+        <source>Connecting to website...</source>
+        <target>Conexión a la página web...</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Creating account..">
+        <source>Creating account..</source>
+        <target>Creando cuenta..</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Error, please email us at myshowguide@gmail.com">
+        <source>Error, please email us at myshowguide@gmail.com</source>
+        <target>Error, por favor envíenos un email a myshowguide@gmail.com .</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Logging you in..">
+        <source>Logging you in..</source>
+        <target>Conectarse a su cuenta..</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Login or password is missing">
+        <source>Login or password is missing</source>
+        <target>Usuario o contraseña no se encuentra</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Must sign up for an account to save favorite shows.">
+        <source>Must sign up for an account to save favorite shows.</source>
+        <target>Debe registrarse para obtener una cuenta para guardar programas favoritos.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Password is required">
+        <source>Password is required</source>
+        <target>Se requiere contraseña</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Passwords don't match!">
+        <source>Passwords don't match!</source>
+        <target>Las contraseñas no coinciden !</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Retrieving your channels..">
+        <source>Retrieving your channels..</source>
+        <target>Recuperación de los canales ...</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Retrieving your show info...">
+        <source>Retrieving your show info...</source>
+        <target>Recuperando su show información...</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Retrieving your shows...">
+        <source>Retrieving your shows...</source>
+        <target>Recuperando sus programas...</target>
+        <note>Loading Message</note>
+      </trans-unit>
+      <trans-unit id="Sorry">
+        <source>Sorry</source>
+        <target>Lo siento</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Success!">
+        <source>Success!</source>
+        <target>¡Éxito!</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="The email address is in the wrong format">
+        <source>The email address is in the wrong format</source>
+        <target>La dirección de correo electrónico no está en el formato correcto</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="There are no saved shows.">
+        <source>There are no saved shows.</source>
+        <target>No hay espectáculos guardados.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="There was a connection error. Please restart app.">
+        <source>There was a connection error. Please restart app.</source>
+        <target>Hubo un error de conexión . Por favor, reinicie la aplicación.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="There was a connection error. Please try again.">
+        <source>There was a connection error. Please try again.</source>
+        <target>Hubo un error de conexión . Por favor, inténtelo de nuevo.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Unable to login, incorrect password">
+        <source>Unable to login, incorrect password</source>
+        <target>No se puede iniciar sesión, contraseña incorrecta</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Unable to login, user is locked out due to too many failed login attempts">
+        <source>Unable to login, user is locked out due to too many failed login attempts</source>
+        <target>No se puede iniciar sesión , el usuario está bloqueada debido a demasiados intentos de acceso fallidos</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Unable to register user, user already exists">
+        <source>Unable to register user, user already exists</source>
+        <target>No se puede registrar el usuario, el usuario ya existe</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Unable to send email confirmation - user account with the email cannot be found">
+        <source>Unable to send email confirmation - user account with the email cannot be found</source>
+        <target>No se puede enviar correo electrónico de confirmación - cuenta de usuario con el correo electrónico no se puede encontrar</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Unable to update user, required fields are empty">
+        <source>Unable to update user, required fields are empty</source>
+        <target>No se puede actualizar el usuario , los campos obligatorios están vacíos</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="User account is disabled">
+        <source>User account is disabled</source>
+        <target>La cuenta de usuario está deshabilitada</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="User cannot be logged in">
+        <source>User cannot be logged in</source>
+        <target>El usuario no puede iniciar sesión en</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="User is already logged in">
+        <source>User is already logged in</source>
+        <target>El usuario ya está conectado</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="User is already logged in from another device">
+        <source>User is already logged in from another device</source>
+        <target>El usuario ya está conectado desde otro dispositivo</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Whoops?">
+        <source>Whoops?</source>
+        <target>Los chillidos?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="You've reached the maximum amount of shows that can be saved.">
+        <source>You've reached the maximum amount of shows that can be saved.</source>
+        <target>Que haya alcanzado la máxima cantidad de espectáculos que se pueden guardar.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

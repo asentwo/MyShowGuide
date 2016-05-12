@@ -1,3 +1,6 @@
+/* Class = "UITextField"; placeholder = "password"; ObjectID = "0Jd-D1-WNI"; */
+"0Jd-D1-WNI.placeholder" = "contraseña";
+
 /* Class = "UILabel"; text = "Details"; ObjectID = "6KK-OX-oA6"; */
 "6KK-OX-oA6.text" = "Detalles";
 
@@ -10,11 +13,17 @@
 /* Class = "UITextView"; text = "TwitterData"; ObjectID = "C1d-Vt-dkN"; */
 "C1d-Vt-dkN.text" = "TwitterData";
 
+/* Class = "UILabel"; text = "Sign In"; ObjectID = "EtT-wf-b0q"; */
+"EtT-wf-b0q.text" = "Registrarse";
+
 /* Class = "UILabel"; text = "Cast"; ObjectID = "G4y-1a-FH4"; */
 "G4y-1a-FH4.text" = "Reparto de Televisión";
 
 /* Class = "UITextView"; text = "FaceBookData"; ObjectID = "GbT-Am-FWD"; */
 "GbT-Am-FWD.text" = "FaceBookData";
+
+/* Class = "UILabel"; text = "Username:"; ObjectID = "Iwa-xX-YCy"; */
+"Iwa-xX-YCy.text" = "Nombre de Usuario:";
 
 /* Class = "UIButton"; normalTitle = "Wikepedia"; ObjectID = "KLi-jm-tgQ"; */
 "KLi-jm-tgQ.normalTitle" = "Wikepedia";
@@ -30,6 +39,9 @@
 
 /* Class = "UILabel"; text = "Facebook:"; ObjectID = "PUb-mU-h9F"; */
 "PUb-mU-h9F.text" = "Facebook:";
+
+/* Class = "UILabel"; text = "Confirm Password:"; ObjectID = "QeK-I0-HT2"; */
+"QeK-I0-HT2.text" = "Confirmar Contraseña:";
 
 /* Class = "UILabel"; text = "CharcterNameData"; ObjectID = "S7B-Ki-wNV"; */
 "S7B-Ki-wNV.text" = "CharcterNameData";
@@ -52,17 +64,35 @@
 /* Class = "UISearchBar"; placeholder = "Search channels here..."; ObjectID = "WPg-lx-uTX"; */
 "WPg-lx-uTX.placeholder" = "Buscar canales de aquí...";
 
+/* Class = "UIButton"; normalTitle = "Create Account"; ObjectID = "Ztv-dX-wCM"; */
+"Ztv-dX-wCM.normalTitle" = "Crear una Cuenta";
+
 /* Class = "UILabel"; text = "    Show Title"; ObjectID = "aHL-zO-zVK"; */
 "aHL-zO-zVK.text" = "    Show Title";
 
 /* Class = "UILabel"; text = "NameData"; ObjectID = "ass-Iw-4sk"; */
 "ass-Iw-4sk.text" = "NameData";
 
-/* Class = "UILabel"; text = "    Show Title"; ObjectID = "cZb-EO-47T"; */
-"cZb-EO-47T.text" = "    Show Title";
+/* Class = "UITextField"; placeholder = "name@domain.com"; ObjectID = "bx6-dL-z4X"; */
+"bx6-dL-z4X.placeholder" = "nombre@dominio.com";
+
+/* Class = "UILabel"; text = "Email Address:"; ObjectID = "cJi-Ks-uvq"; */
+"cJi-Ks-uvq.text" = "Dirección de Correo Electrónico:";
+
+/* Class = "UILabel"; text = "Password:"; ObjectID = "cOj-BY-pKt"; */
+"cOj-BY-pKt.text" = "Contraseña:";
+
+/* Class = "UILabel"; text = "Welcome To My Show Guide!"; ObjectID = "cSO-DX-M5u"; */
+"cSO-DX-M5u.text" = "Bienvenido a Mi Guía de los Shows !";
 
 /* Class = "UIButton"; normalTitle = "IMDB"; ObjectID = "dbY-4q-0J0"; */
 "dbY-4q-0J0.normalTitle" = "IMDB";
+
+/* Class = "UILabel"; text = "Password:"; ObjectID = "eHJ-nn-R7d"; */
+"eHJ-nn-R7d.text" = "Contraseña:";
+
+/* Class = "UITextField"; placeholder = "password"; ObjectID = "eWm-PM-mb5"; */
+"eWm-PM-mb5.placeholder" = "contraseña";
 
 /* Class = "UILabel"; text = "First Aired:"; ObjectID = "gg2-pt-iNv"; */
 "gg2-pt-iNv.text" = "Fecha de Inicio:";
@@ -72,6 +102,9 @@
 
 /* Class = "UILabel"; text = "Character:"; ObjectID = "nRd-8x-Jpz"; */
 "nRd-8x-Jpz.text" = "Personaje:";
+
+/* Class = "UIButton"; normalTitle = "Sign Up"; ObjectID = "qxl-F7-nw5"; */
+"qxl-F7-nw5.normalTitle" = "Regístrate";
 
 /* Class = "UILabel"; text = "NetworkData"; ObjectID = "rqb-S0-l1p"; */
 "rqb-S0-l1p.text" = "NetworkData";
@@ -88,9 +121,21 @@
 /* Class = "UIButton"; normalTitle = "Metacritic"; ObjectID = "uP7-nY-JFc"; */
 "uP7-nY-JFc.normalTitle" = "Metacritic";
 
+/* Class = "UITextField"; placeholder = "password"; ObjectID = "ugf-Ev-CMf"; */
+"ugf-Ev-CMf.placeholder" = "contraseña";
+
 /* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "uhJ-iV-eUC"; */
 "uhJ-iV-eUC.title" = "Espalda";
 
 /* Class = "UILabel"; text = "RatingData"; ObjectID = "uhh-4o-TuV"; */
 "uhh-4o-TuV.text" = "RatingData";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "wPK-Eu-dg8"; */
+"wPK-Eu-dg8.normalTitle" = "Iniciar Sesión";
+
+/* Class = "UITextField"; placeholder = "name@domain.com"; ObjectID = "yVb-ex-VNy"; */
+"yVb-ex-VNy.placeholder" = "nombre@dominio.com";
+
+/* Class = "UILabel"; text = "Or"; ObjectID = "zMg-XD-9Cm"; */
+"zMg-XD-9Cm.text" = "O";
 

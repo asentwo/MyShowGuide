@@ -1,5 +1,32 @@
 /* No comment provided by engineer. */
+"Account created!" = "¡Cuenta creada!";
+
+/* No comment provided by engineer. */
+"Account not found, please register" = "Cuenta no encontrada , por favor regístrese";
+
+/* No comment provided by engineer. */
 "Connecting to website..." = "Conexión a la página web...";
+
+/* No comment provided by engineer. */
+"Creating account.." = "Creando cuenta..";
+
+/* No comment provided by engineer. */
+"Error, please email us at myshowguide@gmail.com" = "Error, por favor envíenos un email a myshowguide@gmail.com .";
+
+/* No comment provided by engineer. */
+"Logging you in.." = "Conectarse a su cuenta..";
+
+/* No comment provided by engineer. */
+"Login or password is missing" = "Usuario o contraseña no se encuentra";
+
+/* No comment provided by engineer. */
+"Must sign up for an account to save favorite shows." = "Debe registrarse para obtener una cuenta para guardar programas favoritos.";
+
+/* No comment provided by engineer. */
+"Password is required" = "Se requiere contraseña";
+
+/* No comment provided by engineer. */
+"Passwords don't match!" = "Las contraseñas no coinciden !";
 
 /* No comment provided by engineer. */
 "Retrieving your channels.." = "Recuperación de los canales ...";
@@ -14,6 +41,12 @@
 "Sorry" = "Lo siento";
 
 /* No comment provided by engineer. */
+"Success!" = "¡Éxito!";
+
+/* No comment provided by engineer. */
+"The email address is in the wrong format" = "La dirección de correo electrónico no está en el formato correcto";
+
+/* No comment provided by engineer. */
 "There are no saved shows." = "No hay espectáculos guardados.";
 
 /* No comment provided by engineer. */
@@ -23,5 +56,38 @@
 "There was a connection error. Please try again." = "Hubo un error de conexión . Por favor, inténtelo de nuevo.";
 
 /* No comment provided by engineer. */
+"Unable to login, incorrect password" = "No se puede iniciar sesión, contraseña incorrecta";
+
+/* No comment provided by engineer. */
+"Unable to login, user is locked out due to too many failed login attempts" = "No se puede iniciar sesión , el usuario está bloqueada debido a demasiados intentos de acceso fallidos";
+
+/* No comment provided by engineer. */
+"Unable to register user, user already exists" = "No se puede registrar el usuario, el usuario ya existe";
+
+/* No comment provided by engineer. */
+"Unable to send email confirmation - user account with the email cannot be found" = "No se puede enviar correo electrónico de confirmación - cuenta de usuario con el correo electrónico no se puede encontrar";
+
+/* No comment provided by engineer. */
+"Unable to update user, required fields are empty" = "No se puede actualizar el usuario , los campos obligatorios están vacíos";
+
+/* No comment provided by engineer. */
+"User account is disabled" = "La cuenta de usuario está deshabilitada";
+
+/* No comment provided by engineer. */
+"User cannot be logged in" = "El usuario no puede iniciar sesión en";
+
+/* No comment provided by engineer. */
+"User is already logged in" = "El usuario ya está conectado";
+
+/* No comment provided by engineer. */
+"User is already logged in from another device" = "El usuario ya está conectado desde otro dispositivo";
+
+/* No comment provided by engineer. */
+"Whoops!" = "Los chillidos?";
+
+/* No comment provided by engineer. */
 "Whoops?" = "Los chillidos?";
+
+/* No comment provided by engineer. */
+"You've reached the maximum amount of shows that can be saved." = "Que haya alcanzado la máxima cantidad de espectáculos que se pueden guardar.";
 
