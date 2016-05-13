@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import JSSAlertView
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, UIViewControllerTransitioningDelegate {
   
   //MARK: IBOutlets
   
@@ -18,6 +18,7 @@ class SignUpViewController: UIViewController {
   @IBOutlet weak var passwordTextField: UITextField!
   @IBOutlet weak var confirmPasswordTextField: UITextField!
   
+  @IBOutlet weak var createAccountButton: UIButton!
   
   //MARK: ViewDidLoad
   override func viewDidLoad() {
@@ -30,6 +31,31 @@ class SignUpViewController: UIViewController {
 
   }
   
+  
+  //MARK: Bubble Transition
+  let transition = BubbleTransition()
+  
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    let controller = segue.destinationViewController
+    controller.transitioningDelegate = self
+    controller.modalPresentationStyle = .Custom
+  }
+  
+  // MARK: UIViewControllerTransitioningDelegate
+  
+  func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    transition.transitionMode = .Present
+    transition.startingPoint = createAccountButton.center
+    transition.bubbleColor = createAccountButton.backgroundColor!
+    return transition
+  }
+  
+  func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    transition.transitionMode = .Dismiss
+    transition.startingPoint = createAccountButton.center
+    transition.bubbleColor = createAccountButton.backgroundColor!
+    return transition
+  }
   
   //MARK: IBActions
   @IBAction func createAccountButtonPressed(sender: AnyObject) {

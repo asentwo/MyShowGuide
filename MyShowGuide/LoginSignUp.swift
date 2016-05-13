@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import JSSAlertView
 
-class LoginSignUp: UIViewController, UITextFieldDelegate {
+class LoginSignUp: UIViewController, UITextFieldDelegate, UIViewControllerTransitioningDelegate {
 
   
   //MARK: IBOutlets
@@ -33,7 +33,6 @@ class LoginSignUp: UIViewController, UITextFieldDelegate {
   
   @IBOutlet weak var tvLogo: UIImageView!
   
-  //@IBOutlet weak var scrollView: UIScrollView!
   
   //MARK: ViewDidLoad
   
@@ -54,6 +53,31 @@ class LoginSignUp: UIViewController, UITextFieldDelegate {
     loginButton.titleLabel?.adjustsFontSizeToFitWidth = true
     signUpButton.titleLabel?.adjustsFontSizeToFitWidth = true
     cancelButton.titleLabel?.adjustsFontSizeToFitWidth = true
+  }
+  
+  //MARK: Bubble Transition
+  let transition = BubbleTransition()
+  
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    let controller = segue.destinationViewController
+    controller.transitioningDelegate = self
+    controller.modalPresentationStyle = .Custom
+  }
+  
+  // MARK: UIViewControllerTransitioningDelegate
+  
+  func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    transition.transitionMode = .Present
+    transition.startingPoint = loginButton.center
+    transition.bubbleColor = loginButton.backgroundColor!
+    return transition
+  }
+  
+  func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    transition.transitionMode = .Dismiss
+    transition.startingPoint = loginButton.center
+    transition.bubbleColor = loginButton.backgroundColor!
+    return transition
   }
   
 
@@ -101,7 +125,6 @@ class LoginSignUp: UIViewController, UITextFieldDelegate {
         print("User failed to login: \(fault)")
     })
   }
-  
   
   @IBAction func dismissLoginScreen(sender: AnyObject) {
     self.dismissViewControllerAnimated(true, completion: {})

@@ -1,5 +1,6 @@
 PODS:
   - Backendless-ios-SDK (3.0.18)
+  - BubbleTransition (1.0.3)
   - EXTView (0.1.0)
   - IQKeyboardManagerSwift (4.0.2)
   - JSSAlertView (1.1.4)
@@ -9,6 +10,7 @@ PODS:
 
 DEPENDENCIES:
   - Backendless-ios-SDK
+  - BubbleTransition (~> 1.0.0)
   - EXTView
   - IQKeyboardManagerSwift
   - JSSAlertView
@@ -16,6 +18,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Backendless-ios-SDK: 7a699affe9e7e519b9056c7f15771b339180c42a
+  BubbleTransition: a7ae6678721406d60f604cbbea1ace505563119d
   EXTView: db5ded8520d2023cadb1b9225fb1ad9406064f04
   IQKeyboardManagerSwift: 2f2c19c509f67c4c0df2826db54033d3e090ce65
   JSSAlertView: f42fc4be811925cef72ea808746df5a6c27eb356

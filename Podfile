@@ -9,5 +9,6 @@ pod "EXTView"
 pod 'Backendless-ios-SDK'
 pod 'JSSAlertView'
 pod 'IQKeyboardManagerSwift'
+pod 'BubbleTransition', '~> 1.0.0'
 
 end
