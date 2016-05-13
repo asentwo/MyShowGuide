@@ -8,6 +8,7 @@
 
 
 import UIKit
+import JSSAlertView
 
 
 class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
@@ -23,6 +24,8 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
   var showToDetailSite: NSNumber = 0
   let apiKey = "rKk09BXyG0kXF1lnde9GOltFq6FfvNQd"
   var totalResultsArray: [AnyObject] = []
+  
+  var alertViewPresent = false
   
   @IBOutlet var DetailTvTableView: UITableView!
   
@@ -70,7 +73,18 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
         } else {
           SwiftSpinner.hide()
           self.spinnerActive = false
-          self.showNetworkError()
+          
+          if self.alertViewPresent == false {
+            self.alertViewPresent = true
+         let alert = JSSAlertView().show(
+            self,
+            title: NSLocalizedString("Whoops?", comment: ""),
+            text: NSLocalizedString( "There was a connection error. Please try again.", comment: ""),
+            buttonText: "Ok",
+            iconImage: myShowGuideLogo)
+           alert.addAction(self.errorGoToPreviousScreen)
+            self.alertViewPresent = false
+          }
         }
       }
     }
@@ -138,7 +152,17 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
       totalResultsArray.append(exploreArray)
     }
     catch {
-      showNetworkError()
+      //showNetworkError()
+      if self.alertViewPresent == false {
+        self.alertViewPresent = true
+      let alert = JSSAlertView().show(
+        self,
+        title: NSLocalizedString("Whoops?", comment: ""),
+        text: NSLocalizedString( "There was a connection error. Please try again.", comment: ""),
+        buttonText: "Ok",
+        iconImage: myShowGuideLogo)
+        alert.addAction(self.errorGoToPreviousScreen)
+        alertViewPresent = false}
     }
   }
   
@@ -146,8 +170,8 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
   func getVideoJSON (urlString: String) {
     let url = NSURL(string: urlString)!
     let urlConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
-    urlConfig.timeoutIntervalForRequest = 10
-    urlConfig.timeoutIntervalForResource = 10
+    urlConfig.timeoutIntervalForRequest = 8
+    urlConfig.timeoutIntervalForResource = 8
     let session = NSURLSession(configuration: urlConfig)
     task = session.dataTaskWithURL(url) {(data, response, error) in
       
@@ -159,7 +183,17 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
           dispatch_async(dispatch_get_main_queue()) {
             SwiftSpinner.hide()
             self.spinnerActive = false
-            self.showNetworkError()
+          //  self.showNetworkError()
+            if self.alertViewPresent == false {
+              self.alertViewPresent
+          let alert = JSSAlertView().show(
+              self,
+              title: NSLocalizedString("Whoops?", comment: ""),
+              text: NSLocalizedString( "There was a connection error. Please try again.", comment: ""),
+              buttonText: "Ok",
+              iconImage: myShowGuideLogo)
+              alert.addAction(self.errorGoToPreviousScreen)
+            }
           }
         }
     }
@@ -185,7 +219,15 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
     catch {
   //Since the updateVideo is on worker thread, have to get back to main thread to show error or reload tableView
       dispatch_async(dispatch_get_main_queue()) {
-        self.showNetworkError()
+      //  self.showNetworkError()
+        let alert = JSSAlertView().show(
+          self,
+          title: NSLocalizedString("Whoops?", comment: ""),
+          text: NSLocalizedString( "There was a connection error. Please try again.", comment: ""),
+          buttonText: "Ok",
+          iconImage: myShowGuideLogo)
+          alert.addAction(self.errorGoToPreviousScreen)
+
       }
     }
     
@@ -377,13 +419,21 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
   
   //MARK: Network Error Indicator
   
-  func showNetworkError () {
-    let alert = UIAlertController(title: NSLocalizedString("Whoops?", comment: ""), message: NSLocalizedString("There was a connection error. Please try again.", comment: ""), preferredStyle: .Alert)
-    let action = UIAlertAction(title: "OK", style: .Default, handler: {_ in self.navigationController?.popViewControllerAnimated(true)})
-    alert.addAction(action)
-    presentViewController(alert, animated: true, completion: nil)
-    
-  }
+  func errorGoToPreviousScreen () {
+   // self.dismissViewControllerAnimated(true, completion: nil)
+ self.navigationController?.popViewControllerAnimated(true)
+    }
+ 
+//  func showNetworkError () {
+//    let alert = UIAlertController(title: NSLocalizedString("Whoops?", comment: ""), message: NSLocalizedString("There was a connection error. Please try again.", comment: ""), preferredStyle: .Alert)
+//    let action = UIAlertAction(title: "OK", style: .Default, handler: {_ in self.navigationController?.popViewControllerAnimated(true)})
+//    alert.addAction(action)
+//    presentViewController(alert, animated: true, completion: nil)
+  
+//  }
+//  
+// 
+
 }
 
 

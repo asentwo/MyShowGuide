@@ -8,6 +8,7 @@
 //
 
 import UIKit
+import JSSAlertView
 
 class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
   
@@ -44,7 +45,6 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
     showSearchBar.delegate = self
     SwiftSpinner.show(NSLocalizedString("Retrieving your shows...", comment: "Loading Message"))
     spinnerActive = true
-    
   }
   
   
@@ -146,7 +146,12 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
         else {
           SwiftSpinner.hide()
           self.spinnerActive = false
-          self.showNetworkError()
+          JSSAlertView().show(
+            self,
+            title: NSLocalizedString("Whoops?", comment: ""),
+            text: NSLocalizedString( "There was a connection error. Please try again.", comment: ""),
+            buttonText: "Ok",
+            iconImage: myShowGuideLogo)
         }
       }
     }
@@ -171,7 +176,12 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
       }
     } catch {
-      showNetworkError()
+      JSSAlertView().show(
+        self,
+        title: NSLocalizedString("Whoops?", comment: ""),
+        text: NSLocalizedString( "There was a connection error. Please try again.", comment: ""),
+        buttonText: "Ok",
+        iconImage: myShowGuideLogo)
     }
     tvShowTableView.reloadData()
   }
@@ -263,48 +273,29 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
   
   //MARK: AlertViews
   
-  func showNetworkError () {
-    let alert = UIAlertController(title: NSLocalizedString("Whoops?", comment: ""), message: NSLocalizedString( "There was a connection error. Please try again.", comment: ""), preferredStyle: .Alert)
-    
-    //goes back to previous view controller
-    let action = UIAlertAction(title: "OK", style: .Default, handler: {_ in self.navigationController?.popViewControllerAnimated(true)})
-    alert.addAction(action)
-    presentViewController(alert, animated: true, completion: nil)
+  func alertSignUpAction () {
+    self.performSegueWithIdentifier("favToLogin", sender: self)
     
   }
   
-  func showMaxShowsSavedAlert () {
-    //displays alert view
-    let alert = UIAlertController(title: NSLocalizedString("Whoops?", comment: ""), message: NSLocalizedString( "You've reached the maximum amount of shows that can be saved.", comment: ""), preferredStyle: .Alert)
-    
-    //dismisses alert view
-    let action = UIAlertAction(title: "OK", style: .Default, handler:nil)
-    alert.addAction(action)
-    presentViewController(alert, animated: true, completion: nil)
-  }
-  
-  
-  func showMustSignUpForAccountAlert () {
-    let alert = UIAlertController(title: NSLocalizedString("Whoops?", comment: ""), message: NSLocalizedString( "Must sign up for an account to save favorite shows.", comment: ""), preferredStyle: .Alert)
-    
-    //goes to a specific view controller through a segue
-    let action = UIAlertAction(title: "OK", style: .Default, handler:  {(action:UIAlertAction!)-> Void in
-      self.performSegueWithIdentifier("favToLogin", sender: self)
-      
-    })
-    
-    alert.addAction(action)
-    presentViewController(alert, animated: true, completion: nil)
-  
+  func errorGoToPreviousScreen () {
+    self.navigationController?.popViewControllerAnimated(true)
   }
 
-  
+
   @IBAction func FavoritesButton(sender: AnyObject) {
     
     if BackendlessUserFunctions.sharedInstance.isValidUser() {
       performSegueWithIdentifier("showToFavoritesSegue", sender: self)
     } else {
-      showMustSignUpForAccountAlert()
+      
+      let alertView = JSSAlertView().show(
+        self,
+        title: NSLocalizedString("Whoops?", comment: ""),
+        text: NSLocalizedString( "Must sign up for an account to save favorite shows.", comment: ""),
+        buttonText: "Ok",
+        iconImage: myShowGuideLogo)
+      alertView.addAction(self.alertSignUpAction)
     }
   }
   
@@ -360,7 +351,7 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
           
         } else {
           
-          if savedFavoriteArray.count < 10 {
+          if savedFavoriteArray.count < 8 {
             
             //save to backendless
             BackendlessUserFunctions.sharedInstance.saveFavoriteToBackendless(TvShowInfo(poster: savedFavorite.poster, title: savedFavorite.title, id: savedFavorite.id), rep: {( entity : AnyObject!) -> () in
@@ -383,7 +374,12 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
             )
           } else {
             sender.setImage(UIImage(named: "save_icon_white"), forState: UIControlState.Normal)
-            showMaxShowsSavedAlert()
+            JSSAlertView().show(
+              self,
+              title: NSLocalizedString("Whoops?", comment: ""),
+              text: NSLocalizedString( "You've reached the maximum amount of shows that can be saved.", comment: ""),
+              buttonText: "Ok",
+              iconImage: myShowGuideLogo)
             favoritesToolBarButton.enabled = true
           }
         }
@@ -411,7 +407,7 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
           
         } else {
           
-          if savedFavoriteArray.count < 10 {
+          if savedFavoriteArray.count < 8 {
             //save to backendless
             BackendlessUserFunctions.sharedInstance.saveFavoriteToBackendless(TvShowInfo(poster: savedFavorite.poster, title: savedFavorite.title, id: savedFavorite.id), rep: {( entity : AnyObject!) -> () in
               
@@ -433,13 +429,25 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
             )
           } else {
             sender.setImage(UIImage(named: "save_icon_white"), forState: UIControlState.Normal)
-            showMaxShowsSavedAlert()
+            JSSAlertView().show(
+              self,
+              title: NSLocalizedString("Whoops?", comment: ""),
+              text: NSLocalizedString( "You've reached the maximum amount of shows that can be saved.", comment: ""),
+              buttonText: "Ok",
+              iconImage: myShowGuideLogo)
             favoritesToolBarButton.enabled = true
           }
         }
       }
     } else {
-      showMustSignUpForAccountAlert()
+      let alertView = JSSAlertView().show(
+        self,
+        title: NSLocalizedString("Whoops?", comment: ""),
+        text: NSLocalizedString( "Must sign up for an account to save favorite shows.", comment: ""),
+        buttonText: "Ok",
+        iconImage: myShowGuideLogo)
+      alertView.addAction(self.alertSignUpAction)
+      
       sender.setImage(UIImage(named: "save_icon_white"), forState: UIControlState.Normal)
     }
   }

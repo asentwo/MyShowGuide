@@ -8,9 +8,10 @@
 
 import Foundation
 import UIKit
+import JSSAlertView
 
 class LoginSignUp: UIViewController {
-  
+
   
   //MARK: IBOutlets
   
@@ -51,15 +52,6 @@ class LoginSignUp: UIViewController {
     loginButton.titleLabel?.adjustsFontSizeToFitWidth = true
     signUpButton.titleLabel?.adjustsFontSizeToFitWidth = true
     cancelButton.titleLabel?.adjustsFontSizeToFitWidth = true
-  }
-  
-  
-  func showNetworkError (message: String) {
-    let alert = UIAlertController(title:NSLocalizedString("Whoops?", comment: ""), message: message, preferredStyle: .Alert)
-    let action = UIAlertAction(title: "OK", style: .Default, handler: {_ in self.navigationController?.popViewControllerAnimated(true)})
-    alert.addAction(action)
-    presentViewController(alert, animated: true, completion: nil)
-    
   }
 
 //  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -108,7 +100,13 @@ class LoginSignUp: UIViewController {
            , comment: ""))
         }
         SwiftSpinner.hide()
-        self.showNetworkError(errorStatement)
+        JSSAlertView().show(
+          self,
+          title: NSLocalizedString("Whoops?", comment: ""),
+          text: errorStatement,
+          buttonText: "Ok",
+          iconImage: myShowGuideLogo)
+
         
         print("User failed to login: \(fault)")
     })

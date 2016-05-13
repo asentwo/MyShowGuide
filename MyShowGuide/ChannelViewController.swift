@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import JSSAlertView
 
 
 class ChannelViewController: UIViewController, UISearchBarDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
@@ -142,7 +143,13 @@ class ChannelViewController: UIViewController, UISearchBarDelegate, UICollection
         else {
           SwiftSpinner.hide()
           self.spinnerActive = false
-          self.showNetworkError()
+          let alertAction = JSSAlertView().show(
+            self,
+            title: NSLocalizedString("Whoops?", comment: ""),
+            text: NSLocalizedString("There was a connection error. Please restart app.", comment: ""),
+            buttonText: "Ok",
+            iconImage: myShowGuideLogo)
+          alertAction.addAction(self.exitOutOfApp)
         }
       }
     }
@@ -167,7 +174,14 @@ class ChannelViewController: UIViewController, UISearchBarDelegate, UICollection
         }
       }
     } catch {
-      showNetworkError()
+      let alertAction = JSSAlertView().show(
+        self,
+        title: NSLocalizedString("Whoops?", comment: ""),
+        text: NSLocalizedString("There was a connection error. Please restart app.", comment: ""),
+        buttonText: "Ok",
+        iconImage: myShowGuideLogo)
+      alertAction.addAction(self.exitOutOfApp)
+
     }
     channelCollectionView.reloadData()
   }
@@ -250,18 +264,8 @@ class ChannelViewController: UIViewController, UISearchBarDelegate, UICollection
   }
   
   //MARK: Network Error Indicator
-  
-  func showNetworkError () {
-    let alertController = UIAlertController(title: NSLocalizedString("Whoops?", comment: ""), message: NSLocalizedString("There was a connection error. Please restart app.", comment: ""), preferredStyle: .Alert)
-    
-    //causes app to exit and return to the home screen
-    let action = UIAlertAction(title: "OK", style: .Default, handler: {_ in exit(0)})
-    alertController.addAction(action)
-    
-    if self.presentedViewController == nil {
-      self.presentViewController(alertController, animated: true, completion: nil)
-    }
+  func exitOutOfApp () {
+    exit(0)
   }
-  
 }
 

@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-
+import JSSAlertView
 
 class SignUpViewController: UIViewController {
   
@@ -17,7 +17,7 @@ class SignUpViewController: UIViewController {
   @IBOutlet weak var emailTextField: UITextField!
   @IBOutlet weak var passwordTextField: UITextField!
   @IBOutlet weak var confirmPasswordTextField: UITextField!
-
+  
   
   //MARK: ViewDidLoad
   override func viewDidLoad() {
@@ -25,25 +25,10 @@ class SignUpViewController: UIViewController {
   }
   
   //MARK: Alert
-  func showNetworkError (title: String, message: String) {
-    let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-    let action = UIAlertAction(title: "OK", style: .Default, handler: {_ in self.navigationController?.popViewControllerAnimated(true)})
-    alert.addAction(action)
-    presentViewController(alert, animated: true, completion: nil)
-    
-  }
-  
-  func successfulLogin (title: String, message: String) {
-    let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-    let action = UIAlertAction(title: "OK", style: .Default, handler: {(action:UIAlertAction!)-> Void in
-      self.performSegueWithIdentifier("signUpToNavSegue", sender: self)
-    })
-    
-    alert.addAction(action)
-    presentViewController(alert, animated: true, completion: nil)
-    
-  }
+  func alertViewSuccessAction () {
+ self.performSegueWithIdentifier("signUpToNavSegue", sender: self)
 
+  }
   
   
   //MARK: IBActions
@@ -52,7 +37,13 @@ class SignUpViewController: UIViewController {
     
     if passwordTextField.text != confirmPasswordTextField.text {
       SwiftSpinner.hide()
-      showNetworkError(NSLocalizedString("Whoops!", comment: ""), message: (NSLocalizedString("Passwords don't match!", comment: "")))
+      
+      JSSAlertView().show(
+        self,
+        title: NSLocalizedString("Whoops?", comment: ""),
+        text: (NSLocalizedString("Passwords don't match!", comment: "")),
+        buttonText: "Ok",
+        iconImage: myShowGuideLogo)
     }
     
     BackendlessUserFunctions.sharedInstance.backendlessUserRegister(emailTextField.text!,password: passwordTextField.text!,  rep: { ( user : BackendlessUser!) -> () in
@@ -62,12 +53,17 @@ class SignUpViewController: UIViewController {
         response: { ( user : BackendlessUser!) -> () in
           
           if BackendlessUserFunctions.sharedInstance.isValidUser() {
-          print("User logged in: \(user.objectId)")
+            print("User logged in: \(user.objectId)")
             
             SwiftSpinner.hide()
-            self.successfulLogin(NSLocalizedString("Success!", comment: ""), message: (NSLocalizedString("Account created!", comment: "")))
+            let alertView = JSSAlertView().show(
+              self,
+              title: NSLocalizedString("Success!", comment: ""),
+              text: NSLocalizedString("Account created!", comment: ""),
+              buttonText: "Ok",
+              iconImage: myShowGuideLogo)
+              alertView.addAction(self.alertViewSuccessAction)
           }
-          
         },
         
         error: { ( fault : Fault!) -> () in
@@ -99,8 +95,13 @@ class SignUpViewController: UIViewController {
         }
         
         SwiftSpinner.hide()
-        self.showNetworkError(NSLocalizedString("Whoops!", comment: ""), message: errorStatement)
-        print("User failed to login: \(fault)")
+          JSSAlertView().show(
+          self,
+          title: NSLocalizedString("Whoops?", comment: ""),
+          text: errorStatement,
+          buttonText: "Ok",
+          iconImage: myShowGuideLogo)
+       
     })
   }
   

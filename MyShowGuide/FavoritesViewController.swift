@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import JSSAlertView
 
 class FavoritesViewController: UITableViewController {
   

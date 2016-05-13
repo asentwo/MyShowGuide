@@ -10,7 +10,8 @@ import Foundation
 
 //MARK: Constants
 
-//var userLoggedIn = false
+let customColor = UIColor.blackColor()
+let myShowGuideLogo = UIImage(named: "80x80clear")
 var savedFavoriteArray:[TvShowInfo] = []
 
 //MARK: Delay
