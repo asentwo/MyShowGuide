@@ -33,7 +33,7 @@ class LoginSignUp: UIViewController, UITextFieldDelegate {
   
   @IBOutlet weak var tvLogo: UIImageView!
   
-  @IBOutlet weak var scrollView: UIScrollView!
+  //@IBOutlet weak var scrollView: UIScrollView!
   
   //MARK: ViewDidLoad
   
@@ -43,25 +43,25 @@ class LoginSignUp: UIViewController, UITextFieldDelegate {
     adjustFontSize()
   }
   
-  //MARK: Textfield
-  
-  func textFieldDidBeginEditing(textField: UITextField) {
-    scrollView.setContentOffset(CGPointMake(0, 100), animated: true)
-  }
-  
-  //returns textfield back
-  func textFieldShouldReturn(textField: UITextField) -> Bool {
-    
-    //returns keyboard
-    textField.resignFirstResponder()
-    
-    return true
-  }
-
-  func textFieldDidEndEditing(textField: UITextField) {
-    scrollView.setContentOffset(CGPointMake(0,0), animated: true)
-    
-  }
+//  //MARK: Textfield
+//  
+//  func textFieldDidBeginEditing(textField: UITextField) {
+//    scrollView.setContentOffset(CGPointMake(0, 100), animated: true)
+//  }
+//  
+//  //returns textfield back
+//  func textFieldShouldReturn(textField: UITextField) -> Bool {
+//    
+//    //returns keyboard
+//    textField.resignFirstResponder()
+//    
+//    return true
+//  }
+//
+//  func textFieldDidEndEditing(textField: UITextField) {
+//    scrollView.setContentOffset(CGPointMake(0,0), animated: true)
+//    
+//  }
   
   func adjustFontSize () {
     
