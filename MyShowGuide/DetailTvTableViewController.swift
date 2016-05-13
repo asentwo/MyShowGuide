@@ -25,7 +25,6 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
   let apiKey = "rKk09BXyG0kXF1lnde9GOltFq6FfvNQd"
   var totalResultsArray: [AnyObject] = []
   
-  var alertViewPresent = false
   
   @IBOutlet var DetailTvTableView: UITableView!
   
@@ -73,9 +72,7 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
         } else {
           SwiftSpinner.hide()
           self.spinnerActive = false
-          
-          if self.alertViewPresent == false {
-            self.alertViewPresent = true
+       
          let alert = JSSAlertView().show(
             self,
             title: NSLocalizedString("Whoops?", comment: ""),
@@ -83,8 +80,7 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
             buttonText: "Ok",
             iconImage: myShowGuideLogo)
            alert.addAction(self.errorGoToPreviousScreen)
-            self.alertViewPresent = false
-          }
+    
         }
       }
     }
@@ -152,9 +148,6 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
       totalResultsArray.append(exploreArray)
     }
     catch {
-      //showNetworkError()
-      if self.alertViewPresent == false {
-        self.alertViewPresent = true
       let alert = JSSAlertView().show(
         self,
         title: NSLocalizedString("Whoops?", comment: ""),
@@ -162,7 +155,6 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
         buttonText: "Ok",
         iconImage: myShowGuideLogo)
         alert.addAction(self.errorGoToPreviousScreen)
-        alertViewPresent = false}
     }
   }
   
@@ -179,22 +171,18 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
         if (error == nil) {
           self.updateVideo(data!)
         } else {
-    //Only uses main thread for ui
-          dispatch_async(dispatch_get_main_queue()) {
-            SwiftSpinner.hide()
-            self.spinnerActive = false
-          //  self.showNetworkError()
-            if self.alertViewPresent == false {
-              self.alertViewPresent
-          let alert = JSSAlertView().show(
-              self,
-              title: NSLocalizedString("Whoops?", comment: ""),
-              text: NSLocalizedString( "There was a connection error. Please try again.", comment: ""),
-              buttonText: "Ok",
-              iconImage: myShowGuideLogo)
-              alert.addAction(self.errorGoToPreviousScreen)
-            }
-          }
+//    //Only uses main thread for ui
+//          dispatch_async(dispatch_get_main_queue()) {
+//            SwiftSpinner.hide()
+//            self.spinnerActive = false
+//          let alert = JSSAlertView().show(
+//              self,
+//              title: NSLocalizedString("Whoops?", comment: ""),
+//              text: NSLocalizedString( "There was a connection error. Please try again.", comment: ""),
+//              buttonText: "Ok",
+//              iconImage: myShowGuideLogo)
+//              alert.addAction(self.errorGoToPreviousScreen)
+//          }
         }
     }
     task!.resume()
@@ -218,17 +206,17 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
     }
     catch {
   //Since the updateVideo is on worker thread, have to get back to main thread to show error or reload tableView
-      dispatch_async(dispatch_get_main_queue()) {
-      //  self.showNetworkError()
-        let alert = JSSAlertView().show(
-          self,
-          title: NSLocalizedString("Whoops?", comment: ""),
-          text: NSLocalizedString( "There was a connection error. Please try again.", comment: ""),
-          buttonText: "Ok",
-          iconImage: myShowGuideLogo)
-          alert.addAction(self.errorGoToPreviousScreen)
-
-      }
+//      dispatch_async(dispatch_get_main_queue()) {
+//      //  self.showNetworkError()
+//        let alert = JSSAlertView().show(
+//          self,
+//          title: NSLocalizedString("Whoops?", comment: ""),
+//          text: NSLocalizedString( "There was a connection error. Please try again.", comment: ""),
+//          buttonText: "Ok",
+//          iconImage: myShowGuideLogo)
+//          alert.addAction(self.errorGoToPreviousScreen)
+//
+//      }
     }
     
     dispatch_async(dispatch_get_main_queue()) {

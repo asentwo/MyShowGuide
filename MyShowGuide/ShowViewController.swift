@@ -146,6 +146,8 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
         else {
           SwiftSpinner.hide()
           self.spinnerActive = false
+          self.showSearchBar.hidden = true
+          self.favoritesToolBarButton.enabled = false
           JSSAlertView().show(
             self,
             title: NSLocalizedString("Whoops?", comment: ""),
@@ -176,6 +178,8 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
       }
     } catch {
+      self.showSearchBar.hidden = true
+      self.favoritesToolBarButton.enabled = false
       JSSAlertView().show(
         self,
         title: NSLocalizedString("Whoops?", comment: ""),

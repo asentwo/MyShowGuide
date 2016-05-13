@@ -41,7 +41,7 @@ class SignUpViewController: UIViewController {
       JSSAlertView().show(
         self,
         title: NSLocalizedString("Whoops?", comment: ""),
-        text: (NSLocalizedString("Passwords don't match!", comment: "")),
+        text: NSLocalizedString("Passwords don't match!", comment: ""),
         buttonText: "Ok",
         iconImage: myShowGuideLogo)
     }

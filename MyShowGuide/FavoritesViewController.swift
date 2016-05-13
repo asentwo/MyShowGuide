@@ -101,25 +101,25 @@ class FavoritesViewController: UITableViewController {
   
   //MARK: Network Error Indicator
   
-  func showNetworkError () {
-    let alert = UIAlertController(title: NSLocalizedString("Whoops?", comment: ""), message: NSLocalizedString("There was a connection error. Please try again.", comment: ""), preferredStyle: .Alert)
-    //goes back to previous view controller
-    let action = UIAlertAction(title: "OK", style: .Default, handler: {_ in self.navigationController?.popViewControllerAnimated(true)})
-    alert.addAction(action)
-    presentViewController(alert, animated: true, completion: nil)
-    
-  }
+//  func showNetworkError () {
+//    let alert = UIAlertController(title: NSLocalizedString("Whoops?", comment: ""), message: NSLocalizedString("There was a connection error. Please try again.", comment: ""), preferredStyle: .Alert)
+//    //goes back to previous view controller
+//    let action = UIAlertAction(title: "OK", style: .Default, handler: {_ in self.navigationController?.popViewControllerAnimated(true)})
+//    alert.addAction(action)
+//    presentViewController(alert, animated: true, completion: nil)
+//    
+//  }
   
-  func noSavedShowsAlert () {
-    let alert = UIAlertController(title: NSLocalizedString("Sorry", comment: ""), message: NSLocalizedString("There are no saved shows.", comment: ""), preferredStyle: .Alert)
-    //goes back to previous view controller
-    let action = UIAlertAction(title: "OK", style: .Default, handler: {_ in self.navigationController?.popViewControllerAnimated(true)})
-    alert.addAction(action)
-    presentViewController(alert, animated: true, completion: nil)
-    
-
-    
-  }
+//  func noSavedShowsAlert () {
+//    let alert = UIAlertController(title: NSLocalizedString("Sorry", comment: ""), message: NSLocalizedString("There are no saved shows.", comment: ""), preferredStyle: .Alert)
+//    //goes back to previous view controller
+//    let action = UIAlertAction(title: "OK", style: .Default, handler: {_ in self.navigationController?.popViewControllerAnimated(true)})
+//    alert.addAction(action)
+//    presentViewController(alert, animated: true, completion: nil)
+//    
+//
+//    
+//  }
   
   //MARK: Retrieve Saved Shows
   
@@ -133,7 +133,13 @@ class FavoritesViewController: UITableViewController {
             self.favoriteShowsArray = savedShowsArray
         } else {
             SwiftSpinner.hide()
-            self.noSavedShowsAlert()
+          JSSAlertView().show(
+            self,
+            title: NSLocalizedString("Whoops?", comment: ""),
+            text: NSLocalizedString("There are no saved shows.", comment: ""),
+            buttonText: "Ok",
+            iconImage: myShowGuideLogo)
+
         }
     }
   

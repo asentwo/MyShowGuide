@@ -5,6 +5,7 @@
 //  Created by Justin Doo on 10/28/15.
 //  Copyright © 2015 Justin Doo. All rights reserved.
 //
+import JSSAlertView
 
 class WebsiteViewController: UIViewController, UIWebViewDelegate {
   
@@ -27,7 +28,14 @@ class WebsiteViewController: UIViewController, UIWebViewDelegate {
   //MARK: WebView
   
   func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
-    self.showNetworkError()
+   // self.showNetworkError()
+     JSSAlertView().show(
+      self,
+      title: NSLocalizedString("Whoops?", comment: ""),
+      text: NSLocalizedString( "There was a connection error. Please try again.", comment: ""),
+      buttonText: "Ok",
+      iconImage: myShowGuideLogo)
+
   }
   
   
@@ -57,7 +65,13 @@ class WebsiteViewController: UIViewController, UIWebViewDelegate {
         else {
           SwiftSpinner.hide()
           self.spinnerActive = false
-          self.showNetworkError()
+        //  self.showNetworkError()
+          JSSAlertView().show(
+            self,
+            title: NSLocalizedString("Whoops?", comment: ""),
+            text: NSLocalizedString( "There was a connection error. Please try again.", comment: ""),
+            buttonText: "Ok",
+            iconImage: myShowGuideLogo)
         }
       }
     }
@@ -66,11 +80,11 @@ class WebsiteViewController: UIViewController, UIWebViewDelegate {
   
   //MARK: Network Error Indicator
   
-  func showNetworkError () {
-    let alert = UIAlertController(title: NSLocalizedString("Whoops?", comment: ""), message: NSLocalizedString("There was a connection error. Please try again.", comment: ""), preferredStyle: .Alert)
-    let action = UIAlertAction(title: "OK", style: .Default, handler: {_ in self.navigationController?.popViewControllerAnimated(true)})
-    alert.addAction(action)
-    presentViewController(alert, animated: true, completion: nil)
-    
-  }
+//  func showNetworkError () {
+//    let alert = UIAlertController(title: NSLocalizedString("Whoops?", comment: ""), message: NSLocalizedString("There was a connection error. Please try again.", comment: ""), preferredStyle: .Alert)
+//    let action = UIAlertAction(title: "OK", style: .Default, handler: {_ in self.navigationController?.popViewControllerAnimated(true)})
+//    alert.addAction(action)
+//    presentViewController(alert, animated: true, completion: nil)
+//    
+//  }
 }
