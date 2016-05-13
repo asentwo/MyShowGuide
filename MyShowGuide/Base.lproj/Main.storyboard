@@ -1496,6 +1496,9 @@
                                         <exclude reference="jUv-x1-gPU"/>
                                     </mask>
                                 </variation>
+                                <variation key="widthClass=compact" ambiguous="YES">
+                                    <rect key="frame" x="162" y="30" width="75" height="75"/>
+                                </variation>
                                 <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
                                     <rect key="frame" x="362" y="529" width="75" height="75"/>
                                 </variation>
@@ -1515,6 +1518,9 @@
                                         <exclude reference="5SS-TQ-LNk"/>
                                         <exclude reference="BYM-VR-zWG"/>
                                     </mask>
+                                </variation>
+                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="30" y="109" width="340" height="50"/>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
                                     <rect key="frame" x="30" y="105" width="740" height="50"/>
@@ -1552,7 +1558,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nFU-Hh-hLb">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Username:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="Iwa-xX-YCy">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="Iwa-xX-YCy">
                                         <rect key="frame" x="235" y="222" width="130" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Iwa-xX-YCy" secondAttribute="height" multiplier="61:15" id="AXp-7T-NU4"/>
@@ -1576,7 +1582,7 @@
                                             </mask>
                                         </variation>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="name@domain.com" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bx6-dL-z4X">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="name@domain.com" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bx6-dL-z4X">
                                         <rect key="frame" x="175" y="245" width="250" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="29" id="9it-mQ-ayT"/>
@@ -1603,8 +1609,11 @@
                                         <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
                                             <rect key="frame" x="225" y="267" width="350" height="30"/>
                                         </variation>
+                                        <connections>
+                                            <outlet property="delegate" destination="uNy-HQ-PCU" id="UNk-Dn-P92"/>
+                                        </connections>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Password:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="cOj-BY-pKt">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="cOj-BY-pKt">
                                         <rect key="frame" x="260" y="297" width="80" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="61" id="94D-Xc-7eF"/>
@@ -1630,7 +1639,7 @@
                                             </mask>
                                         </variation>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Jd-D1-WNI">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Jd-D1-WNI">
                                         <rect key="frame" x="175" y="320" width="250" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="1WS-2h-K4N"/>
@@ -1657,13 +1666,27 @@
                                         <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
                                             <rect key="frame" x="225" y="267" width="350" height="30"/>
                                         </variation>
+                                        <connections>
+                                            <outlet property="delegate" destination="uNy-HQ-PCU" id="wfw-35-6N4"/>
+                                        </connections>
                                     </textField>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="Iwa-xX-YCy" firstAttribute="centerY" secondItem="nFU-Hh-hLb" secondAttribute="centerY" constant="-70" id="3bu-j1-vhU"/>
                                     <constraint firstItem="bx6-dL-z4X" firstAttribute="top" secondItem="Iwa-xX-YCy" secondAttribute="bottom" constant="8" id="HQw-Ji-JF9"/>
+                                    <constraint firstItem="Iwa-xX-YCy" firstAttribute="centerX" secondItem="nFU-Hh-hLb" secondAttribute="centerX" id="IHM-kb-43X"/>
                                     <constraint firstItem="0Jd-D1-WNI" firstAttribute="top" secondItem="cOj-BY-pKt" secondAttribute="bottom" constant="8" id="Tdu-jh-wEV"/>
                                     <constraint firstItem="cOj-BY-pKt" firstAttribute="top" secondItem="bx6-dL-z4X" secondAttribute="bottom" constant="22" id="d1k-nq-g30"/>
+                                    <constraint firstItem="bx6-dL-z4X" firstAttribute="centerX" secondItem="nFU-Hh-hLb" secondAttribute="centerX" id="x25-PC-gme"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="IHM-kb-43X"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact" ambiguous="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
+                                </variation>
                             </scrollView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="zMg-XD-9Cm">
                                 <rect key="frame" x="279" y="415" width="42" height="21"/>
@@ -1683,6 +1706,9 @@
                                         <exclude reference="adV-Kh-OIG"/>
                                         <exclude reference="cXw-rU-Qsz"/>
                                     </mask>
+                                </variation>
+                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="179" y="415" width="42" height="21"/>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
                                     <rect key="frame" x="379" y="310" width="42" height="21"/>
@@ -1732,6 +1758,9 @@
                                         <exclude reference="tpL-wJ-H7L"/>
                                     </mask>
                                 </variation>
+                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="135" y="377" width="130" height="30"/>
+                                </variation>
                                 <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
                                     <rect key="frame" x="350" y="424" width="100" height="30"/>
                                     <mask key="constraints">
@@ -1776,6 +1805,9 @@
                                         <exclude reference="ZJL-oi-vsd"/>
                                         <exclude reference="sJh-NB-ssP"/>
                                     </mask>
+                                </variation>
+                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="135" y="444" width="130" height="30"/>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
                                     <rect key="frame" x="350" y="491" width="100" height="30"/>
@@ -1828,6 +1860,7 @@
                             <constraint firstItem="m9B-Tb-eAA" firstAttribute="centerX" secondItem="IuR-qr-y0H" secondAttribute="centerX" id="LU9-M3-6Gv"/>
                             <constraint firstItem="qxl-F7-nw5" firstAttribute="width" secondItem="wPK-Eu-dg8" secondAttribute="width" id="MLh-Xk-Y3d"/>
                             <constraint firstItem="bW7-MV-HX2" firstAttribute="leading" secondItem="IuR-qr-y0H" secondAttribute="leading" id="N6a-mZ-HX6"/>
+                            <constraint firstItem="Iwa-xX-YCy" firstAttribute="top" secondItem="qdV-dL-UEy" secondAttribute="bottom" constant="202" id="N7E-MA-CME"/>
                             <constraint firstItem="bW7-MV-HX2" firstAttribute="bottom" secondItem="KW7-EC-VmL" secondAttribute="top" id="Pdp-yX-z4d"/>
                             <constraint firstItem="9E9-94-MGI" firstAttribute="leading" secondItem="bW7-MV-HX2" secondAttribute="leading" id="PrJ-ta-wAb"/>
                             <constraint firstItem="wPK-Eu-dg8" firstAttribute="top" secondItem="cSO-DX-M5u" secondAttribute="bottom" constant="218" id="QNx-np-hne"/>
@@ -1846,6 +1879,7 @@
                             <constraint firstItem="cSO-DX-M5u" firstAttribute="centerX" secondItem="IuR-qr-y0H" secondAttribute="centerX" id="fyh-m4-2Sk"/>
                             <constraint firstItem="cSO-DX-M5u" firstAttribute="top" secondItem="m9B-Tb-eAA" secondAttribute="bottom" constant="1" id="h58-Ub-OPQ"/>
                             <constraint firstItem="wPK-Eu-dg8" firstAttribute="centerX" secondItem="IuR-qr-y0H" secondAttribute="centerX" id="jzG-xE-QNO"/>
+                            <constraint firstItem="Iwa-xX-YCy" firstAttribute="centerX" secondItem="IuR-qr-y0H" secondAttribute="centerX" id="lWs-zM-sOY"/>
                             <constraint firstItem="nFU-Hh-hLb" firstAttribute="height" secondItem="IuR-qr-y0H" secondAttribute="height" id="nS5-hU-Cio"/>
                             <constraint firstItem="Iwa-xX-YCy" firstAttribute="top" secondItem="EtT-wf-b0q" secondAttribute="bottom" constant="19" id="no2-gd-WSG"/>
                             <constraint firstItem="zMg-XD-9Cm" firstAttribute="top" secondItem="wPK-Eu-dg8" secondAttribute="bottom" constant="8" id="paf-lf-z6g"/>
@@ -1871,6 +1905,10 @@
                                 <exclude reference="LEx-oz-a5y"/>
                                 <exclude reference="LK3-TH-vR1"/>
                                 <exclude reference="Qnx-yB-Yep"/>
+                                <exclude reference="IMj-er-IEC"/>
+                                <exclude reference="9VM-ls-I3T"/>
+                                <exclude reference="N7E-MA-CME"/>
+                                <exclude reference="no2-gd-WSG"/>
                             </mask>
                         </variation>
                     </view>
@@ -1900,12 +1938,13 @@
                         <outlet property="loginButton" destination="wPK-Eu-dg8" id="5fJ-aF-eaQ"/>
                         <outlet property="orLabel" destination="zMg-XD-9Cm" id="Hwc-EI-3Jz"/>
                         <outlet property="passwordLabel" destination="cOj-BY-pKt" id="zoD-kK-lsh"/>
-                        <outlet property="passwordSignIn" destination="0Jd-D1-WNI" id="lrg-18-v3y"/>
+                        <outlet property="passwordSignIn" destination="0Jd-D1-WNI" id="qUU-zb-ls2"/>
+                        <outlet property="scrollView" destination="nFU-Hh-hLb" id="IH0-dO-vyj"/>
                         <outlet property="signInLabel" destination="EtT-wf-b0q" id="U5z-zw-wg9"/>
                         <outlet property="signUpButton" destination="qxl-F7-nw5" id="SOa-Lp-KwD"/>
                         <outlet property="tvLogo" destination="m9B-Tb-eAA" id="HGd-0N-Ksf"/>
                         <outlet property="userNameLabel" destination="Iwa-xX-YCy" id="g6d-00-XE4"/>
-                        <outlet property="userNameSignIn" destination="bx6-dL-z4X" id="CLz-Eq-U6M"/>
+                        <outlet property="userNameSignIn" destination="bx6-dL-z4X" id="uLZ-wi-2U2"/>
                         <outlet property="welcomeLabel" destination="cSO-DX-M5u" id="lfH-Eg-lUK"/>
                         <segue destination="gdZ-0D-mSm" kind="show" identifier="loginToNavController" id="P5Z-ky-73C"/>
                     </connections>

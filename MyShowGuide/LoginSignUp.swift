@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import JSSAlertView
 
-class LoginSignUp: UIViewController {
+class LoginSignUp: UIViewController, UITextFieldDelegate {
 
   
   //MARK: IBOutlets
@@ -33,6 +33,8 @@ class LoginSignUp: UIViewController {
   
   @IBOutlet weak var tvLogo: UIImageView!
   
+  @IBOutlet weak var scrollView: UIScrollView!
+  
   //MARK: ViewDidLoad
   
   override func viewDidLoad() {
@@ -41,6 +43,25 @@ class LoginSignUp: UIViewController {
     adjustFontSize()
   }
   
+  //MARK: Textfield
+  
+  func textFieldDidBeginEditing(textField: UITextField) {
+    scrollView.setContentOffset(CGPointMake(0, 100), animated: true)
+  }
+  
+  //returns textfield back
+  func textFieldShouldReturn(textField: UITextField) -> Bool {
+    
+    //returns keyboard
+    textField.resignFirstResponder()
+    
+    return true
+  }
+
+  func textFieldDidEndEditing(textField: UITextField) {
+    scrollView.setContentOffset(CGPointMake(0,0), animated: true)
+    
+  }
   
   func adjustFontSize () {
     
