@@ -100,8 +100,11 @@ public class JSSAlertView: UIViewController {
 			self.titleFont = fontStr
 			if let font = UIFont(name: self.titleFont, size: 24) {
 				self.titleLabel.font = font
+        self.titleLabel.adjustsFontSizeToFitWidth = true
 			} else {
 				self.titleLabel.font = UIFont.systemFontOfSize(24)
+        self.titleLabel.adjustsFontSizeToFitWidth = true
+
 			}
 		case .Text:
 			if self.textView != nil {
@@ -116,8 +119,10 @@ public class JSSAlertView: UIViewController {
 			self.buttonFont = fontStr
 			if let font = UIFont(name: self.buttonFont, size: 24) {
 				self.buttonLabel.font = font
+        self.buttonLabel.adjustsFontSizeToFitWidth = true
 			} else {
 				self.buttonLabel.font = UIFont.systemFontOfSize(24)
+        self.buttonLabel.adjustsFontSizeToFitWidth = true
 			}
 		}
 		// relayout to account for size changes
@@ -315,6 +320,7 @@ public class JSSAlertView: UIViewController {
 		titleLabel.textAlignment = .Center
 		titleLabel.font = UIFont(name: self.titleFont, size: 24)
 		titleLabel.text = title
+    titleLabel.adjustsFontSizeToFitWidth = true
 		self.containerView.addSubview(titleLabel)
 		
 		// View text
