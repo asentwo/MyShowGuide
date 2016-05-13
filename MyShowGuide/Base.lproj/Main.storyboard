@@ -1125,10 +1125,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blur_5.5" translatesAutoresizingMaskIntoConstraints="NO" id="NAs-5A-IjD">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="-31" width="600" height="631"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" alpha="0.60000002384185791" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Blur Black" translatesAutoresizingMaskIntoConstraints="NO" id="YlT-pf-zDN">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="-31" width="600" height="631"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Address:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="cJi-Ks-uvq">
@@ -1371,11 +1371,9 @@
                             </constraint>
                             <constraint firstItem="cJi-Ks-uvq" firstAttribute="centerX" secondItem="5g1-Qz-SZp" secondAttribute="centerX" id="H7f-ZT-4dW"/>
                             <constraint firstItem="YlT-pf-zDN" firstAttribute="bottom" secondItem="SUt-4c-AHy" secondAttribute="top" id="Hzs-5M-Gci"/>
-                            <constraint firstItem="YlT-pf-zDN" firstAttribute="height" secondItem="5g1-Qz-SZp" secondAttribute="height" id="JJb-dr-eHp"/>
                             <constraint firstItem="myo-z0-3ym" firstAttribute="leading" secondItem="cJi-Ks-uvq" secondAttribute="trailing" constant="139" id="K6j-Q9-SqY"/>
                             <constraint firstItem="eHJ-nn-R7d" firstAttribute="width" secondItem="eHJ-nn-R7d" secondAttribute="height" multiplier="41:6" id="KFL-3g-YCV"/>
                             <constraint firstItem="QeK-I0-HT2" firstAttribute="centerY" secondItem="5g1-Qz-SZp" secondAttribute="centerY" id="KvN-nR-ODT"/>
-                            <constraint firstItem="NAs-5A-IjD" firstAttribute="width" secondItem="5g1-Qz-SZp" secondAttribute="width" id="LaF-Bo-CYt"/>
                             <constraint firstItem="myo-z0-3ym" firstAttribute="leading" secondItem="5g1-Qz-SZp" secondAttribute="leadingMargin" constant="529" id="NKt-Fr-EVN"/>
                             <constraint firstItem="QeK-I0-HT2" firstAttribute="centerX" secondItem="5g1-Qz-SZp" secondAttribute="centerX" id="Nnv-tm-Dm6"/>
                             <constraint firstItem="YlT-pf-zDN" firstAttribute="leading" secondItem="NAs-5A-IjD" secondAttribute="leading" id="RuG-JM-5ig"/>
@@ -1388,6 +1386,7 @@
                             <constraint firstItem="yVb-ex-VNy" firstAttribute="leading" secondItem="ugf-Ev-CMf" secondAttribute="leading" id="Wxg-5J-CAd"/>
                             <constraint firstItem="QeK-I0-HT2" firstAttribute="trailing" secondItem="cJi-Ks-uvq" secondAttribute="trailing" id="aXY-gE-oqG"/>
                             <constraint firstItem="eWm-PM-mb5" firstAttribute="height" secondItem="yVb-ex-VNy" secondAttribute="height" id="boy-J8-H7s"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="myo-z0-3ym" secondAttribute="trailing" constant="-24" id="dVj-5T-K9Q"/>
                             <constraint firstItem="Ztv-dX-wCM" firstAttribute="top" secondItem="eWm-PM-mb5" secondAttribute="bottom" constant="37" id="ffj-fl-1VW"/>
                             <constraint firstItem="yVb-ex-VNy" firstAttribute="top" secondItem="cJi-Ks-uvq" secondAttribute="bottom" constant="8" symbolic="YES" id="fj5-Cl-qX9"/>
                             <constraint firstItem="cJi-Ks-uvq" firstAttribute="centerX" secondItem="5g1-Qz-SZp" secondAttribute="centerX" id="fl3-jV-4Aa"/>
@@ -1396,8 +1395,6 @@
                             <constraint firstAttribute="trailing" secondItem="YlT-pf-zDN" secondAttribute="trailing" id="gCL-f6-yQq"/>
                             <constraint firstItem="YlT-pf-zDN" firstAttribute="trailing" secondItem="NAs-5A-IjD" secondAttribute="trailing" id="iG5-Nf-Kkx"/>
                             <constraint firstItem="cJi-Ks-uvq" firstAttribute="top" secondItem="myo-z0-3ym" secondAttribute="bottom" constant="94" id="iWq-0a-zaG"/>
-                            <constraint firstItem="myo-z0-3ym" firstAttribute="centerY" secondItem="NAs-5A-IjD" secondAttribute="centerY" id="iio-YJ-Ezm"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="myo-z0-3ym" secondAttribute="trailing" constant="-24" id="jRK-wL-Mna"/>
                             <constraint firstItem="ugf-Ev-CMf" firstAttribute="top" secondItem="eHJ-nn-R7d" secondAttribute="bottom" constant="8" symbolic="YES" id="kTq-sP-Lqe"/>
                             <constraint firstItem="ugf-Ev-CMf" firstAttribute="height" secondItem="yVb-ex-VNy" secondAttribute="height" id="lX2-Ry-VoP"/>
                             <constraint firstItem="NAs-5A-IjD" firstAttribute="bottom" secondItem="SUt-4c-AHy" secondAttribute="top" id="lxT-ZB-eaA"/>
@@ -1420,8 +1417,6 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="yp7-bj-h9H"/>
-                                <exclude reference="iG5-Nf-Kkx"/>
                                 <exclude reference="Rvh-mS-ICZ"/>
                                 <exclude reference="fl3-jV-4Aa"/>
                                 <exclude reference="iWq-0a-zaG"/>
@@ -1446,7 +1441,6 @@
                                 <exclude reference="Bf0-Ef-f1w"/>
                                 <exclude reference="K6j-Q9-SqY"/>
                                 <exclude reference="NKt-Fr-EVN"/>
-                                <exclude reference="iio-YJ-Ezm"/>
                                 <exclude reference="nUd-KE-ca0"/>
                                 <exclude reference="ugX-qF-Hqc"/>
                             </mask>
@@ -2002,8 +1996,8 @@
         <image name="tv-on-512x512" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="LC7-1x-ZGX"/>
-        <segue reference="8lb-64-Zdh"/>
+        <segue reference="P5Z-ky-73C"/>
         <segue reference="Mcv-Lo-79a"/>
+        <segue reference="LC7-1x-ZGX"/>
     </inferredMetricsTieBreakers>
 </document>
