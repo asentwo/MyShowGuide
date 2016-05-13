@@ -11,7 +11,7 @@ import UIKit
 import JSSAlertView
 
 class LoginSignUp: UIViewController, UITextFieldDelegate, UIViewControllerTransitioningDelegate {
-
+  
   
   //MARK: IBOutlets
   
@@ -26,7 +26,7 @@ class LoginSignUp: UIViewController, UITextFieldDelegate, UIViewControllerTransi
   
   @IBOutlet weak var orLabel: UILabel!
   
-
+  
   @IBOutlet weak var loginButton: UIButton!
   @IBOutlet weak var signUpButton: UIButton!
   @IBOutlet weak var cancelButton: UIButton!
@@ -67,11 +67,14 @@ class LoginSignUp: UIViewController, UITextFieldDelegate, UIViewControllerTransi
   // MARK: UIViewControllerTransitioningDelegate
   
   func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-    transition.transitionMode = .Present
+    
     transition.startingPoint = loginButton.center
+    transition.transitionMode = .Present
     transition.bubbleColor = loginButton.backgroundColor!
     return transition
   }
+  
+  
   
   func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
     transition.transitionMode = .Dismiss
@@ -80,15 +83,15 @@ class LoginSignUp: UIViewController, UITextFieldDelegate, UIViewControllerTransi
     return transition
   }
   
-
+  
   //MARK: IBActions
   
   @IBAction func loginInButtonPressed(sender: AnyObject) {
     SwiftSpinner.show(NSLocalizedString("Logging you in..", comment: ""))
-  
+    
     //userNameSignIn = user's email
     BackendlessUserFunctions.sharedInstance.backendlessUserLogin(userNameSignIn.text!, password: passwordSignIn.text!, rep: { ( user : BackendlessUser!) -> () in
-    
+      
       self.performSegueWithIdentifier("loginToNavController", sender: self)
       print("User logged in: \(user.objectId)")
       SwiftSpinner.hide()
@@ -97,7 +100,7 @@ class LoginSignUp: UIViewController, UITextFieldDelegate, UIViewControllerTransi
         var errorStatement: String!
         
         switch fault.faultCode {
-         
+          
         case "3003": errorStatement = (NSLocalizedString("Account not found, please register", comment: ""))//User Failed to login
         case "3040": errorStatement = (NSLocalizedString("The email address is in the wrong format", comment: ""))
         case "3002": errorStatement = (NSLocalizedString("User is already logged in from another device", comment: ""))
@@ -111,7 +114,7 @@ class LoginSignUp: UIViewController, UITextFieldDelegate, UIViewControllerTransi
         case "3090": errorStatement = (NSLocalizedString("User account is disabled", comment: ""))
         case "3104": errorStatement = (NSLocalizedString("Unable to send email confirmation - user account with the email cannot be found", comment: ""))
         default: errorStatement = (NSLocalizedString("Error, please email us at myshowguide@gmail.com"
-           , comment: ""))
+          , comment: ""))
         }
         SwiftSpinner.hide()
         JSSAlertView().show(
@@ -120,7 +123,7 @@ class LoginSignUp: UIViewController, UITextFieldDelegate, UIViewControllerTransi
           text: errorStatement,
           buttonText: "Ok",
           iconImage: myShowGuideLogo)
-
+        
         
         print("User failed to login: \(fault)")
     })
@@ -133,5 +136,5 @@ class LoginSignUp: UIViewController, UITextFieldDelegate, UIViewControllerTransi
   @IBAction func signUpButtonPressed(sender: AnyObject) {
     performSegueWithIdentifier("loginToSignUpSegue", sender: self)
   }
-   
+  
 }

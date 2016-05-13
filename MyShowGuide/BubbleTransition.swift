@@ -52,7 +52,7 @@ public class BubbleTransition: NSObject {
     The transition duration. The same value is used in both the Present or Dismiss actions
     Defaults to `0.5`
     */
-    public var duration = 0.5
+    public var duration = 0.3
     
     /**
     The transition direction. Possible values `.Present`, `.Dismiss` or `.Pop`
