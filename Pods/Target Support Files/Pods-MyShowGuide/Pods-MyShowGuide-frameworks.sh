@@ -85,11 +85,13 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-MyShowGuide/EXTView.framework"
+  install_framework "Pods-MyShowGuide/IQKeyboardManagerSwift.framework"
   install_framework "Pods-MyShowGuide/JSSAlertView.framework"
   install_framework "Pods-MyShowGuide/SDWebImage.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-MyShowGuide/EXTView.framework"
+  install_framework "Pods-MyShowGuide/IQKeyboardManagerSwift.framework"
   install_framework "Pods-MyShowGuide/JSSAlertView.framework"
   install_framework "Pods-MyShowGuide/SDWebImage.framework"
 fi
