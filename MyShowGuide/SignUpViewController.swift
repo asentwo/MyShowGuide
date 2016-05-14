@@ -70,7 +70,7 @@ class SignUpViewController: UIViewController, UIViewControllerTransitioningDeleg
         text: NSLocalizedString("Passwords don't match!", comment: ""),
         buttonText: "Ok",
         iconImage: myShowGuideLogo)
-    }
+    } else {
     
     BackendlessUserFunctions.sharedInstance.backendlessUserRegister(emailTextField.text!,password: passwordTextField.text!,  rep: { ( user : BackendlessUser!) -> () in
       
@@ -129,6 +129,7 @@ class SignUpViewController: UIViewController, UIViewControllerTransitioningDeleg
           iconImage: myShowGuideLogo)
        
     })
+  }
   }
   
   @IBAction func dismissCurrentViewController(sender: AnyObject) {

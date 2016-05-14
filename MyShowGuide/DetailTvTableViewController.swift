@@ -48,10 +48,13 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
     
     SwiftSpinner.show(NSLocalizedString("Retrieving your show info...", comment: ""))
     spinnerActive = true
+    
     self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
     let newURL = "http://api-public.guidebox.com/v1.43/us/\(apiKey)/show/\(showToDetailSite)"
     getJSON(newURL)
-    print ("XXXXXXXX\(newURL)")
+    
+    print ("\(newURL)")
+    print("\(spinnerActive)")
     let videoURL = "https://api-public.guidebox.com/v1.43/US/\(self.apiKey)/show/\(self.showToDetailSite)/clips/all/0/25/all/all/true"
     self.getVideoJSON(videoURL)
   }
@@ -69,6 +72,7 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
       dispatch_async(dispatch_get_main_queue()) {
         if (error == nil) {
           self.updateDetailShowInfo(data!)
+          print("Made it this far")
         } else {
           SwiftSpinner.hide()
           self.spinnerActive = false
@@ -172,7 +176,21 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
         self.updateVideo(data!)
       } else {
         print("Video did not load")
-
+        print("\(self.spinnerActive)")
+        if  self.spinnerActive == true {
+          
+          dispatch_async(dispatch_get_main_queue()) {
+            SwiftSpinner.hide()
+            self.spinnerActive = false
+            
+            JSSAlertView().show(
+              self,
+              title: NSLocalizedString("Whoops?", comment: ""),
+              text: NSLocalizedString( "There was a connection error. Please try again.", comment: ""),
+              buttonText: "Ok",
+              iconImage: myShowGuideLogo)
+          }
+        }
       }
     }
     task!.resume()
@@ -196,6 +214,21 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
     }
     catch {
       print("Video did not load")
+      print("\(self.spinnerActive)")
+      if  self.spinnerActive == true {
+        
+        dispatch_async(dispatch_get_main_queue()) {
+          SwiftSpinner.hide()
+          self.spinnerActive = false
+          
+          JSSAlertView().show(
+            self,
+            title: NSLocalizedString("Whoops?", comment: ""),
+            text: NSLocalizedString( "There was a connection error. Please try again.", comment: ""),
+            buttonText: "Ok",
+            iconImage: myShowGuideLogo)
+        }
+      }
     }
     
     dispatch_async(dispatch_get_main_queue()) {

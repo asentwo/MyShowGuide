@@ -1,12 +1,12 @@
 PODS:
-  - Backendless-ios-SDK (3.0.18)
+  - Backendless-ios-SDK (3.0.22)
   - BubbleTransition (1.0.3)
   - EXTView (0.1.0)
   - IQKeyboardManagerSwift (4.0.2)
   - JSSAlertView (1.1.4)
-  - SDWebImage (3.7.5):
-    - SDWebImage/Core (= 3.7.5)
-  - SDWebImage/Core (3.7.5)
+  - SDWebImage (3.7.6):
+    - SDWebImage/Core (= 3.7.6)
+  - SDWebImage/Core (3.7.6)
 
 DEPENDENCIES:
   - Backendless-ios-SDK
@@ -17,11 +17,11 @@ DEPENDENCIES:
   - SDWebImage (~> 3.7.5)
 
 SPEC CHECKSUMS:
-  Backendless-ios-SDK: 7a699affe9e7e519b9056c7f15771b339180c42a
+  Backendless-ios-SDK: e2672d142f92ffe2e8cab996c2b33eeae46b14ab
   BubbleTransition: a7ae6678721406d60f604cbbea1ace505563119d
   EXTView: db5ded8520d2023cadb1b9225fb1ad9406064f04
   IQKeyboardManagerSwift: 2f2c19c509f67c4c0df2826db54033d3e090ce65
   JSSAlertView: f42fc4be811925cef72ea808746df5a6c27eb356
-  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
+  SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
 
 COCOAPODS: 0.39.0
