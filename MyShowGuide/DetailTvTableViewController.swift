@@ -172,6 +172,7 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
         self.updateVideo(data!)
       } else {
         print("Video did not load")
+
       }
     }
     task!.resume()
