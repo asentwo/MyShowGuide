@@ -763,15 +763,15 @@
                                     <outlet property="ratingData" destination="uhh-4o-TuV" id="MbB-TS-Spm"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="exploreCell" rowHeight="69" id="svg-Zi-Y3q" userLabel="exploreCell" customClass="ExploreCell" customModule="My_Show_Guide" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="880" width="600" height="69"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="exploreCell" rowHeight="50" id="svg-Zi-Y3q" userLabel="exploreCell" customClass="ExploreCell" customModule="My_Show_Guide" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="880" width="600" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="svg-Zi-Y3q" id="1dA-28-fvp">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="69"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Explore" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SsO-WN-meo">
-                                            <rect key="frame" x="8" y="24" width="124" height="20"/>
+                                            <rect key="frame" x="8" y="15" width="124" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="124" id="6ws-bo-FkR"/>
                                             </constraints>
@@ -779,49 +779,132 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="metacriticlogo" translatesAutoresizingMaskIntoConstraints="NO" id="JZN-ee-EiP">
-                                            <rect key="frame" x="150" y="6.5" width="120" height="55"/>
+                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2xL-1D-8b5" userLabel="IMDBButton">
+                                            <rect key="frame" x="151" y="8.5" width="33" height="33"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="120" id="ZBS-Wh-eni"/>
-                                                <constraint firstAttribute="height" constant="55" id="rlS-r4-STe"/>
+                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="35" id="7bM-K6-t7J"/>
+                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" id="dPX-Cu-BiZ"/>
+                                                <constraint firstAttribute="height" constant="33" id="dcv-vA-Y4B"/>
+                                                <constraint firstAttribute="width" constant="33" id="uP9-D6-Vj5"/>
                                             </constraints>
-                                        </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imdblogo" translatesAutoresizingMaskIntoConstraints="NO" id="TsW-Vd-HF0">
-                                            <rect key="frame" x="293" y="14" width="100" height="40"/>
+                                            <state key="normal" image="imdbicon"/>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="7bM-K6-t7J"/>
+                                                    <exclude reference="dPX-Cu-BiZ"/>
+                                                </mask>
+                                            </variation>
+                                            <connections>
+                                                <action selector="IMDBButton:" destination="tcb-Kv-D9I" eventType="touchUpInside" id="rlC-nE-Tni"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7m4-2L-CDz" userLabel="MetaCriticButton">
+                                            <rect key="frame" x="192" y="8.5" width="33" height="33"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="40" id="9IA-EB-QDV"/>
-                                                <constraint firstAttribute="width" constant="100" id="Mbo-VG-F8J"/>
+                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="146" id="2gx-Dj-gOk"/>
+                                                <constraint firstAttribute="width" constant="33" id="P3X-cs-H99"/>
+                                                <constraint firstAttribute="height" constant="33" id="TLk-jt-YUx"/>
+                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="33" id="nMO-nr-esD"/>
+                                                <constraint firstAttribute="width" secondItem="7m4-2L-CDz" secondAttribute="height" multiplier="146:33" id="xIw-J5-OSf"/>
                                             </constraints>
-                                        </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wikipedialogoWhite" translatesAutoresizingMaskIntoConstraints="NO" id="nc9-UF-kLM">
-                                            <rect key="frame" x="416" y="7" width="120" height="55"/>
+                                            <state key="normal" image="Metacriticicon"/>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="2gx-Dj-gOk"/>
+                                                    <exclude reference="nMO-nr-esD"/>
+                                                    <exclude reference="xIw-J5-OSf"/>
+                                                </mask>
+                                            </variation>
+                                            <connections>
+                                                <action selector="metacriticButton:" destination="tcb-Kv-D9I" eventType="touchUpInside" id="qaj-uz-7RJ"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zr0-3w-s40" userLabel="WikepediaButton">
+                                            <rect key="frame" x="233" y="8.5" width="33" height="33"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="55" id="4aj-tC-dyd"/>
-                                                <constraint firstAttribute="width" constant="120" id="G38-32-U2N"/>
+                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="153" id="7Pq-cF-Uwx"/>
+                                                <constraint firstAttribute="width" secondItem="zr0-3w-s40" secondAttribute="height" multiplier="51:35" id="CKg-AW-cxB"/>
+                                                <constraint firstAttribute="height" constant="33" id="MuA-ph-eSV"/>
+                                                <constraint firstAttribute="width" constant="33" id="P8b-us-nTs"/>
+                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="105" id="ebM-fB-sGl"/>
                                             </constraints>
-                                        </imageView>
+                                            <state key="normal" image="wikipediaIcon"/>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="7Pq-cF-Uwx"/>
+                                                    <exclude reference="CKg-AW-cxB"/>
+                                                    <exclude reference="ebM-fB-sGl"/>
+                                                </mask>
+                                            </variation>
+                                            <connections>
+                                                <action selector="WikiButton:" destination="tcb-Kv-D9I" eventType="touchUpInside" id="3FA-hx-BnT"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstItem="nc9-UF-kLM" firstAttribute="leading" secondItem="TsW-Vd-HF0" secondAttribute="trailing" constant="23" id="9tJ-nY-Ndq"/>
-                                        <constraint firstItem="JZN-ee-EiP" firstAttribute="leading" secondItem="SsO-WN-meo" secondAttribute="trailing" constant="18" id="CZl-ul-K6g"/>
+                                        <constraint firstItem="2xL-1D-8b5" firstAttribute="leading" secondItem="SsO-WN-meo" secondAttribute="trailing" constant="15" id="40p-j2-A29"/>
+                                        <constraint firstItem="SsO-WN-meo" firstAttribute="leading" secondItem="2xL-1D-8b5" secondAttribute="trailing" constant="18" id="5Z8-FY-bsT"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="zr0-3w-s40" secondAttribute="bottom" constant="-17" id="5oM-6w-NfK"/>
+                                        <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="zr0-3w-s40" secondAttribute="trailing" constant="8" id="9sk-Dk-Jeq"/>
                                         <constraint firstItem="SsO-WN-meo" firstAttribute="top" secondItem="1dA-28-fvp" secondAttribute="topMargin" id="CaK-iU-Sh4"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="SsO-WN-meo" secondAttribute="leading" id="F4A-Np-W8v"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="2xL-1D-8b5" secondAttribute="bottom" constant="18" id="HWu-0V-1k0"/>
                                         <constraint firstAttribute="leadingMargin" secondItem="SsO-WN-meo" secondAttribute="leading" id="IQ0-nc-D4v"/>
-                                        <constraint firstItem="TsW-Vd-HF0" firstAttribute="centerY" secondItem="1dA-28-fvp" secondAttribute="centerY" id="OXx-km-f6N"/>
-                                        <constraint firstItem="TsW-Vd-HF0" firstAttribute="leading" secondItem="JZN-ee-EiP" secondAttribute="trailing" constant="23" id="Q6H-Gf-HPI"/>
-                                        <constraint firstItem="nc9-UF-kLM" firstAttribute="centerY" secondItem="1dA-28-fvp" secondAttribute="centerY" id="b9T-3w-Ozc"/>
-                                        <constraint firstItem="JZN-ee-EiP" firstAttribute="centerY" secondItem="1dA-28-fvp" secondAttribute="centerY" id="hfO-th-i29"/>
+                                        <constraint firstItem="zr0-3w-s40" firstAttribute="leading" secondItem="7m4-2L-CDz" secondAttribute="trailing" constant="8" id="MnX-82-oaX"/>
+                                        <constraint firstItem="zr0-3w-s40" firstAttribute="centerY" secondItem="1dA-28-fvp" secondAttribute="centerY" id="NLO-6U-hUs"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="7m4-2L-CDz" secondAttribute="bottom" constant="19" id="QMr-fJ-BYf"/>
+                                        <constraint firstItem="7m4-2L-CDz" firstAttribute="leading" secondItem="2xL-1D-8b5" secondAttribute="trailing" constant="8" id="THQ-Lw-KK5"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="zr0-3w-s40" secondAttribute="trailing" constant="168" id="Uq5-eg-fO2"/>
+                                        <constraint firstItem="2xL-1D-8b5" firstAttribute="centerY" secondItem="1dA-28-fvp" secondAttribute="centerY" id="X0h-4t-uyp"/>
+                                        <constraint firstItem="2xL-1D-8b5" firstAttribute="top" secondItem="SsO-WN-meo" secondAttribute="bottom" constant="15" id="ZFW-m1-CbW"/>
+                                        <constraint firstItem="7m4-2L-CDz" firstAttribute="leading" secondItem="2xL-1D-8b5" secondAttribute="trailing" constant="15" id="bmK-VA-woR"/>
+                                        <constraint firstItem="zr0-3w-s40" firstAttribute="centerY" secondItem="1dA-28-fvp" secondAttribute="centerY" id="d0G-AW-ixd"/>
+                                        <constraint firstAttribute="trailingMargin" relation="lessThanOrEqual" secondItem="zr0-3w-s40" secondAttribute="trailing" constant="168" id="dfY-TT-vNl"/>
+                                        <constraint firstItem="2xL-1D-8b5" firstAttribute="leading" secondItem="SsO-WN-meo" secondAttribute="trailing" constant="19" id="fhG-Uz-hfC"/>
+                                        <constraint firstItem="zr0-3w-s40" firstAttribute="leading" secondItem="7m4-2L-CDz" secondAttribute="trailing" constant="2" id="hPo-FE-FT3"/>
+                                        <constraint firstItem="7m4-2L-CDz" firstAttribute="centerY" secondItem="1dA-28-fvp" secondAttribute="centerY" id="iQm-Yd-l9p"/>
+                                        <constraint firstItem="7m4-2L-CDz" firstAttribute="centerY" secondItem="1dA-28-fvp" secondAttribute="centerY" id="kJS-wx-xRI"/>
+                                        <constraint firstItem="2xL-1D-8b5" firstAttribute="centerY" secondItem="1dA-28-fvp" secondAttribute="centerY" id="kp6-az-z5Z"/>
                                         <constraint firstItem="SsO-WN-meo" firstAttribute="centerY" secondItem="1dA-28-fvp" secondAttribute="centerY" id="u45-sK-viY"/>
+                                        <constraint firstItem="SsO-WN-meo" firstAttribute="centerX" secondItem="1dA-28-fvp" secondAttribute="centerX" id="ugH-HS-gHR"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="2xL-1D-8b5" secondAttribute="leading" id="wsg-ZA-Jdk"/>
+                                        <constraint firstItem="SsO-WN-meo" firstAttribute="centerY" secondItem="1dA-28-fvp" secondAttribute="centerY" id="xy1-vx-x92"/>
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
+                                            <exclude reference="5Z8-FY-bsT"/>
                                             <exclude reference="CaK-iU-Sh4"/>
+                                            <exclude reference="u45-sK-viY"/>
+                                            <exclude reference="ugH-HS-gHR"/>
+                                            <exclude reference="40p-j2-A29"/>
+                                            <exclude reference="HWu-0V-1k0"/>
+                                            <exclude reference="X0h-4t-uyp"/>
+                                            <exclude reference="ZFW-m1-CbW"/>
+                                            <exclude reference="wsg-ZA-Jdk"/>
+                                            <exclude reference="QMr-fJ-BYf"/>
+                                            <exclude reference="bmK-VA-woR"/>
+                                            <exclude reference="iQm-Yd-l9p"/>
+                                            <exclude reference="5oM-6w-NfK"/>
+                                            <exclude reference="9sk-Dk-Jeq"/>
+                                            <exclude reference="NLO-6U-hUs"/>
+                                            <exclude reference="Uq5-eg-fO2"/>
+                                            <exclude reference="dfY-TT-vNl"/>
+                                            <exclude reference="hPo-FE-FT3"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
+                                <constraints>
+                                    <constraint firstItem="2xL-1D-8b5" firstAttribute="leading" secondItem="svg-Zi-Y3q" secondAttribute="leading" constant="8" id="X15-e2-UYS"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="X15-e2-UYS"/>
+                                    </mask>
+                                </variation>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="socialCell" rowHeight="50" id="NLo-jr-H80" customClass="SocialCell" customModule="My_Show_Guide" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="949" width="600" height="50"/>
+                                <rect key="frame" x="0.0" y="930" width="600" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NLo-jr-H80" id="o4i-Vd-rax">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
@@ -836,48 +919,56 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="twittericon" translatesAutoresizingMaskIntoConstraints="NO" id="wiC-2F-LjD">
-                                            <rect key="frame" x="190" y="8" width="40" height="40"/>
+                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5tB-BH-yp8" userLabel="FacebookButton">
+                                            <rect key="frame" x="151" y="8.5" width="33" height="33"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="40" id="o09-pa-87Y"/>
-                                                <constraint firstAttribute="height" constant="40" id="tpJ-ZR-mKS"/>
-                                                <constraint firstAttribute="height" constant="50" id="wzj-vk-jjg"/>
+                                                <constraint firstAttribute="width" constant="33" id="ci4-0c-nch"/>
+                                                <constraint firstAttribute="height" constant="33" id="hnh-z0-G5R"/>
                                             </constraints>
+                                            <state key="normal" image="Facebookicon"/>
+                                            <connections>
+                                                <action selector="FacebookButton:" destination="tcb-Kv-D9I" eventType="touchUpInside" id="X2h-3J-cj0"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="btQ-bO-Bv8" userLabel="TwitterButton">
+                                            <rect key="frame" x="192" y="5" width="40" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="33" id="6JS-Ch-jQd"/>
+                                                <constraint firstAttribute="width" constant="33" id="XHN-jv-9aO"/>
+                                                <constraint firstAttribute="height" constant="40" id="g9O-Q7-pf5"/>
+                                                <constraint firstAttribute="width" constant="40" id="mad-Kt-D8D"/>
+                                            </constraints>
+                                            <state key="normal" image="twittericon"/>
                                             <variation key="default">
                                                 <mask key="constraints">
-                                                    <exclude reference="wzj-vk-jjg"/>
+                                                    <exclude reference="6JS-Ch-jQd"/>
+                                                    <exclude reference="XHN-jv-9aO"/>
                                                 </mask>
                                             </variation>
-                                        </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Facebookicon" translatesAutoresizingMaskIntoConstraints="NO" id="cbw-9u-z2o">
-                                            <rect key="frame" x="149" y="11" width="33" height="33"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="33" id="07Y-hD-byg"/>
-                                                <constraint firstAttribute="height" constant="33" id="gs4-Rv-qMU"/>
-                                            </constraints>
-                                        </imageView>
+                                            <connections>
+                                                <action selector="TwitterButton:" destination="tcb-Kv-D9I" eventType="touchUpInside" id="hfn-qh-9sS"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstItem="wiC-2F-LjD" firstAttribute="centerY" secondItem="o4i-Vd-rax" secondAttribute="centerY" constant="3" id="5Q9-g7-xAG"/>
-                                        <constraint firstItem="wiC-2F-LjD" firstAttribute="leading" secondItem="cbw-9u-z2o" secondAttribute="trailing" constant="8" id="6TW-m5-PmD"/>
-                                        <constraint firstItem="cbw-9u-z2o" firstAttribute="leading" secondItem="idY-sP-YkN" secondAttribute="trailing" constant="-33" id="8B0-In-rds"/>
                                         <constraint firstItem="idY-sP-YkN" firstAttribute="centerY" secondItem="o4i-Vd-rax" secondAttribute="centerY" id="Cfg-dU-kDC"/>
-                                        <constraint firstItem="cbw-9u-z2o" firstAttribute="centerY" secondItem="o4i-Vd-rax" secondAttribute="centerY" constant="2.5" id="QSR-fL-B2z"/>
-                                        <constraint firstItem="cbw-9u-z2o" firstAttribute="leading" secondItem="idY-sP-YkN" secondAttribute="trailing" constant="36" id="jhD-6P-0fw"/>
+                                        <constraint firstItem="btQ-bO-Bv8" firstAttribute="centerY" secondItem="o4i-Vd-rax" secondAttribute="centerY" id="QUk-jB-Zzp"/>
+                                        <constraint firstItem="5tB-BH-yp8" firstAttribute="centerY" secondItem="o4i-Vd-rax" secondAttribute="centerY" id="UK2-3G-edv"/>
+                                        <constraint firstItem="btQ-bO-Bv8" firstAttribute="leading" secondItem="5tB-BH-yp8" secondAttribute="trailing" constant="8" id="WYp-Jj-gUw"/>
+                                        <constraint firstItem="5tB-BH-yp8" firstAttribute="leading" secondItem="idY-sP-YkN" secondAttribute="trailing" constant="38" id="WaO-1J-D5n"/>
                                         <constraint firstItem="idY-sP-YkN" firstAttribute="top" secondItem="o4i-Vd-rax" secondAttribute="topMargin" id="mkc-5A-LID"/>
                                         <constraint firstItem="idY-sP-YkN" firstAttribute="leading" secondItem="o4i-Vd-rax" secondAttribute="leadingMargin" id="nMo-Il-VnF"/>
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
                                             <exclude reference="mkc-5A-LID"/>
-                                            <exclude reference="8B0-In-rds"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="photosCell" rowHeight="331" id="5tc-Aa-if1" userLabel="photosCell" customClass="PhotosCell" customModule="My_Show_Guide" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="999" width="600" height="331"/>
+                                <rect key="frame" x="0.0" y="980" width="600" height="331"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5tc-Aa-if1" id="hF3-Rl-bwl">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="331"/>
@@ -1956,19 +2047,19 @@
     <resources>
         <image name="Blur Black" width="853" height="533"/>
         <image name="Facebookicon" width="166" height="166"/>
+        <image name="Metacriticicon" width="666" height="666"/>
         <image name="blur_5.5" width="414" height="736"/>
-        <image name="imdblogo" width="700" height="335"/>
-        <image name="metacriticlogo" width="146" height="33"/>
+        <image name="imdbicon" width="640" height="640"/>
         <image name="myShowGuideBlur" width="187" height="283"/>
         <image name="save_icon_redX" width="30" height="30"/>
         <image name="save_icon_white" width="30" height="30"/>
         <image name="tv-on-512x512" width="512" height="512"/>
         <image name="twittericon" width="170" height="170"/>
-        <image name="wikipedialogoWhite" width="300" height="225"/>
+        <image name="wikipediaIcon" width="170" height="170"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="7Pz-Vk-FQ2"/>
         <segue reference="8lb-64-Zdh"/>
-        <segue reference="LC7-1x-ZGX"/>
+        <segue reference="IgW-5C-kCz"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -72,15 +72,15 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
         } else {
           SwiftSpinner.hide()
           self.spinnerActive = false
-       
-         let alert = JSSAlertView().show(
+          
+          JSSAlertView().show(
             self,
             title: NSLocalizedString("Whoops?", comment: ""),
             text: NSLocalizedString( "There was a connection error. Please try again.", comment: ""),
             buttonText: "Ok",
             iconImage: myShowGuideLogo)
-           alert.addAction(self.errorGoToPreviousScreen)
-    
+          
+          
         }
       }
     }
@@ -105,7 +105,7 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
       totalResultsArray.append(detailsArray)
       totalResultsArray.append(bannerArray)
       totalResultsArray.append(overViewArray)
-    
+      
       if let castArray = jsonResult["cast"] as? [NSDictionary] {
         for castItem in castArray {
           let name = castItem["name"] as? String ?? "N/A"
@@ -148,13 +148,13 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
       totalResultsArray.append(exploreArray)
     }
     catch {
-      let alert = JSSAlertView().show(
+      JSSAlertView().show(
         self,
         title: NSLocalizedString("Whoops?", comment: ""),
         text: NSLocalizedString( "There was a connection error. Please try again.", comment: ""),
         buttonText: "Ok",
         iconImage: myShowGuideLogo)
-        alert.addAction(self.errorGoToPreviousScreen)
+      
     }
   }
   
@@ -167,23 +167,12 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
     let session = NSURLSession(configuration: urlConfig)
     task = session.dataTaskWithURL(url) {(data, response, error) in
       
-    //Updates data on worker thread instead of main, makes the tableView load faster
-        if (error == nil) {
-          self.updateVideo(data!)
-        } else {
-//    //Only uses main thread for ui
-//          dispatch_async(dispatch_get_main_queue()) {
-//            SwiftSpinner.hide()
-//            self.spinnerActive = false
-//          let alert = JSSAlertView().show(
-//              self,
-//              title: NSLocalizedString("Whoops?", comment: ""),
-//              text: NSLocalizedString( "There was a connection error. Please try again.", comment: ""),
-//              buttonText: "Ok",
-//              iconImage: myShowGuideLogo)
-//              alert.addAction(self.errorGoToPreviousScreen)
-//          }
-        }
+      //Updates data on worker thread instead of main, makes the tableView load faster
+      if (error == nil) {
+        self.updateVideo(data!)
+      } else {
+        print("Video did not load")
+      }
     }
     task!.resume()
   }
@@ -205,18 +194,7 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
       }
     }
     catch {
-  //Since the updateVideo is on worker thread, have to get back to main thread to show error or reload tableView
-//      dispatch_async(dispatch_get_main_queue()) {
-//      //  self.showNetworkError()
-//        let alert = JSSAlertView().show(
-//          self,
-//          title: NSLocalizedString("Whoops?", comment: ""),
-//          text: NSLocalizedString( "There was a connection error. Please try again.", comment: ""),
-//          buttonText: "Ok",
-//          iconImage: myShowGuideLogo)
-//          alert.addAction(self.errorGoToPreviousScreen)
-//
-//      }
+      print("Video did not load")
     }
     
     dispatch_async(dispatch_get_main_queue()) {
@@ -331,22 +309,14 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
     case 5:
       let cell = tableView.dequeueReusableCellWithIdentifier("socialCell", forIndexPath: indexPath) as! SocialCell
       let socialData = socialArray[indexPath.row]
-      if socialData.twitter != "" {
-        cell.TwitterData.text = socialData.twitter
-      } else {
-        cell.TwitterData.text = "N/A"
-      }
-      if socialData.facebook != "" {
-        cell.FaceBookData.text = socialData.facebook
-      } else {
-        cell.FaceBookData.text = "N/A"
-      }
-      self.DetailTvTableView.rowHeight = 150
+      self.DetailTvTableView.rowHeight = 50
+      DetailTvTableView.allowsSelection = false
+      
       return cell
       
     case 6:
       let cell = tableView.dequeueReusableCellWithIdentifier("exploreCell", forIndexPath: indexPath) as! ExploreCell
-      self.DetailTvTableView.rowHeight = 70
+      self.DetailTvTableView.rowHeight = 50
       DetailTvTableView.allowsSelection = false
       return cell
       
@@ -393,6 +363,22 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
     performSegueWithIdentifier("DetailToWebsiteSegue", sender: self)
   }
   
+  @IBAction func FacebookButton(sender: AnyObject) {
+    if self.socialArray[0].facebook != nil {
+      detailToWebsite = socialArray[0].facebook} else {
+      "https://www.facebook.com"}
+    performSegueWithIdentifier("DetailToWebsiteSegue", sender: self)
+    
+  }
+  
+  @IBAction func TwitterButton(sender: AnyObject) {
+    if self.socialArray[0].twitter != nil {
+      detailToWebsite = socialArray[0].twitter} else {
+      "https://www.facebook.com"}
+    performSegueWithIdentifier("DetailToWebsiteSegue", sender: self)
+  }
+  
+  
   //MARK: Segue
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -408,20 +394,9 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
   //MARK: Network Error Indicator
   
   func errorGoToPreviousScreen () {
-   // self.dismissViewControllerAnimated(true, completion: nil)
- self.navigationController?.popViewControllerAnimated(true)
-    }
- 
-//  func showNetworkError () {
-//    let alert = UIAlertController(title: NSLocalizedString("Whoops?", comment: ""), message: NSLocalizedString("There was a connection error. Please try again.", comment: ""), preferredStyle: .Alert)
-//    let action = UIAlertAction(title: "OK", style: .Default, handler: {_ in self.navigationController?.popViewControllerAnimated(true)})
-//    alert.addAction(action)
-//    presentViewController(alert, animated: true, completion: nil)
-  
-//  }
-//  
-// 
-
+    // self.dismissViewControllerAnimated(true, completion: nil)
+    self.navigationController?.popViewControllerAnimated(true)
+  }
 }
 
 

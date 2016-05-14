@@ -12,6 +12,8 @@ import UIKit
 
 class SocialCell: UITableViewCell {
   
-  @IBOutlet var FaceBookData: UITextView!
-  @IBOutlet var TwitterData: UITextView!
+  @IBOutlet weak var faceBookIcon: UIImageView!
+
+  @IBOutlet weak var twitterIcon: UIImageView!
+  
 }
