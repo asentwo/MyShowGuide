@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6E38717F1BCF290C00559559"
-               BuildableName = "My Show Guide.app"
+               BuildableName = "MyShowGuide.app"
                BlueprintName = "MyShowGuide"
                ReferencedContainer = "container:MyShowGuide.xcodeproj">
             </BuildableReference>
@@ -53,7 +53,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6E38717F1BCF290C00559559"
-            BuildableName = "My Show Guide.app"
+            BuildableName = "MyShowGuide.app"
             BlueprintName = "MyShowGuide"
             ReferencedContainer = "container:MyShowGuide.xcodeproj">
          </BuildableReference>
@@ -77,7 +77,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6E38717F1BCF290C00559559"
-            BuildableName = "My Show Guide.app"
+            BuildableName = "MyShowGuide.app"
             BlueprintName = "MyShowGuide"
             ReferencedContainer = "container:MyShowGuide.xcodeproj">
          </BuildableReference>
@@ -96,7 +96,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6E38717F1BCF290C00559559"
-            BuildableName = "My Show Guide.app"
+            BuildableName = "MyShowGuide.app"
             BlueprintName = "MyShowGuide"
             ReferencedContainer = "container:MyShowGuide.xcodeproj">
          </BuildableReference>
