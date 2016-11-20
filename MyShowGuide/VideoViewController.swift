@@ -11,7 +11,7 @@ import UIKit
 class VideoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
   //MARK: Constants
-  var task : NSURLSessionTask?
+  var task : URLSessionTask?
  // var videoURL: String?
   var videoArray:[String]?
   var videoInfoArray:[String]?
@@ -32,12 +32,12 @@ class VideoViewController: UIViewController, UITableViewDelegate, UITableViewDat
   
   //MARK: JSON
   
-  func getJSON (urlString: String) {
+  func getJSON (_ urlString: String) {
     
-    let url = NSURL(string: urlString)!
-    let session = NSURLSession.sharedSession()
-    task = session.dataTaskWithURL(url) {(data, response, error) in
-      dispatch_async(dispatch_get_main_queue()) {
+    let url = URL(string: urlString)!
+    let session = URLSession.shared
+    task = session.dataTask(with: url, completionHandler: {(data, response, error) in
+      DispatchQueue.main.async {
         if (error == nil) {
           self.updateDetailShowInfo(data!)
         } else {
@@ -46,22 +46,22 @@ class VideoViewController: UIViewController, UITableViewDelegate, UITableViewDat
           self.showNetworkError()
         }
       }
-    }
+    }) 
     task!.resume()
   }
   
   
-  func updateDetailShowInfo (data: NSData!) {
+  func updateDetailShowInfo (_ data: Data!) {
     do {
 
-      let jsonResult = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
+      let jsonResult = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
       
-      if let results = jsonResult["results"] as? [[String:AnyObject]] where !results.isEmpty {
+      if let results = jsonResult["results"] as? [[String:AnyObject]], !results.isEmpty {
         
         videoArray = []
         
         for result in results {
-          if let freeIOSServices = result["free_ios_sources"] as? [[String:AnyObject]] where !results.isEmpty {
+          if let freeIOSServices = result["free_ios_sources"] as? [[String:AnyObject]], !results.isEmpty {
                       let free = freeIOSServices[0]
                       let videoView = free["embed"] as? String
                       print("\(videoView!)")
@@ -78,12 +78,12 @@ class VideoViewController: UIViewController, UITableViewDelegate, UITableViewDat
   }
 
   //MARK: TableView
-  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return videoArray!.count
   }
   
-  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("videoCell") as! VideoCell
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "videoCell") as! VideoCell
     SwiftSpinner.hide()
     spinnerActive = false
     let localVideoURL = videoArray![indexPath.row]
@@ -95,10 +95,10 @@ class VideoViewController: UIViewController, UITableViewDelegate, UITableViewDat
   //MARK: Network Error Indicator
   
   func showNetworkError () {
-    let alert = UIAlertController(title: NSLocalizedString("Whoops?", comment: ""), message: NSLocalizedString("There was a connection error. Please try again.", comment: ""), preferredStyle: .Alert)
-    let action = UIAlertAction(title: "OK", style: .Default, handler: {_ in self.navigationController?.popViewControllerAnimated(true)})
+    let alert = UIAlertController(title: NSLocalizedString("Whoops?", comment: ""), message: NSLocalizedString("There was a connection error. Please try again.", comment: ""), preferredStyle: .alert)
+    let action = UIAlertAction(title: "OK", style: .default, handler: {_ in self.navigationController?.popViewController(animated: true)})
     alert.addAction(action)
-    presentViewController(alert, animated: true, completion: nil)
+    present(alert, animated: true, completion: nil)
     
   }
 }

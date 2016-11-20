@@ -13,18 +13,18 @@ class UserDefaults {
     static let sharedInstance = UserDefaults()
     
     // This prevents others from using the default '()' initializer for this class.
-    private init() {}
+    fileprivate init() {}
     
-    let standardUserDefaults = NSUserDefaults.standardUserDefaults()
+    let standardUserDefaults = Foundation.UserDefaults.standard
     let SAVED_SHOWS_KEY = "SAVED_SHOWS_KEY"
     
     func getSavedShows() -> [TvShowInfo] {
         
-        let savedShows = standardUserDefaults.objectForKey(SAVED_SHOWS_KEY) as? NSData
+        let savedShows = standardUserDefaults.object(forKey: SAVED_SHOWS_KEY) as? Data
         
         if savedShows != nil {
             
-            let savedShowsArrayTemp = NSKeyedUnarchiver.unarchiveObjectWithData(savedShows!) as? [TvShowInfo]
+            let savedShowsArrayTemp = NSKeyedUnarchiver.unarchiveObject(with: savedShows!) as? [TvShowInfo]
             
             if let savedShowsArray = savedShowsArrayTemp {
                 // Everything is awesome - return the data!
@@ -37,8 +37,8 @@ class UserDefaults {
         
         let emptySavedShowsArray = [TvShowInfo]()
         
-        let emptySavedShows = NSKeyedArchiver.archivedDataWithRootObject(emptySavedShowsArray)
-        standardUserDefaults.setObject(emptySavedShows, forKey: SAVED_SHOWS_KEY)
+        let emptySavedShows = NSKeyedArchiver.archivedData(withRootObject: emptySavedShowsArray)
+        standardUserDefaults.set(emptySavedShows, forKey: SAVED_SHOWS_KEY)
         standardUserDefaults.synchronize()
         
         return emptySavedShowsArray
@@ -46,7 +46,7 @@ class UserDefaults {
     }
     
     
-    func addFavorite(showToSave: TvShowInfo) {
+    func addFavorite(_ showToSave: TvShowInfo) {
     
         var savedShowsArray = getSavedShows()
         var addShow = false
@@ -74,14 +74,14 @@ class UserDefaults {
             
             print("addFavorite added \(showToSave.title) with id \(showToSave.id).")
             
-            let savedShows = NSKeyedArchiver.archivedDataWithRootObject(savedShowsArray)
-            standardUserDefaults.setObject(savedShows, forKey: SAVED_SHOWS_KEY)
+            let savedShows = NSKeyedArchiver.archivedData(withRootObject: savedShowsArray)
+            standardUserDefaults.set(savedShows, forKey: SAVED_SHOWS_KEY)
             standardUserDefaults.synchronize()
         }
     }
     
     
-    func removeFavorite(showToRemove: TvShowInfo) {
+    func removeFavorite(_ showToRemove: TvShowInfo) {
         
         var savedShowsArray = getSavedShows()
         
@@ -97,8 +97,8 @@ class UserDefaults {
               //filtering out show to be removed from array
                 savedShowsArray = savedShowsArray.filter({$0.id != showToRemove.id})
                 
-                let savedShows = NSKeyedArchiver.archivedDataWithRootObject(savedShowsArray)
-                standardUserDefaults.setObject(savedShows, forKey: SAVED_SHOWS_KEY)
+                let savedShows = NSKeyedArchiver.archivedData(withRootObject: savedShowsArray)
+                standardUserDefaults.set(savedShows, forKey: SAVED_SHOWS_KEY)
                 standardUserDefaults.synchronize()
                 
                 print("removeFavorite removed \(showToRemove.title) with id \(showToRemove.id).")
@@ -110,7 +110,7 @@ class UserDefaults {
     }
     
     
-    func isFavorite(id: NSNumber) -> Bool {
+    func isFavorite(_ id: NSNumber) -> Bool {
         
         let savedShowsArray = getSavedShows()
 

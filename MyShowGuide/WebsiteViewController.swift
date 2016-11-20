@@ -22,12 +22,12 @@ class WebsiteViewController: UIViewController, UIWebViewDelegate {
     startRequest()
       SwiftSpinner.show(NSLocalizedString("Connecting to website...", comment: ""))
     spinnerActive = true
-    self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
+    self.navigationController!.navigationBar.tintColor = UIColor.white
   }
   
   //MARK: WebView
   
-  func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
+  func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
    // self.showNetworkError()
      JSSAlertView().show(
       self,
@@ -39,7 +39,7 @@ class WebsiteViewController: UIViewController, UIWebViewDelegate {
   }
   
   
-   func webViewDidFinishLoad(webView: UIWebView){
+   func webViewDidFinishLoad(_ webView: UIWebView){
     SwiftSpinner.hide()
     spinnerActive = false
     delay(1.5, closure: { self.navigationItem.setHidesBackButton(false, animated:true)
@@ -50,16 +50,16 @@ class WebsiteViewController: UIViewController, UIWebViewDelegate {
   
   func startRequest() {
     let myWeb = webView
-    let url = NSURL(string: website!)!
-    let urlConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
+    let url = URL(string: website!)!
+    let urlConfig = URLSessionConfiguration.default
     urlConfig.timeoutIntervalForRequest = 10
     urlConfig.timeoutIntervalForResource = 10
-    let myReq = NSURLRequest(URL: url)
-    let session = NSURLSession(configuration: urlConfig)
-    let task = session.dataTaskWithURL(url) {(data, response, error) in
-      dispatch_async(dispatch_get_main_queue()) {
+    let myReq = URLRequest(url: url)
+    let session = URLSession(configuration: urlConfig)
+    let task = session.dataTask(with: url, completionHandler: {(data, response, error) in
+      DispatchQueue.main.async {
         if (error == nil) {
-          myWeb.loadRequest(myReq)
+          myWeb?.loadRequest(myReq)
           self.connected = true
         }
         else {
@@ -74,7 +74,7 @@ class WebsiteViewController: UIViewController, UIWebViewDelegate {
             iconImage: myShowGuideLogo)
         }
       }
-    }
+    }) 
     task.resume()
   }
   

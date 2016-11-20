@@ -16,7 +16,7 @@ class photosCollectionCell: UICollectionViewCell {
   override func awakeFromNib() {
     
   photoImage.alpha = 0.0
-    UIView.animateWithDuration(0.3, delay: 0.0, options: [.CurveEaseIn], animations: {
+    UIView.animate(withDuration: 0.3, delay: 0.0, options: [.curveEaseIn], animations: {
       self.photoImage.alpha = 1.0
       }, completion: nil)  }
 }

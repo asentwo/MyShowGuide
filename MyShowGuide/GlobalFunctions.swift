@@ -10,25 +10,21 @@ import Foundation
 
 //MARK: Constants
 
-let customColor = UIColor.blackColor()
+let customColor = UIColor.black
 let myShowGuideLogo = UIImage(named: "80x80clear")
 var savedFavoriteArray:[TvShowInfo] = []
 
 //MARK: Delay
 
-func delay(delay:Double, closure:()->()) {
-  dispatch_after(
-    dispatch_time(
-      DISPATCH_TIME_NOW,
-      Int64(delay * Double(NSEC_PER_SEC))
-    ),
-    dispatch_get_main_queue(), closure)
+func delay(_ delay:Double, closure:@escaping ()->()) {
+  DispatchQueue.main.asyncAfter(
+    deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
 }
 
 
 //MARK: Null to Nil
 
-func nullToNil(value : AnyObject?) -> AnyObject? {
+func nullToNil(_ value : AnyObject?) -> AnyObject? {
   if value is NSNull {
     return nil
   } else {

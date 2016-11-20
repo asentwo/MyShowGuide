@@ -43,9 +43,6 @@ class TvShowCell: UITableViewCell {
   @IBOutlet var imageWrapper: UIView!
   @IBOutlet weak var saveButton: UIButton!
 
-  @IBAction func saveButtonPressed(sender: AnyObject) {
-      sender.setImage(UIImage(named: "save_icon_greenCheck"), forState: UIControlState.Normal)
-   }
   }
 
 

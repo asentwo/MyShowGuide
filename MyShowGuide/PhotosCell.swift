@@ -20,16 +20,16 @@ class PhotosCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
     collectionView.dataSource = self
   }
   
-  func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     
     return photosArray.count
   }
   
-  func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCellWithReuseIdentifier("photosCollectionCell", forIndexPath: indexPath) as! photosCollectionCell
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photosCollectionCell", for: indexPath) as! photosCollectionCell
     
     let photo = photosArray[indexPath.row]
-    cell.photoImage.sd_setImageWithURL(NSURL(string: photo))
+    cell.photoImage.sd_setImage(with: URL(string: photo))
     
     return cell
   }
