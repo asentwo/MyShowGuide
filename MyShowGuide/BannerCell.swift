@@ -16,7 +16,7 @@ class BannerCell: UITableViewCell {
   override func awakeFromNib() {
   
       bannerImage.alpha = 0.0
-    UIView.animateWithDuration(0.3, delay: 0.0, options: [.CurveEaseIn], animations: {
+    UIView.animate(withDuration: 0.3, delay: 0.0, options: [.curveEaseIn], animations: {
       self.bannerImage.alpha = 1.0
       }, completion: nil)    }
   }

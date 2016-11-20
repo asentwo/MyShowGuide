@@ -15,12 +15,12 @@ class VideoOnDetailCell: UITableViewCell, UIWebViewDelegate {
   @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
   
-  func webViewDidStartLoad(webView: UIWebView) {
-    activityIndicator.hidden = false
+  func webViewDidStartLoad(_ webView: UIWebView) {
+    activityIndicator.isHidden = false
     activityIndicator.startAnimating()
   }
-  func webViewDidFinishLoad(webView: UIWebView){
-    activityIndicator.hidden = true
+  func webViewDidFinishLoad(_ webView: UIWebView){
+    activityIndicator.isHidden = true
     activityIndicator.stopAnimating()
   }
 }

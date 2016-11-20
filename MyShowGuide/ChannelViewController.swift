@@ -15,12 +15,12 @@ class ChannelViewController: UIViewController, UISearchBarDelegate, UICollection
   
   var channelArray: [ChannelInfo] = []
   var filteredSearchResults = [ChannelInfo]()
-  var logosShown = [Bool](count: 50, repeatedValue: false)
+  var logosShown = [Bool](repeating: false, count: 50)
   var detailUrl: String?
   var apiKey = "rKk09BXyG0kXF1lnde9GOltFq6FfvNQd"
   var channel: String!
   var channelForShow: String!
-  var task: NSURLSessionTask?
+  var task: URLSessionTask?
   var searchBarActive:Bool = false
   var spinnerActive = false
   
@@ -33,7 +33,7 @@ class ChannelViewController: UIViewController, UISearchBarDelegate, UICollection
     let baseURL = "http://api-public.guidebox.com/v1.43/us/\(apiKey)/channels/all/0/50"
     getJSON(baseURL)
     channelSearchBar.delegate = self
-    self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
+    self.navigationController!.navigationBar.tintColor = UIColor.white
     SwiftSpinner.show(NSLocalizedString("Retrieving your channels..", comment: ""))
     spinnerActive = true
     
@@ -43,11 +43,13 @@ class ChannelViewController: UIViewController, UISearchBarDelegate, UICollection
     savedFavoriteArray = []
 
     //Retrieve already saved favorite shows from Backendless
-    BackendlessUserFunctions.sharedInstance.retrieveFavoriteFromBackendless({ ( favoriteShows : BackendlessCollection!) -> () in
+    BackendlessUserFunctions.sharedInstance.retrieveFavoriteFromBackendless({ ( favoriteShows : BackendlessCollection?) -> () in
       
       print("FavoritesShowInfo have been fetched:")
       
-      for favoriteShow in favoriteShows.data {
+      if let backendFavorites = favoriteShows?.data {
+      
+      for favoriteShow in backendFavorites {
         
         let currentShow = favoriteShow as! BackendlessUserFunctions.FavoritesShowInfo
         
@@ -60,12 +62,13 @@ class ChannelViewController: UIViewController, UISearchBarDelegate, UICollection
       }
       
       }
-      , err: { ( fault : Fault!) -> () in
+      }
+      , err: { ( fault : Fault?) -> () in
         print("FavoritesShowInfo were not fetched: \(fault)")
       }
     )
     } else {
-      self.performSegueWithIdentifier("channelToLoginSegue", sender: self)
+      self.performSegue(withIdentifier: "channelToLoginSegue", sender: self)
       SwiftSpinner.hide()
       spinnerActive = false
     }
@@ -73,7 +76,7 @@ class ChannelViewController: UIViewController, UISearchBarDelegate, UICollection
   
   //MARK: CollectionView
   
-  func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     
     if self.searchBarActive
     {
@@ -84,22 +87,22 @@ class ChannelViewController: UIViewController, UISearchBarDelegate, UICollection
   }
   
   
-  func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ChannelCell", forIndexPath: indexPath) as! ChannelCell
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ChannelCell", for: indexPath) as! ChannelCell
     let channel: String
     if self.searchBarActive {
       channel = self.filteredSearchResults[indexPath.item].logo
     } else {
       channel = self.channelArray[indexPath.item].logo
     }
-    cell.channelImageView.sd_setImageWithURL(NSURL(string: channel))
+    cell.channelImageView.sd_setImage(with: URL(string: channel))
     SwiftSpinner.hide()
     spinnerActive = false
     
     return cell
   }
   
-  func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     
     var replacedTitle: String?
     if self.searchBarActive {
@@ -122,21 +125,21 @@ class ChannelViewController: UIViewController, UISearchBarDelegate, UICollection
       default : break
       }
     }
-    performSegueWithIdentifier("channelToShowSegue", sender: self)
+    performSegue(withIdentifier: "channelToShowSegue", sender: self)
   }
   
   
   //MARK: JSON Parsing
   
-  func getJSON (urlString: String) {
+  func getJSON (_ urlString: String) {
     
-    let url = NSURL(string: urlString)!
-    let urlConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
+    let url = URL(string: urlString)!
+    let urlConfig = URLSessionConfiguration.default
     urlConfig.timeoutIntervalForRequest = 7
     urlConfig.timeoutIntervalForResource = 7
-    let session = NSURLSession(configuration: urlConfig)
-    task = session.dataTaskWithURL(url) {(data, response, error) in
-      dispatch_async(dispatch_get_main_queue()) {
+    let session = URLSession(configuration: urlConfig)
+    task = session.dataTask(with: url, completionHandler: {(data, response, error) in
+      DispatchQueue.main.async {
         if (error == nil) {
           self.updateJSON(data)
         }
@@ -152,14 +155,14 @@ class ChannelViewController: UIViewController, UISearchBarDelegate, UICollection
           alertAction.addAction(self.exitOutOfApp)
         }
       }
-    }
+    }) 
     task!.resume()
   }
   
   
-  func updateJSON (data: NSData!) {
+  func updateJSON (_ data: Data!) {
     do {
-      let showData = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers) as!
+      let showData = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as!
       NSDictionary
       
       let results = showData["results"] as! [NSDictionary]?
@@ -170,7 +173,7 @@ class ChannelViewController: UIViewController, UISearchBarDelegate, UICollection
           let id = data["id"] as? NSNumber
           let info = ChannelInfo(logo: logo!, channelName: channelName!, id: id!)
           channelArray.append(info)
-          self.logosShown = [Bool](count: channelArray.count, repeatedValue: false)
+          self.logosShown = [Bool](repeating: false, count: channelArray.count)
         }
       }
     } catch {
@@ -188,10 +191,10 @@ class ChannelViewController: UIViewController, UISearchBarDelegate, UICollection
   
   // MARK: Animation
   
-  func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+  func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
     if logosShown[indexPath.item] == false {
       cell.alpha = 0
-      UIView.animateWithDuration(0.5, animations: { () -> Void in
+      UIView.animate(withDuration: 0.5, animations: { () -> Void in
         cell.alpha = 1
       })
       logosShown[indexPath.item] = true
@@ -201,14 +204,14 @@ class ChannelViewController: UIViewController, UISearchBarDelegate, UICollection
   
   //MARK: Search
   
-  func filterContentForSearchText(searchText:String){
-    self.filteredSearchResults.removeAll(keepCapacity: false)
+  func filterContentForSearchText(_ searchText:String){
+    self.filteredSearchResults.removeAll(keepingCapacity: false)
     let searchPredicate = NSPredicate(format: "channelName CONTAINS [c] %@", searchText)
-    let array = (self.channelArray as NSArray).filteredArrayUsingPredicate(searchPredicate)
+    let array = (self.channelArray as NSArray).filtered(using: searchPredicate)
     self.filteredSearchResults = array as! [ChannelInfo]
   }
   
-  func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+  func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
     // user did type something, check our datasource for text that looks the same
     if searchText.characters.count > 0 {
       // search and reload data source
@@ -223,24 +226,24 @@ class ChannelViewController: UIViewController, UISearchBarDelegate, UICollection
     }
   }
   
-  func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+  func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
     self .cancelSearching()
     self.channelCollectionView?.reloadData()
   }
   
-  func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+  func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
     self.searchBarActive = true
     self.view.endEditing(true)
   }
   
-  func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+  func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
     // we used here to set self.searchBarActive = YES
     // but we'll not do that any more... it made problems
     // it's better to set self.searchBarActive = YES when user typed something
     self.channelSearchBar!.setShowsCancelButton(true, animated: true)
   }
   
-  func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+  func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
     // this method is being called when search btn in the keyboard tapped
     // we set searchBarActive = NO
     // but no need to reloadCollectionView
@@ -256,10 +259,10 @@ class ChannelViewController: UIViewController, UISearchBarDelegate, UICollection
   
   //MARK: Segue
   
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "channelToShowSegue"{
-      let showVC = segue.destinationViewController as! ShowViewController
-      showVC.showType = channelForShow.lowercaseString
+      let showVC = segue.destination as! ShowViewController
+      showVC.showType = channelForShow.lowercased()
     }
   }
   

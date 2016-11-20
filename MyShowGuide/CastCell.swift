@@ -22,14 +22,14 @@ class CastCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataS
          }
   
   
-  func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
   
   return castArray.count
   }
   
   
-  func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCellWithReuseIdentifier("castCollectionCell", forIndexPath: indexPath) as! castCollectionCell
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "castCollectionCell", for: indexPath) as! castCollectionCell
     let cast = castArray[indexPath.row]
     
     if cast.name != "" {

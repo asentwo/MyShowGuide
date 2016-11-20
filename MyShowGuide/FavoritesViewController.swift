@@ -12,11 +12,11 @@ import JSSAlertView
 
 class FavoritesViewController: UITableViewController {
   
-  var postersShown = [Bool](count: 50, repeatedValue: false)
+  var postersShown = [Bool](repeating: false, count: 50)
   var favoriteShowsArray: [TvShowInfo] = []
   var showForDetail: NSNumber?
   let apiKey = "rKk09BXyG0kXF1lnde9GOltFq6FfvNQd"
-  var task: NSURLSessionTask?
+  var task: URLSessionTask?
   var spinnerActive = false
   var showToRemove: TvShowInfo?
   let tvViewController = ShowViewController()
@@ -28,16 +28,16 @@ class FavoritesViewController: UITableViewController {
     spinnerActive = true
     retrieveSavedShows()
     tableViewAttributes()
-    self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
+    self.navigationController!.navigationBar.tintColor = UIColor.white
   }
   
     //MARK: TableView
   
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("TvShowCell", forIndexPath: indexPath) as! TvShowCell
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "TvShowCell", for: indexPath) as! TvShowCell
     
     cell.MainTitleLabel.text = favoriteShowsArray[indexPath.row].title
-    cell.MainPosterImage.sd_setImageWithURL(NSURL(string: favoriteShowsArray[indexPath.row].poster))
+    cell.MainPosterImage.sd_setImage(with: URL(string: favoriteShowsArray[indexPath.row].poster))
     
     SwiftSpinner.hide()
     spinnerActive = false
@@ -45,7 +45,8 @@ class FavoritesViewController: UITableViewController {
   }
   
   
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
     return favoriteShowsArray.count
     
@@ -55,21 +56,21 @@ class FavoritesViewController: UITableViewController {
     favoritesTableView.allowsSelection = true
     favoritesTableView.rowHeight = UITableViewAutomaticDimension
     favoritesTableView.estimatedRowHeight = 220.0
-    favoritesTableView.separatorStyle = UITableViewCellSeparatorStyle.None
+    favoritesTableView.separatorStyle = UITableViewCellSeparatorStyle.none
     favoritesTableView.reloadData()
   }
   
   
   
-  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     showForDetail = favoriteShowsArray[indexPath.row].id
-    performSegueWithIdentifier("favoriteToDetailSegue", sender: self)
+    performSegue(withIdentifier: "favoriteToDetailSegue", sender: self)
   }
   
   
   // MARK: Parallax Effect
   
-  override func scrollViewDidScroll(scrollView: UIScrollView) {
+  override func scrollViewDidScroll(_ scrollView: UIScrollView) {
     let offsetY =  favoritesTableView.contentOffset.y
     for cell in  favoritesTableView.visibleCells as! [TvShowCell] {
       
@@ -77,19 +78,19 @@ class FavoritesViewController: UITableViewController {
       let w = cell.MainPosterImage.bounds.width
       let h = cell.MainPosterImage.bounds.height
       let y = ((offsetY - cell.frame.origin.y) / h) * 15
-      cell.MainPosterImage.frame = CGRectMake(x, y, w, h)
-      cell.contentMode = UIViewContentMode.ScaleAspectFill
+      cell.MainPosterImage.frame = CGRect(x: x, y: y, width: w, height: h)
+      cell.contentMode = UIViewContentMode.scaleAspectFill
     }
   }
   
   // MARK: Animation
   
-  override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
     
     if postersShown[indexPath.row] == false {
       cell.alpha = 0
       //cells intitial value transparent
-      UIView.animateWithDuration(0.5, animations: { () -> Void in
+      UIView.animate(withDuration: 0.5, animations: { () -> Void in
         cell.alpha = 1
         //cells back from transparency
       })
@@ -146,21 +147,21 @@ class FavoritesViewController: UITableViewController {
   
   //MARK: PrepareForSegue
   
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "favoriteToDetailSegue"
     {
-      let detailViewController = segue.destinationViewController as! DetailTvTableViewController
+      let detailViewController = segue.destination as! DetailTvTableViewController
       detailViewController.showToDetailSite = self.showForDetail!
     }
   }
   
   //MARK: IBActions
     
-    @IBAction func removeSavedObject(sender: AnyObject) {
+    @IBAction func removeSavedObject(_ sender: AnyObject) {
 
       //find object based on location of sender(button)
-        let location: CGPoint = sender.convertPoint(CGPointZero, toView: self.favoritesTableView)
-        let indexPath: NSIndexPath = self.favoritesTableView.indexPathForRowAtPoint(location)!
+        let location: CGPoint = sender.convert(CGPoint.zero, to: self.favoritesTableView)
+        let indexPath: IndexPath = self.favoritesTableView.indexPathForRow(at: location)!
       
       //make local array = universal saved show array
         favoriteShowsArray = savedFavoriteArray

@@ -58,26 +58,26 @@ class LoginSignUp: UIViewController, UITextFieldDelegate, UIViewControllerTransi
   //MARK: Bubble Transition
   let transition = BubbleTransition()
   
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    let controller = segue.destinationViewController
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    let controller = segue.destination
     controller.transitioningDelegate = self
-    controller.modalPresentationStyle = .Custom
+    controller.modalPresentationStyle = .custom
   }
   
   // MARK: UIViewControllerTransitioningDelegate
   
-  func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+  func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
     
     transition.startingPoint = loginButton.center
-    transition.transitionMode = .Present
+    transition.transitionMode = .present
     transition.bubbleColor = loginButton.backgroundColor!
     return transition
   }
   
   
   
-  func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-    transition.transitionMode = .Dismiss
+  func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    transition.transitionMode = .dismiss
     transition.startingPoint = loginButton.center
     transition.bubbleColor = loginButton.backgroundColor!
     return transition
@@ -86,20 +86,22 @@ class LoginSignUp: UIViewController, UITextFieldDelegate, UIViewControllerTransi
   
   //MARK: IBActions
   
-  @IBAction func loginInButtonPressed(sender: AnyObject) {
+  @IBAction func loginInButtonPressed(_ sender: AnyObject) {
     SwiftSpinner.show(NSLocalizedString("Logging you in..", comment: ""))
     
     //userNameSignIn = user's email
-    BackendlessUserFunctions.sharedInstance.backendlessUserLogin(userNameSignIn.text!, password: passwordSignIn.text!, rep: { ( user : BackendlessUser!) -> () in
+    BackendlessUserFunctions.sharedInstance.backendlessUserLogin(userNameSignIn.text!, password: passwordSignIn.text!, rep: { ( user : BackendlessUser?) -> () in
       
-      self.performSegueWithIdentifier("loginToNavController", sender: self)
-      print("User logged in: \(user.objectId)")
+      self.performSegue(withIdentifier: "loginToNavController", sender: self)
+      print("User logged in: \(user?.objectId)")
       SwiftSpinner.hide()
       
-      }, err: { ( fault : Fault!) -> () in
+      }, err: { ( fault : Fault?) -> () in
         var errorStatement: String!
         
-        switch fault.faultCode {
+        if let faultCodes = fault?.faultCode {
+        
+        switch faultCodes {
           
         case "3003": errorStatement = (NSLocalizedString("Account not found, please register", comment: ""))//User Failed to login
         case "3040": errorStatement = (NSLocalizedString("The email address is in the wrong format", comment: ""))
@@ -116,6 +118,7 @@ class LoginSignUp: UIViewController, UITextFieldDelegate, UIViewControllerTransi
         default: errorStatement = (NSLocalizedString("Error, please email us at myshowguide@gmail.com"
           , comment: ""))
         }
+        }
         SwiftSpinner.hide()
         JSSAlertView().show(
           self,
@@ -129,12 +132,12 @@ class LoginSignUp: UIViewController, UITextFieldDelegate, UIViewControllerTransi
     })
   }
   
-  @IBAction func dismissLoginScreen(sender: AnyObject) {
-    self.dismissViewControllerAnimated(true, completion: {})
+  @IBAction func dismissLoginScreen(_ sender: AnyObject) {
+    self.dismiss(animated: true, completion: {})
   }
   
-  @IBAction func signUpButtonPressed(sender: AnyObject) {
-    performSegueWithIdentifier("loginToSignUpSegue", sender: self)
+  @IBAction func signUpButtonPressed(_ sender: AnyObject) {
+    performSegue(withIdentifier: "loginToSignUpSegue", sender: self)
   }
   
 }

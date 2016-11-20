@@ -17,20 +17,20 @@ class BackendlessUserFunctions {
   let backendless = Backendless.sharedInstance()
   
   // A private init prevents others from using the default '()' initializer for this class.
-  private init() {
+  fileprivate init() {
     
     let backendless = Backendless.sharedInstance()
-    backendless.initApp(APP_ID, secret:SECRET_KEY, version:VERSION_NUM)
+    backendless?.initApp(APP_ID, secret:SECRET_KEY, version:VERSION_NUM)
     
     // This asks that the user should stay logged in by storing or caching the user's login
     // information so future logins can be skipped next time the user launches the app.
-    backendless.userService.setStayLoggedIn(true)
+    backendless?.userService.setStayLoggedIn(true)
   }
   
   //checks to see if user is logged in to Backendless
   func isValidUser() -> Bool {
     
-    let isValidUser = backendless.userService.isValidUserToken()
+    let isValidUser = backendless?.userService.isValidUserToken()
     
     if(isValidUser != nil && isValidUser != 0) {
       return true
@@ -40,7 +40,7 @@ class BackendlessUserFunctions {
   }
   
   // register user
-  func backendlessUserRegister(email:String, password:String, rep: ((user : BackendlessUser!) -> Void), err: (( fault : Fault!) -> Void)) {
+  func backendlessUserRegister(_ email:String, password:String, rep: @escaping ((_ user : BackendlessUser?) -> Void), err: @escaping (( _ fault : Fault?) -> Void)) {
     
     if(isValidUser()) {
       print("A user is already logged on, but we're trying to register a new one!");
@@ -48,16 +48,16 @@ class BackendlessUserFunctions {
     }
     
     let user: BackendlessUser = BackendlessUser()
-    user.email = email
-    user.password = password
+    user.email = email as NSString!
+    user.password = password as NSString!
     
     
-    backendless.userService.registering(user, response: rep, error: err)
+    backendless?.userService.registering(user, response: rep, error: err)
   }
   
   
   //user login
-  func backendlessUserLogin(email:String, password:String, rep: ((user : BackendlessUser!) -> Void), err: (( fault : Fault!) -> Void)) {
+  func backendlessUserLogin(_ email:String, password:String, rep: @escaping ((_ user : BackendlessUser?) -> Void), err: @escaping (( _ fault : Fault?) -> Void)) {
     
     // First, check if the user is already logged in. If they are, we don't need to
     // ask them to login again.
@@ -70,7 +70,7 @@ class BackendlessUserFunctions {
     // need to login. In a real app, this where we would send the user to a login screen to
     // collect their user name and password for the login attempt.
     
-    backendless.userService.login(email, password:password, response: rep, error: err)
+    backendless?.userService.login(email, password:password, response: rep, error: err)
     
   }
   
@@ -82,91 +82,99 @@ class BackendlessUserFunctions {
     var title: String?
   }
   
-  //save- works 
-  func saveFavoriteToBackendless(showToSave: TvShowInfo, rep: (entity : AnyObject!) -> (Void), err:((Fault!) -> Void)) {
-   
+  //save- works
+  func saveFavoriteToBackendless(_ showToSave: TvShowInfo, rep: @escaping (_ entity : Any?) -> (Void), err:@escaping ((Fault?) -> Void)) {
+    
     let fav = FavoritesShowInfo()
     fav.poster = showToSave.poster
     fav.showID = showToSave.id
     fav.title = showToSave.title
   
-    let dataStore = backendless.data.of(FavoritesShowInfo.ofClass())
+    
+    if let dataStore = backendless?.data.of(FavoritesShowInfo.ofClass()){
     
     dataStore.save(fav,response: rep, error:  err)
-
+    }
   }
   
   //search backendless by specific column and delete
-  func removeByShowID (showToRemove: TvShowInfo) {
+  func removeByShowID (_ showToRemove: TvShowInfo) {
     
     
-    let dataStore = self.backendless.data.of(FavoritesShowInfo.ofClass())
-    
-    let dataQuery = BackendlessDataQuery()
-    dataQuery.whereClause = "showID = \(showToRemove.id)"
-    
-    dataStore.find( dataQuery,
-                    
-                    response: { ( favorites : BackendlessCollection!) -> () in
+    if let dataStore = self.backendless?.data.of(FavoritesShowInfo.ofClass()) {
+      
+      let dataQuery = BackendlessDataQuery()
+      dataQuery.whereClause = "showID = \(showToRemove.id)"
+      
+      dataStore.find( dataQuery,
                       
-                      for favorite in favorites.data {
+                      response: { ( favorites : BackendlessCollection?) -> () in
                         
-                        let favorite = favorite as! FavoritesShowInfo
+                        if let backendFavorites = favorites?.data {
                         
-                        print("FavoritesShowInfo: \(favorite.objectId!)")
-                        
-                        var error: Fault?
-                        let result = dataStore.remove(favorite, fault: &error)
-                        if error == nil {
-                          print("One FavoritesShowInfo has been removed: \(result)")
-                        } else {
-                          print("Server reported an error on attempted removal: \(error)")
+                        for favorite in backendFavorites {
+                          
+                          let favorite = favorite as! FavoritesShowInfo
+                          
+                          print("FavoritesShowInfo: \(favorite.objectId!)")
+                          
+                          var error: Fault?
+                          let result = dataStore.remove(favorite, fault: &error)
+                          if error == nil {
+                            print("One FavoritesShowInfo has been removed: \(result)")
+                          } else {
+                            print("Server reported an error on attempted removal: \(error)")
+                          }
                         }
-                      }
+                        }
+                     
       },
-                    
-                    error: { ( fault : Fault!) -> () in
-                      print("FavoritesShowInfo were not fetched: \(fault)")
+                      
+                      error: { ( fault : Fault?) -> () in
+                        print("FavoritesShowInfo were not fetched: \(fault)")
       }
-    )  }
-
-
-  //remove - works
-  func removeFavoriteFromBackendless(objectID: String) {
-    
-    let dataStore = self.backendless.data.of(FavoritesShowInfo.ofClass())
-    
-    dataStore.removeID(objectID, response: {(num : NSNumber!) -> () in
+      )
       
-        print("Show was removed: \(objectID)")
-      
-      },
-      
-      error: { (fault : Fault!) -> () in
-        print("Show failed to be removed: \(fault)")
-      }
-    )
+    }
   }
-
-
-
-
+  
+  
+  //remove - works
+  func removeFavoriteFromBackendless(_ objectID: String) {
+    
+    if let dataStore = self.backendless?.data.of(FavoritesShowInfo.ofClass()) {
+      
+      dataStore.removeID(objectID, response: {(num : NSNumber?) -> () in
+        
+        print("Show was removed: \(objectID)")
+        
+      },
+                         
+                         error: { (fault : Fault?) -> () in
+                          print("Show failed to be removed: \(fault)")
+      }
+      )
+    }
+  }
+  
+  
+  
   //retrieve - works
-  func retrieveFavoriteFromBackendless(rep: ((BackendlessCollection!) -> Void), err: ((Fault!) -> Void) ) {
- 
-    let currentUser = backendless.userService.currentUser
+  func retrieveFavoriteFromBackendless(_ rep: @escaping ((BackendlessCollection?) -> Void), err: @escaping ((Fault?) -> Void) ) {
+    
+    let currentUser = backendless?.userService.currentUser
     
     let dataQuery = BackendlessDataQuery()
     
-    print("currentUser.objectId = \(currentUser.objectId)")
+    print("currentUser.objectId = \(currentUser?.objectId)")
     
-    dataQuery.whereClause = "ownerId = '\(currentUser.objectId)'"
+    dataQuery.whereClause = "ownerId = '\(currentUser?.objectId)'"
     
-    let dataStore = backendless.data.of(FavoritesShowInfo.ofClass())
-    
-    dataStore.find( dataQuery, response: rep, error: err)
-    
+    if let dataStore = backendless?.data.of(FavoritesShowInfo.ofClass()) {
+      
+      dataStore.find( dataQuery, response: rep, error: err)
+      
+    }
   }
-
-  }
+}
 

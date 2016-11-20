@@ -27,7 +27,7 @@ class SignUpViewController: UIViewController, UIViewControllerTransitioningDeleg
   
   //MARK: Alert
   func alertViewSuccessAction () {
- self.performSegueWithIdentifier("signUpToNavSegue", sender: self)
+ self.performSegue(withIdentifier: "signUpToNavSegue", sender: self)
 
   }
   
@@ -35,30 +35,30 @@ class SignUpViewController: UIViewController, UIViewControllerTransitioningDeleg
   //MARK: Bubble Transition
   let transition = BubbleTransition()
   
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    let controller = segue.destinationViewController
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    let controller = segue.destination
     controller.transitioningDelegate = self
-    controller.modalPresentationStyle = .Custom
+    controller.modalPresentationStyle = .custom
   }
   
   // MARK: UIViewControllerTransitioningDelegate
   
-  func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-    transition.transitionMode = .Present
+  func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    transition.transitionMode = .present
     transition.startingPoint = createAccountButton.center
     transition.bubbleColor = createAccountButton.backgroundColor!
     return transition
   }
   
-  func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-    transition.transitionMode = .Dismiss
+  func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    transition.transitionMode = .dismiss
     transition.startingPoint = createAccountButton.center
     transition.bubbleColor = createAccountButton.backgroundColor!
     return transition
   }
   
   //MARK: IBActions
-  @IBAction func createAccountButtonPressed(sender: AnyObject) {
+  @IBAction func createAccountButtonPressed(_ sender: AnyObject) {
     SwiftSpinner.show(NSLocalizedString("Creating account..", comment: ""))
     
     if passwordTextField.text != confirmPasswordTextField.text {
@@ -72,14 +72,14 @@ class SignUpViewController: UIViewController, UIViewControllerTransitioningDeleg
         iconImage: myShowGuideLogo)
     } else {
     
-    BackendlessUserFunctions.sharedInstance.backendlessUserRegister(emailTextField.text!,password: passwordTextField.text!,  rep: { ( user : BackendlessUser!) -> () in
+    BackendlessUserFunctions.sharedInstance.backendlessUserRegister(emailTextField.text!,password: passwordTextField.text!,  rep: { ( user : BackendlessUser?) -> () in
       
-      BackendlessUserFunctions.sharedInstance.backendless.userService.login( self.emailTextField.text!, password:self.passwordTextField.text,
+      BackendlessUserFunctions.sharedInstance.backendless?.userService.login( self.emailTextField.text!, password:self.passwordTextField.text,
         
-        response: { ( user : BackendlessUser!) -> () in
+        response: { ( user : BackendlessUser?) -> Void in
           
           if BackendlessUserFunctions.sharedInstance.isValidUser() {
-            print("User logged in: \(user.objectId)")
+            print("User logged in: \(user?.objectId)")
             
             SwiftSpinner.hide()
             let alertView = JSSAlertView().show(
@@ -92,16 +92,18 @@ class SignUpViewController: UIViewController, UIViewControllerTransitioningDeleg
           }
         },
         
-        error: { ( fault : Fault!) -> () in
+        error: { ( fault : Fault?) -> () in
           print("User failed to login: \(fault)")
         }
       )
       
-      }, err: { ( fault : Fault!) -> () in
+      }, err: { ( fault : Fault?) -> () in
         
         var errorStatement: String!
         
-        switch fault.faultCode {
+        if let faultCodes = fault?.faultCode {
+        
+        switch faultCodes {
           
         case "3003": errorStatement = (NSLocalizedString("Account not found, please register", comment: ""))//User Failed to login
         case "3040": errorStatement = (NSLocalizedString("The email address is in the wrong format", comment: ""))
@@ -119,6 +121,7 @@ class SignUpViewController: UIViewController, UIViewControllerTransitioningDeleg
         default: errorStatement = (NSLocalizedString("Error, please email us at myshowguide@gmail.com"
           , comment: ""))
         }
+        }
         
         SwiftSpinner.hide()
           JSSAlertView().show(
@@ -132,8 +135,8 @@ class SignUpViewController: UIViewController, UIViewControllerTransitioningDeleg
   }
   }
   
-  @IBAction func dismissCurrentViewController(sender: AnyObject) {
-    self.dismissViewControllerAnimated(true, completion: {})}
+  @IBAction func dismissCurrentViewController(_ sender: AnyObject) {
+    self.dismiss(animated: true, completion: {})}
   
   
 }

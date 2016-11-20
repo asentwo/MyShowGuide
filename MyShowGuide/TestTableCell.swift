@@ -49,7 +49,7 @@ class TestTableCell: UITableViewCell, UICollectionViewDelegate, UICollectionView
   }
   
   
-  func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     
     
    print(photosArray.count)
@@ -61,19 +61,19 @@ class TestTableCell: UITableViewCell, UICollectionViewDelegate, UICollectionView
     
   }
   
-  func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCellWithReuseIdentifier("testCollectionCell", forIndexPath: indexPath) as! TestCollectionCell
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "testCollectionCell", for: indexPath) as! TestCollectionCell
 
     
    //cell.testImage.image = UIImage(named: "shep eazy")
     
     
- cell.testImage.sd_setImageWithURL(NSURL(string: photosArray[0].fanart))
+ cell.testImage.sd_setImage(with: URL(string: photosArray[0].fanart))
     
     return cell
   }
   
-  func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
     let itemsPerRow:CGFloat = 4
     let hardCodedPadding:CGFloat = 5
     let itemWidth = (collectionView.bounds.width / itemsPerRow) - hardCodedPadding
