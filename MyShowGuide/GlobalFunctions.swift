@@ -37,7 +37,7 @@ func nullToNil(_ value : AnyObject?) -> AnyObject? {
 
 func CancelSpinner() {
   delay(4, closure: {
-    SwiftSpinner.show("Sorry..There has been an error.")
+    _ = SwiftSpinner.show("Sorry..There has been an error.")
     delay(2, closure: {
       SwiftSpinner.hide()})
   })

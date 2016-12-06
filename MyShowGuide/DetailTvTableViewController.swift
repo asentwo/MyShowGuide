@@ -46,7 +46,7 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    SwiftSpinner.show(NSLocalizedString("Retrieving your show info...", comment: ""))
+    _ = SwiftSpinner.show(NSLocalizedString("Retrieving your show info...", comment: ""))
     spinnerActive = true
     
     self.navigationController!.navigationBar.tintColor = UIColor.white
@@ -342,7 +342,7 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
       
     case 5:
       let cell = tableView.dequeueReusableCell(withIdentifier: "socialCell", for: indexPath) as! SocialCell
-      let socialData = socialArray[indexPath.row]
+      _ = socialArray[indexPath.row]
       self.DetailTvTableView.rowHeight = 50
       DetailTvTableView.allowsSelection = false
       
@@ -362,7 +362,7 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
       self.DetailTvTableView.rowHeight = 331
       return cell
       
-    default: ""
+    default: _ = ""
     }
     return cell
   }
@@ -400,7 +400,7 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
   @IBAction func FacebookButton(_ sender: AnyObject) {
     if self.socialArray[0].facebook != nil {
       detailToWebsite = socialArray[0].facebook} else {
-      "https://www.facebook.com"}
+     _ = "https://www.facebook.com"}
     performSegue(withIdentifier: "DetailToWebsiteSegue", sender: self)
     
   }
@@ -408,7 +408,7 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
   @IBAction func TwitterButton(_ sender: AnyObject) {
     if self.socialArray[0].twitter != nil {
       detailToWebsite = socialArray[0].twitter} else {
-      "https://www.facebook.com"}
+    _ = "https://www.facebook.com"}
     performSegue(withIdentifier: "DetailToWebsiteSegue", sender: self)
   }
   
@@ -428,8 +428,7 @@ class DetailTvTableViewController: UITableViewController, UITextViewDelegate {
   //MARK: Network Error Indicator
   
   func errorGoToPreviousScreen () {
-    // self.dismissViewControllerAnimated(true, completion: nil)
-    self.navigationController?.popViewController(animated: true)
+   _ = self.navigationController?.popViewController(animated: true)
   }
 }
 

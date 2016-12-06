@@ -96,7 +96,7 @@ class VideoViewController: UIViewController, UITableViewDelegate, UITableViewDat
   
   func showNetworkError () {
     let alert = UIAlertController(title: NSLocalizedString("Whoops?", comment: ""), message: NSLocalizedString("There was a connection error. Please try again.", comment: ""), preferredStyle: .alert)
-    let action = UIAlertAction(title: "OK", style: .default, handler: {_ in self.navigationController?.popViewController(animated: true)})
+    let action = UIAlertAction(title: "OK", style: .default, handler: {_ in _ = self.navigationController?.popViewController(animated: true)})
     alert.addAction(action)
     present(alert, animated: true, completion: nil)
     

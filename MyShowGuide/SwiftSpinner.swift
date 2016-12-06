@@ -138,7 +138,7 @@ open class SwiftSpinner: UIView {
         let spinner = SwiftSpinner.sharedInstance
         
         spinner.showWithDelayBlock = {
-            SwiftSpinner.show(title, animated: animated)
+            _ = SwiftSpinner.show(title, animated: animated)
         }
         
         spinner.delay(seconds: delay) { [weak spinner] in

@@ -24,7 +24,7 @@ class FavoritesViewController: UITableViewController {
   @IBOutlet var favoritesTableView: UITableView!
   
   override func viewDidLoad() {
-    SwiftSpinner.show(NSLocalizedString("Retrieving your show info...", comment: ""))
+   _ = SwiftSpinner.show(NSLocalizedString("Retrieving your show info...", comment: ""))
     spinnerActive = true
     retrieveSavedShows()
     tableViewAttributes()

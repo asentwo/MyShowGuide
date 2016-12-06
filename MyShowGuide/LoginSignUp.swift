@@ -87,7 +87,7 @@ class LoginSignUp: UIViewController, UITextFieldDelegate, UIViewControllerTransi
   //MARK: IBActions
   
   @IBAction func loginInButtonPressed(_ sender: AnyObject) {
-    SwiftSpinner.show(NSLocalizedString("Logging you in..", comment: ""))
+    _ = SwiftSpinner.show(NSLocalizedString("Logging you in..", comment: ""))
     
     //userNameSignIn = user's email
     BackendlessUserFunctions.sharedInstance.backendlessUserLogin(userNameSignIn.text!, password: passwordSignIn.text!, rep: { ( user : BackendlessUser?) -> () in

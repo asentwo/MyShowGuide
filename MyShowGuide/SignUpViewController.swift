@@ -59,7 +59,7 @@ class SignUpViewController: UIViewController, UIViewControllerTransitioningDeleg
   
   //MARK: IBActions
   @IBAction func createAccountButtonPressed(_ sender: AnyObject) {
-    SwiftSpinner.show(NSLocalizedString("Creating account..", comment: ""))
+    _ = SwiftSpinner.show(NSLocalizedString("Creating account..", comment: ""))
     
     if passwordTextField.text != confirmPasswordTextField.text {
       SwiftSpinner.hide()

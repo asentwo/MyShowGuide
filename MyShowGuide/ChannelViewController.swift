@@ -34,7 +34,7 @@ class ChannelViewController: UIViewController, UISearchBarDelegate, UICollection
     getJSON(baseURL)
     channelSearchBar.delegate = self
     self.navigationController!.navigationBar.tintColor = UIColor.white
-    SwiftSpinner.show(NSLocalizedString("Retrieving your channels..", comment: ""))
+    _ = SwiftSpinner.show(NSLocalizedString("Retrieving your channels..", comment: ""))
     spinnerActive = true
     
     

@@ -41,7 +41,7 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
     tableViewAttributes()
     self.navigationController!.navigationBar.tintColor = UIColor.white
     showSearchBar.delegate = self
-    SwiftSpinner.show(NSLocalizedString("Retrieving your shows...", comment: "Loading Message"))
+    _ = SwiftSpinner.show(NSLocalizedString("Retrieving your shows...", comment: "Loading Message"))
     spinnerActive = true
   }
   
@@ -281,7 +281,7 @@ class ShowViewController: UIViewController, UITableViewDataSource, UITableViewDe
   }
   
   func errorGoToPreviousScreen () {
-    self.navigationController?.popViewController(animated: true)
+  _ = self.navigationController?.popViewController(animated: true)
   }
   
   

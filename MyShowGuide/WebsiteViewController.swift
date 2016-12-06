@@ -20,7 +20,7 @@ class WebsiteViewController: UIViewController, UIWebViewDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     startRequest()
-      SwiftSpinner.show(NSLocalizedString("Connecting to website...", comment: ""))
+     _ = SwiftSpinner.show(NSLocalizedString("Connecting to website...", comment: ""))
     spinnerActive = true
     self.navigationController!.navigationBar.tintColor = UIColor.white
   }
@@ -28,7 +28,7 @@ class WebsiteViewController: UIViewController, UIWebViewDelegate {
   //MARK: WebView
   
   func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
-   // self.showNetworkError()
+ 
      JSSAlertView().show(
       self,
       title: NSLocalizedString("Whoops?", comment: ""),

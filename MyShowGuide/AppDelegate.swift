@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     IQKeyboardManager.sharedManager().enable = true
     
-    BackendlessUserFunctions.sharedInstance.backendless
+   // BackendlessUserFunctions.sharedInstance.backendless
     
     if BackendlessUserFunctions.sharedInstance.isValidUser() {
       
