@@ -454,24 +454,24 @@
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
+                                            <exclude reference="0h7-be-gua"/>
+                                            <exclude reference="Zta-5k-ChM"/>
                                             <exclude reference="1PU-PJ-cp1"/>
                                             <exclude reference="Flb-Wn-BfL"/>
                                             <exclude reference="sSb-nz-mLK"/>
                                             <exclude reference="wBn-9a-6LA"/>
-                                            <exclude reference="0h7-be-gua"/>
-                                            <exclude reference="Zta-5k-ChM"/>
                                         </mask>
                                     </variation>
                                     <variation key="heightClass=regular-widthClass=compact">
                                         <mask key="constraints">
+                                            <include reference="0h7-be-gua"/>
+                                            <include reference="Zta-5k-ChM"/>
                                             <include reference="1PU-PJ-cp1"/>
                                             <include reference="Flb-Wn-BfL"/>
                                             <exclude reference="YIB-tM-O2I"/>
                                             <exclude reference="o2Q-5n-hRQ"/>
                                             <exclude reference="sSb-nz-mLK"/>
                                             <exclude reference="wBn-9a-6LA"/>
-                                            <include reference="0h7-be-gua"/>
-                                            <include reference="Zta-5k-ChM"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
@@ -520,12 +520,12 @@
                                             </subviews>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
-                                                <constraint firstItem="ES5-yK-vZO" firstAttribute="centerX" secondItem="Irn-lz-Pbu" secondAttribute="centerX" id="2xh-ZR-c3Y"/>
-                                                <constraint firstItem="ES5-yK-vZO" firstAttribute="leading" secondItem="Irn-lz-Pbu" secondAttribute="leading" id="AVH-cJ-SGz"/>
-                                                <constraint firstAttribute="trailing" secondItem="ES5-yK-vZO" secondAttribute="trailing" id="Icf-Bn-yKv"/>
-                                                <constraint firstAttribute="bottom" secondItem="ES5-yK-vZO" secondAttribute="bottom" id="bq6-pH-udL"/>
-                                                <constraint firstItem="ES5-yK-vZO" firstAttribute="centerY" secondItem="Irn-lz-Pbu" secondAttribute="centerY" id="gfV-ap-bEc"/>
-                                                <constraint firstItem="ES5-yK-vZO" firstAttribute="top" secondItem="Irn-lz-Pbu" secondAttribute="top" id="pN4-Hn-ARE"/>
+                                                <constraint firstAttribute="bottom" secondItem="ES5-yK-vZO" secondAttribute="bottom" id="3lv-ti-CqY"/>
+                                                <constraint firstItem="ES5-yK-vZO" firstAttribute="centerX" secondItem="Irn-lz-Pbu" secondAttribute="centerX" id="KzO-Bs-aUV"/>
+                                                <constraint firstItem="ES5-yK-vZO" firstAttribute="centerY" secondItem="Irn-lz-Pbu" secondAttribute="centerY" id="nIW-8T-fcB"/>
+                                                <constraint firstItem="ES5-yK-vZO" firstAttribute="leading" secondItem="Irn-lz-Pbu" secondAttribute="leading" id="z3y-lf-EBu"/>
+                                                <constraint firstAttribute="trailing" secondItem="ES5-yK-vZO" secondAttribute="trailing" id="zaM-v7-h8j"/>
+                                                <constraint firstItem="ES5-yK-vZO" firstAttribute="top" secondItem="Irn-lz-Pbu" secondAttribute="top" id="zip-fy-zYH"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="subviews">
@@ -882,6 +882,10 @@
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
+                                            <exclude reference="5Z8-FY-bsT"/>
+                                            <exclude reference="CaK-iU-Sh4"/>
+                                            <exclude reference="u45-sK-viY"/>
+                                            <exclude reference="ugH-HS-gHR"/>
                                             <exclude reference="40p-j2-A29"/>
                                             <exclude reference="HWu-0V-1k0"/>
                                             <exclude reference="X0h-4t-uyp"/>
@@ -890,10 +894,6 @@
                                             <exclude reference="QMr-fJ-BYf"/>
                                             <exclude reference="bmK-VA-woR"/>
                                             <exclude reference="iQm-Yd-l9p"/>
-                                            <exclude reference="5Z8-FY-bsT"/>
-                                            <exclude reference="CaK-iU-Sh4"/>
-                                            <exclude reference="u45-sK-viY"/>
-                                            <exclude reference="ugH-HS-gHR"/>
                                             <exclude reference="5oM-6w-NfK"/>
                                             <exclude reference="9sk-Dk-Jeq"/>
                                             <exclude reference="NLO-6U-hUs"/>
@@ -1480,10 +1480,16 @@
                                 <exclude reference="2aQ-Rl-HFH"/>
                                 <exclude reference="Wxg-5J-CAd"/>
                                 <exclude reference="xNc-r0-bWp"/>
-                                <exclude reference="9Nn-hT-pPo"/>
                                 <exclude reference="KFL-3g-YCV"/>
                                 <exclude reference="VNe-88-1fo"/>
                                 <exclude reference="gA1-2K-Eon"/>
+                                <exclude reference="9Nn-hT-pPo"/>
+                                <exclude reference="8ft-o3-d4o"/>
+                                <exclude reference="Bf0-Ef-f1w"/>
+                                <exclude reference="K6j-Q9-SqY"/>
+                                <exclude reference="NKt-Fr-EVN"/>
+                                <exclude reference="nUd-KE-ca0"/>
+                                <exclude reference="ugX-qF-Hqc"/>
                                 <exclude reference="5ld-y3-M2H"/>
                                 <exclude reference="7Tj-hd-QlP"/>
                                 <exclude reference="BsQ-x6-ieo"/>
@@ -1491,12 +1497,6 @@
                                 <exclude reference="V57-kQ-iuh"/>
                                 <exclude reference="aXY-gE-oqG"/>
                                 <exclude reference="xwz-Xh-Itc"/>
-                                <exclude reference="8ft-o3-d4o"/>
-                                <exclude reference="Bf0-Ef-f1w"/>
-                                <exclude reference="K6j-Q9-SqY"/>
-                                <exclude reference="NKt-Fr-EVN"/>
-                                <exclude reference="nUd-KE-ca0"/>
-                                <exclude reference="ugX-qF-Hqc"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -1916,7 +1916,6 @@
                                 <exclude reference="Pdp-yX-z4d"/>
                                 <exclude reference="ez5-Fw-dLr"/>
                                 <exclude reference="y9c-Os-WEK"/>
-                                <exclude reference="sUE-LO-f7O"/>
                                 <exclude reference="LEx-oz-a5y"/>
                                 <exclude reference="LK3-TH-vR1"/>
                                 <exclude reference="Qnx-yB-Yep"/>
@@ -1925,22 +1924,23 @@
                                 <exclude reference="glc-fa-PPL"/>
                                 <exclude reference="wdG-4J-Drm"/>
                                 <exclude reference="zJw-BW-f98"/>
-                                <exclude reference="pwU-Py-QK1"/>
+                                <exclude reference="sUE-LO-f7O"/>
+                                <exclude reference="cib-DP-7cy"/>
                                 <exclude reference="CGc-l4-zQG"/>
                                 <exclude reference="RRq-bK-mAa"/>
                                 <exclude reference="aBI-uC-SUL"/>
+                                <exclude reference="pwU-Py-QK1"/>
                                 <exclude reference="OD5-u0-Rt3"/>
                                 <exclude reference="EI1-0B-jMJ"/>
                                 <exclude reference="MsM-PC-JDp"/>
                                 <exclude reference="QNx-np-hne"/>
                                 <exclude reference="gU0-Wo-oVs"/>
-                                <exclude reference="cib-DP-7cy"/>
                                 <exclude reference="x8e-vY-nIb"/>
                             </mask>
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="Jg5-Ha-auv">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="FFH-IO-E0M">
+                        <barButtonItem key="rightBarButtonItem" id="FFH-IO-E0M">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="JCQ-9Z-DaS">
                                 <rect key="frame" x="525" y="4" width="55" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

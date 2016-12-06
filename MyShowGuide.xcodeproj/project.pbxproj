@@ -133,9 +133,10 @@
 		6E3871821BCF290C00559559 /* MyShowGuide */ = {
 			isa = PBXGroup;
 			children = (
-				6E3871871BCF290C00559559 /* Main.storyboard */,
 				6E38718C1BCF290C00559559 /* LaunchScreen.storyboard */,
+				6E3871871BCF290C00559559 /* Main.storyboard */,
 				6E3871B41BCF2D7700559559 /* Controllers */,
+				6E9678011DF75AA40027FBF1 /* Objects */,
 				6E3871B51BCF2D8300559559 /* Helpers */,
 				6E9678001DF748B40027FBF1 /* Assets */,
 				6E9677FF1DF748600027FBF1 /* System */,
@@ -186,8 +187,6 @@
 				6E4BE2C31CDBC90C0093E12C /* CustomSegue.swift */,
 				6E0075621CDA4D8300627267 /* BackendlessUser.swift */,
 				6E468E701C750EB100EE36BD /* SwiftSpinner.swift */,
-				6E3871B61BD03F8F00559559 /* DetailShowInfo.swift */,
-				6E9949931BD5996B00D50655 /* CastInfo_Photos.swift */,
 				6EA9BE411C765DB8001591D9 /* GlobalFunctions.swift */,
 				3FBE22981CC7CCC3008FC1A9 /* UserDefaults.swift */,
 			);
@@ -212,6 +211,15 @@
 				6E38718A1BCF290C00559559 /* Assets.xcassets */,
 			);
 			name = Assets;
+			sourceTree = "<group>";
+		};
+		6E9678011DF75AA40027FBF1 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				6E3871B61BD03F8F00559559 /* DetailShowInfo.swift */,
+				6E9949931BD5996B00D50655 /* CastInfo_Photos.swift */,
+			);
+			name = Objects;
 			sourceTree = "<group>";
 		};
 		6EF5B3471BE016AC0073A9CF /* CollectionView Cells */ = {

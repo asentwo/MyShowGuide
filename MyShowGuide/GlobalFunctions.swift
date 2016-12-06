@@ -15,7 +15,6 @@ let myShowGuideLogo = UIImage(named: "80x80clear")
 var savedFavoriteArray:[TvShowInfo] = []
 
 //MARK: Delay
-
 func delay(_ delay:Double, closure:@escaping ()->()) {
   DispatchQueue.main.asyncAfter(
     deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
@@ -23,7 +22,6 @@ func delay(_ delay:Double, closure:@escaping ()->()) {
 
 
 //MARK: Null to Nil
-
 func nullToNil(_ value : AnyObject?) -> AnyObject? {
   if value is NSNull {
     return nil
@@ -34,7 +32,6 @@ func nullToNil(_ value : AnyObject?) -> AnyObject? {
 
 
 //MARK: Cancel Spinner
-
 func CancelSpinner() {
   delay(4, closure: {
     _ = SwiftSpinner.show("Sorry..There has been an error.")

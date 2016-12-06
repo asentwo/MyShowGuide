@@ -67,9 +67,7 @@ class BackendlessUserFunctions {
     }
     
     // If we were unable to find a valid user token, the user is not logged and they'll
-    // need to login. In a real app, this where we would send the user to a login screen to
-    // collect their user name and password for the login attempt.
-    
+    // need to login.
     backendless?.userService.login(email, password:password, response: rep, error: err)
     
   }
@@ -89,11 +87,11 @@ class BackendlessUserFunctions {
     fav.poster = showToSave.poster
     fav.showID = showToSave.id
     fav.title = showToSave.title
-  
+    
     
     if let dataStore = backendless?.data.of(FavoritesShowInfo.ofClass()){
-    
-    dataStore.save(fav,response: rep, error:  err)
+      
+      dataStore.save(fav,response: rep, error:  err)
     }
   }
   
@@ -111,23 +109,23 @@ class BackendlessUserFunctions {
                       response: { ( favorites : BackendlessCollection?) -> () in
                         
                         if let backendFavorites = favorites?.data {
-                        
-                        for favorite in backendFavorites {
                           
-                          let favorite = favorite as! FavoritesShowInfo
-                          
-                          print("FavoritesShowInfo: \(favorite.objectId!)")
-                          
-                          var error: Fault?
-                          let result = dataStore.remove(favorite, fault: &error)
-                          if error == nil {
-                            print("One FavoritesShowInfo has been removed: \(result)")
-                          } else {
-                            print("Server reported an error on attempted removal: \(error)")
+                          for favorite in backendFavorites {
+                            
+                            let favorite = favorite as! FavoritesShowInfo
+                            
+                            print("FavoritesShowInfo: \(favorite.objectId!)")
+                            
+                            var error: Fault?
+                            let result = dataStore.remove(favorite, fault: &error)
+                            if error == nil {
+                              print("One FavoritesShowInfo has been removed: \(result)")
+                            } else {
+                              print("Server reported an error on attempted removal: \(error)")
+                            }
                           }
                         }
-                        }
-                     
+                        
       },
                       
                       error: { ( fault : Fault?) -> () in
@@ -139,7 +137,6 @@ class BackendlessUserFunctions {
   }
   
   
-  //remove - works
   func removeFavoriteFromBackendless(_ objectID: String) {
     
     if let dataStore = self.backendless?.data.of(FavoritesShowInfo.ofClass()) {
@@ -158,8 +155,6 @@ class BackendlessUserFunctions {
   }
   
   
-  
-  //retrieve - works
   func retrieveFavoriteFromBackendless(_ rep: @escaping ((BackendlessCollection?) -> Void), err: @escaping ((Fault?) -> Void) ) {
     
     let currentUser = backendless?.userService.currentUser
